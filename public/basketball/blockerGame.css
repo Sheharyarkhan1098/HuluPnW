@@ -1,0 +1,226 @@
+
+/*sumair */
+@font-face {
+  font-family: Graphik;
+  src: url("fonts/Graphik.ttc");
+}
+@font-face {
+  font-family: hulustyle-bold;
+  src: url("fonts/hulustyle-bold-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-extrabold;
+  src: url("fonts/hulustyle-extrabold-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-extralight;
+  src: url("fonts/hulustyle-extralight-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-heavy;
+  src: url("fonts/hulustyle-heavy-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-light;
+  src: url("fonts/hulustyle-light-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-medium;
+  src: url("fonts/hulustyle-medium-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-regular;
+  src: url("fonts/hulustyle-regular-webfont.ttf");
+}
+
+
+
+/*score card*/
+.score-board-outer-container{
+  postition:relative;
+}
+.scorecard-overlay-jersey-image{
+  postion: bsolute;
+  bottom: 0;
+}
+
+
+/* for mobile screen */
+
+.hide-on-mbl {
+  display: none !important;
+}
+.show-on-mobile {
+  display: block;
+}
+/* end of mobile screen */
+
+/* for desktop scree n */
+
+.hide-on-desktop {
+  display: none;
+}
+.gameDescription {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+  background-color: #43f979;
+  background-image: url("/homebg.png");
+}
+.gameDescription-content {
+  background-color: #151515;
+  color: white;
+  margin: auto;
+  padding: 50px 100px;
+  border: 1px solid #888;
+  width: 80%;
+}
+.reward_instructions_container {
+  margin: 50px 0px;
+}
+
+.reward_instructions_container th {
+  width: 50%;
+}
+#gotIt {
+  /* background-color: rgb(0, 255, 150); */
+  background-color: white;
+  color: black;
+  border: 0px solid black;
+  border-radius: 5px;
+  width: 15%;
+  padding: 10px;
+}
+
+/* end of game description */
+
+/* Start of Select Jersey */
+.selectJersey {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+  background-color: #43f979 !important;
+  background-image: url("/homebg.png");
+}
+.jerseyOptions {
+  color: white;
+  background: black;
+  text-align: center;
+  padding: 2% 2%;
+  font-size: 15px;
+  font-weight: bolder;
+  margin-right: 10px;
+}
+/* End of Select Jersey */
+
+/* Start of Select Player Name */
+
+.selectName {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+  background-color: #43f979 !important;
+  background-image: url("/homebg.png");
+}
+.selectName-container {
+  width: 100%;
+}
+.randomizedName {
+  color: white;
+  background: black;
+  text-align: center;
+  padding: 10% 2%;
+  font-size: 20px;
+  font-weight: bolder;
+  margin-right: 10px;
+}
+/* End of Select Player Name */
+
+/* Start of Score Card */
+
+.scorecard {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+  background-color: #43f979 !important;
+  background-image: url("/homebg.png");
+}
+/*.scorecard-content {*/
+/*  background-color: rgb(0, 0, 0);*/
+/*  color: white;*/
+/*  margin: 5% auto;*/
+/*  padding: 50px 100px;*/
+/*  border: 1px solid #888;*/
+/*  width: 80%;*/
+/*}*/
+.scorecard-content {
+  background-color: #151515;
+  color: white;
+  margin: auto;
+  margin-top: 5%;
+  padding: 50px 100px;
+  border: 1px solid #888;
+  width: 80%;
+}
+.scorecard-overlay-image {
+  position: relative;
+  /*top: 43.5%;*/
+  right: 12%;
+  z-index: 1;
+}
+.scorecard-overlay-jersey-image {
+  position: absolute;
+  bottom: 0px;
+  right: 2%;
+  z-index: 0;
+  /*transform: rotate(15deg);*/
+}
+.scoreplayer2 {
+  font-size: 60px;
+  font-weight: 600;
+  font-family: SquareDotMatrix !important;
+  padding: 10px;
+  color: #43f979;
+}
+.quitBtn,
+.goToBlockPartyBtn {
+  width: 235px;
+  background: black;
+  color: white;
+  height: 55px;
+  padding: 15px;
+  border: 1px solid white;
+}
+.replayBtn {
+  width: 235px;
+  background: white;
+  color: black;
+  height: 55px;
+  padding: 15px;
+  border: 1px solid white;
+}
+/* End of Score Card */

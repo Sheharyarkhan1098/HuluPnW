@@ -1,0 +1,5258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Basketball Game</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="text/javascript" src="js/phaser.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js/html2canvas.js"></script>
+    <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
+
+    <!--	<h2>Basketball Game (inspired by Facebook Messenger!)</h2>-->
+    <style type="text/css">
+      @font-face {
+        src: url(./fonts/hulustyle-extrabold-webfont.ttf);
+        font-family: HuluExtraBold;
+      }
+      @font-face {
+        font-family: HuluRegular;
+        src: url(./fonts/hulustyle-regular-webfont.ttf);
+      }
+      @font-face {
+        font-family: HuluHeavy;
+        src: url(./fonts/hulustyle-heavy-webfont.ttf);
+      }
+      @font-face {
+        font-family: Graphik;
+        src: url(./fonts/Graphik.ttf);
+      }
+
+      body {
+        margin: 0;
+        /* background-color: #43f979 !important;
+        background-image: url("./images/homebg.png"); */
+        background-color: black;
+        background-size: 60%;
+      }
+      #game-area {
+        display: none;
+      }
+      /*bottom button*/
+      .floating-got-it-btn{
+        width: 85%;
+        left: 30px;
+        background-color: white;
+        font-family: Graphik;
+        padding: 10px;
+      }
+
+      /*Score card*/
+      .container-fluid .score-footer-content h4{
+        margin-bottom: 100px;
+        margin-top: 10px;
+      }
+      .dunked{
+       /*max-width: 240px;*/
+        font-family: HuluExtraBold;
+      }
+      #scoreCardDownloadable{
+        overflow: hidden;
+      }
+      .score-card-2{
+        display: none;
+      }
+      .download-btn-mb{
+        display: none;
+      }
+      .container-fluid .score-footer-content h4{
+        margin-bottom: 100px;
+      }
+      strong{
+        font-family: HuluStyle !important;
+      }
+
+
+      .web-link-font{
+        margin-bottom: 5px;
+        font-size: 12px;
+      }
+      .jersays{
+        font-family: HuluExtraBold;
+      }
+      p.arcade{
+          font-size: 25px;
+          font-weight: 700;
+          font-family: hulustyle-bold !important;
+          margin-top: 15px;
+      }
+
+
+      #quit {
+        background: black;
+        color: white;
+        border: 1px solid white;
+        border-radius: 5px;
+        width: 25%;
+        padding: 15px;
+        margin-right: 25px;
+      }
+
+      #replay {
+
+        border: 1px solid white;
+        border-radius: 5px;
+        width: 25%;
+        padding: 15px;
+        margin-right: 25px;
+        color: black !important;
+        background-color: white !important;
+      }
+
+      #go-to-party {
+        background: black;
+        color: white;
+        border: 1px solid white;
+        border-radius: 5px;
+        width: 25%;
+        padding: 15px;
+      }
+
+
+
+
+      #gotIt {
+        font-size: 11px;
+        font-weight: 900 !important;
+        letter-spacing: 1px !important;
+        color: #4A4A4A !important;
+
+      }
+
+      .got-it-btn-desktop:hover{
+        background-color: #43f979 !important;
+      }
+      .player-img{
+          background-color: #151515;
+          justify-content: center;
+          text-align: center;
+        }
+      .player-img-2{
+        background-color: #151515;
+        justify-content: center;
+        text-align: center;
+      }
+      .player-img img{
+        width: 50%;
+        padding: 45px;
+      }
+      .player-img-2 img{
+        width: 75%;
+        padding: 45px;
+      }
+      .jersy-bottom-text{
+        font-family: HuluExtraBold;
+      }
+      .player-img h3{
+        position: relative;
+        top: 40px;
+        font-family: HuluExtraBold;
+        font-weight: bold;;
+      }
+      .player-img-2 p{
+        position: relative;
+        top: 25px;
+        font-family: HuluExtraBold;
+        font-weight: bold;
+        font-size: 1.75rem;
+      }
+      .page-width{
+        width: 80vw;
+      }
+      .main-body{
+        background-image: url("./images/homebg.png");
+      }
+      .screen-rotator-for-score {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 10; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+        /*background: linear-gradient(green, #43f979), url("#") !important;*/
+        background-color: rgba(0,0,0,0.98);
+      }
+      .rotate-screen-to-show-scorecard {
+        display: none;
+      }
+      .hide-on-desktop {
+        display: none;
+      }
+      .score-card-download-btn-for-mbl {
+        display: none;
+      }
+      .score-board-image-for-mbl {
+        display: none;
+      }
+      .screen-rotator {
+        display: none;
+      }
+      .display-game-start-for-landscape {
+        display: none;
+      }
+      .score-card-details-for-mbl {
+        display: none;
+      }
+      .game-over-for-mbl {
+        display: none;
+      }
+      .game-over-for-desktop {
+        display: block;
+      }
+
+      /* #player1 canvas{
+      	margin: -1000px 120px;
+      	border: thin solid black;
+      	position: absolute;
+          } */
+
+      /* applying font-family to different content */
+      .game-description,
+      .game-description-instruction,
+      .game-description-reward,
+      .game-description-paragraph,
+      .select-player-name,
+      .steps,
+      .randomizedName,
+      .select-your-jersey,
+      .jersy-option-home,
+      .jersy-option-away,
+      .select-your-challenger,
+      .challenger-name,
+      .player-name,
+      .player1,
+      .player2,
+      .score-heading {
+        font-family: HuluExtraBold !important;
+      }
+      .beginner-challenge,
+      .on-your-desktop {
+        font-family: HuluRegular !important;
+      }
+      .beginner-challenge-mbl {
+        display: none;
+      }
+      .got-it-mbl-only-btn {
+        display: none;
+      }
+
+      .scorecard-overlay-image {
+        position: relative;
+
+        right: 12%;
+        z-index: 1;
+      }
+      .scorecard-overlay-jersey-image {
+        position: absolute;
+        /*top: 44.5%;*/
+        right: 9%;
+        z-index: 0;
+        bottom: 2px;
+        transform: rotate(10deg);
+        height: 6vh;
+
+      }
+      #player1 {
+        height: 500;
+        width: 700;
+      }
+
+      @media (max-width: 500px) {
+        #player2area {
+          display: block;
+          margin-left: auto;
+        }
+        #player1area {
+          display: block;
+        }
+      }
+      #player2 {
+        height: 500;
+        width: 700;
+      }
+
+      /* #player2 canvas{
+      	margin: -1000px 120px;
+      	border: thin solid black;
+      	position: absolute;
+
+      } */
+
+      /*span {*/
+      /*  display: block;*/
+      /*  margin: 30px auto;*/
+      /*  width: 500px;*/
+      /*  text-align: center;*/
+      /*}*/
+
+      /*#removeSpanStyle span {*/
+      /*  display: inline;*/
+      /*  margin: 0px;*/
+
+      /*  text-align: center;*/
+      /*}*/
+
+      h2 {
+        text-align: center;
+      }
+      .time-outer {
+        left: 25%;
+        text-align: center;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 10%; /* Location of the box */
+        padding-left: 30%; /* Location of the box */
+        padding-right: 30%; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0); /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+      }
+
+      .gameDescription {
+        display: block; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 2; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+        background-color: #43f979;
+        background-image: url("/homebg.png");
+
+      }
+
+      .selectName {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 2; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+        background-color: #43f979 !important;
+        background-image: url("/homebg.png");
+      }
+
+      .selectJersey {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 2; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+        background-color: #43f979 !important;
+        background-image: url("/homebg.png");
+      }
+
+      .selectChallenger {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 2; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+        background-color: #43f979 !important;
+        background-image: url("/homebg.png");
+      }
+      .scorecard {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 2; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+        background-color: #43f979 !important;
+        background-image: url("/homebg.png");
+      }
+
+      /* Modal Content */
+      .modal-content {
+        background-color: transparent;
+        /* margin: auto;
+          padding: 20px;
+          border: 1px solid #888; */
+        width: 100%;
+      }
+
+      .gameDescription-content {
+        background-color: #151515;
+        color: white;
+        margin: auto;
+        padding: 50px 100px;
+        border: 1px solid #888;
+        width: 80%;
+      }
+      .game-description-for-desktop {
+        display: block;
+      }
+      .game-description-for-mbl {
+        display: none;
+      }
+
+      .scorecard-content {
+        background-color: rgb(0, 0, 0);
+        color: white;
+        margin: auto;
+        margin-top: 5%;
+        padding: 50px 100px;
+        border: 2px solid #888;
+        width: 80%;
+      }
+
+      .reward_instructions_container {
+        margin: 50px 0px;
+      }
+
+      .reward_instructions_container th {
+        width: 50%;
+      }
+
+      .selectName-container {
+        width: 100%;
+      }
+      .randomizedName {
+        color: white;
+        background: black;
+        text-align: center;
+        padding: 10% 2%;
+        font-size: 20px;
+        font-weight: bolder;
+        margin-right: 10px;
+      }
+
+      .jerseyOptions {
+        color: white;
+        background: black;
+        text-align: center;
+        padding: 2% 2%;
+        font-size: 15px;
+        font-weight: bolder;
+        margin-right: 10px;
+      }
+
+      .challengerOptions {
+        color: white;
+        background: black;
+        text-align: center;
+        padding: 2% 2%;
+        font-size: 15px;
+        font-weight: bolder;
+        margin-right: 10px;
+      }
+
+      #gotIt {
+        /* background-color: rgb(0, 255, 150); */
+        background-color: white;
+        color: black;
+        border: 0px solid black;
+        border-radius: 4px;
+        width: 15%;
+        padding: 10px;
+      }
+
+      #quit {
+        background: black;
+        color: white;
+        border: 1px solid white;
+        border-radius: 5px;
+        width: 25%;
+        padding: 15px;
+        margin-right: 25px;
+      }
+      #quit:hover{
+        background: white;
+        color: black;
+      }
+
+      #replay {
+
+
+        border: 1px solid white;
+        border-radius: 5px;
+        width: 25%;
+        padding: 15px;
+        margin-right: 25px;
+        color: black !important;
+        background-color: white !important;
+      }
+      #replay:hover{
+        background: white;
+        color: black;
+      }
+      #go-to-party {
+        background: black;
+        color: white;
+        border: 1px solid white;
+        border-radius: 5px;
+        width: 25%;
+        padding: 15px;
+      }
+      #go-to-party:hover{
+        background: white;
+        color: black;
+      }
+
+      #startButton {
+        /* background-color: rgb(0, 255, 150); */
+        background-color: white;
+        color: black;
+        border: 0px solid black;
+        border-radius: 4px;
+        width: 35%;
+        padding: 7px;
+        margin-top: 20px;
+        font-family: Graphik !important;
+        font-weight: 600;
+      }
+
+
+      /* The Close Button */
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      /*Desktop All Star Challenge screen-4*/
+      .rookie-challenge-title{
+        color: white !important;
+        font-family: HuluStyle-ExtraBold !important;
+        text-align: left !important;
+      }
+      /*.HuluStyle-ExtraBold h3{*/
+      /*  font-family: HuluStyle-ExtraBold;*/
+      /*}*/
+
+
+
+      /*////////////////////////////////////*/
+      /*//////////////Step 3////////////////*/
+      /*////////////////////////////////////*/
+      .container-outer{
+        margin-top: 0px;
+      }
+      .card{
+        border: 5px solid #151515;
+        border-radius: 0;
+        background-color: #151515;
+        cursor: pointer;
+      }
+      .card-title{
+        background-color: #151515;
+      }
+      .card-body{
+        background-color: #151515;
+      }
+      .white-line-outer{
+        margin-top: 5px;
+      }
+      .white-line{
+        height: 5px;
+        background-color: #ffffff;
+      }
+      .white-line33{
+        width: 33.33%;
+      }
+      .white-line66{
+        width: 66.66%;
+      }
+      .white-line100{
+        width: 100%;
+      }
+
+      /*Score page fonts*/
+      .game-over-p{
+        font-family: HuluExtraBold;
+      }
+      .game-over-title{
+        font-family: HuluExtraBold;
+      }
+      .game-over-dec-p{
+        font-family: HuluStyle-reguler;
+      }
+      #downloadScoreCard{
+        font-family: HuluExtraBold;
+      }
+      .footer-feedback-link{
+        font-family: HuluExtraBold;
+      }
+      .footer-feedback-link p{
+        font-family: hulustyle-extralight;
+      }
+
+
+
+      h2.game-description.game-description-for-desktop.text-center {
+        margin-top: 5px !important;
+        margin-bottom: 5px !important;
+      }
+      @media screen and (max-width: 4096px){
+        /*GOT it button*/
+        #gotIt{
+          font-size: 20px;
+        }
+
+
+        .select-text{
+          font-size: 72px;
+          font-family: HuluExtraBold;
+        }
+        .steps{
+          font-size: 20px;
+          font-weight:800;
+          line-height:14px;
+          padding-top: 10px;
+        }
+        /*.card-img-top {*/
+        /*  height: 450px;*/
+        /*  width: 100%;*/
+        /*}*/
+        .players-name{
+          font-size:18px !important;
+          font-weight: 800;
+          line-height:34px;
+          font-family: HuluHeavy;
+        }
+        .card-inner{
+          height: 650px;
+          width: 530px;
+        }
+        .player1{
+          font-size: 50px;
+          margin-top: 47px;
+          margin-bottom: 40px;
+        }
+        .player-name{
+          margin-bottom: 100px!important;
+          font-size: 50px;
+          padding-top: 30px;
+        }
+        .fa-user{
+          font-size: 300px;
+        }
+        .score-heading{
+          font-size: 50px;
+        }
+        .score{
+          font-size: 10rem;
+          font-weight: 600;
+          font-family: SquareDotMatrix !important;
+          padding: 10px;
+          background-color: black;
+          color: #43f979;
+          border: 2px solid #43f979;
+          border-radius: 0;
+        }
+        .score-board {
+          padding: 25px 30px;
+        }
+        .player2{
+          font-size: 50px;
+          margin-top: 47px;
+          margin-bottom: 40px;
+        }
+        .jersey-outer{
+          height: 32%;
+        }
+        .time-outer {
+          top: 0;
+          z-index: 0;
+          width: 100%;
+          left: 25%;
+          text-align: center;
+        }
+        .time-inner {
+          font-size: 60px;
+          font-weight: 600;
+          font-family: SquareDotMatrix;
+          padding: 5px 15px;
+          background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+          color: #43f979;
+          /* border: 2px solid greenyellow; */
+          border-radius: 0;
+          width: 50%;
+        }
+      }
+      .damian-outer{
+        display: flex;
+        justify-content: flex-end;
+      }
+      .damian-inner img{
+        height: 51vh;
+      }
+      .skylar-inner img{
+        height: 51vh;
+      }
+
+      /*////////////////////////////////////*/
+      /*//////////////Step 3////////////////*/
+      /*////////////////////////////////////*/
+
+      /*4k screen */
+      @media screen and (max-width: 3840px){
+
+        .order-first p {
+          padding-bottom: 10px;
+        }
+        .order-md-2 p {
+          padding-bottm: 10px;
+        }
+
+
+
+        /*score pae*/
+        .dunked{
+          text-align:center;
+          margin: 0 auto;
+          font-size: 30px;
+          font-weight: bold;
+          line-height: 30px;
+        }
+        #downloadScoreCard{
+          color:#1CE783;
+          font-weight:bold;
+
+        }
+        .score-board-inner-container{
+          border: 12px solid #fff;
+          padding: 0px 20px 0px 20px;
+        }
+        .gameDescription-content {
+          width: 92vw;
+          /*height: 82vh;*/
+        }
+        .gameDescription-content{
+          padding: 190px 330px 0px 330px;
+        }
+        p.game-description-paragraph{
+          font-size: 65px !important;
+          font-family: HuluStyle !important;
+
+        }
+        .reward_instructions_container h4{
+          font-size: 62px;
+          font-weight: bold;
+          font-family: HuluStyle !important;
+
+        }
+        .reward_instructions_container p{
+          font-size: 56px;
+          font-family: HuluStyle-reguler;
+        }
+        .gameDescription h2{
+          font-family: HuluStyle-ExtraBold !important;
+          font-size: 4rem;
+        }
+        .got-it-btn-desktop{
+          font-size: 3rem;
+          padding: 30px !important;
+          margin-top: 20px;
+        }
+        .game-Challenge-model {
+          padding-left: 25%;
+          padding-right: 25%;
+        }
+        .challenge-title-color{
+          color: #43f979 !important;
+        }
+        .rookie-challenge-title {
+          /*color: white !important;*/
+          font-family: HuluStyle-ExtraBold !important;
+          text-align: left !important;
+          font-size: 4rem;
+        }
+        #startButton {
+          /* background-color: rgb(0, 255, 150); */
+          background-color: white;
+          color: black;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 36%;
+          padding: 20px;
+          font-size: 2rem;
+        }
+
+      }
+      .player-img-2{
+        cursor: pointer;
+      }
+      .player-img{
+        cursor: pointer;
+      }
+
+
+      /*2560x1440*/
+      @media screen and (max-width: 2560px){
+        /*GOT it button*/
+        #gotIt{
+          font-size: 15px;
+        }
+      /*secore card*/
+        .dunked{
+          margin: 0 auto;
+          font-size: 45px;
+          font-width: bold;
+          line-height: 40px;
+        }
+        .f-s{
+          font-size: 20px;
+        }
+        .c-t{
+          font-size: 20px !important;
+        }
+        .web-link-font{
+          font-size: 17px;
+        }
+        .h-u{
+          font-size: 18px;
+          margin-bottom: 5px !important;
+        }
+        .scorecard-overlay-jersey-image{
+          position: absolute;
+          bottom: -7px !important;
+          right: 7%;
+          z-index: 0;
+          height: 113px;
+        }
+        .scorecard-overlay-image{
+          position: absolute;
+          right: 19%;
+          bottom: 0 !important;
+          height: 85px;
+        }
+
+
+
+
+
+        .container-fluid .score-footer-content{
+          width: 81%;
+        }
+        .container-fluid .score-footer-content p{
+          font-size: 17px;
+          margin-bottom: 0px !important;
+        }
+        .container-fluid .score-footer-content h4{
+          text-align: center;
+          font-width: bold;
+        }
+
+
+        .gameDescription-content{
+          /*height: 83vh;*/
+          width: 88vw
+        }
+        .gameDescription-content {
+          padding: 100px 330px 0px 330px;
+        }
+        p.game-description-paragraph {
+          font-size: 36px !important;
+        }
+        .reward_instructions_container h4 {
+          font-size: 36px;
+          font-weight: bold;
+        }
+        .reward_instructions_container p {
+          font-size: 31px;
+        }
+        .got-it-btn-desktop {
+          font-size: 1.5rem;
+          padding: 30px !important;
+          margin-top: 10px;
+        }
+        .gameDescription h2 {
+          font-family: HuluStyle-ExtraBold !important;
+          font-size: 3rem;
+        }
+
+        /*khan*/
+        .select-text{
+          font-size: 50px;
+        }
+        .card-img-top {
+          height: 340px;
+        }
+        .card-inner {
+          height: 500px;
+          width: 500px;
+        }
+        /*////////////////////Player 1 /////////////////////*/
+        /*////////////////////////////////////////////////*/
+
+        .player-name {
+          font-size: 37px;
+          margin-bottom: 30px!important;
+        }
+        .player1 {
+          font-size: 32px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        .player2 {
+          font-size: 32px;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        .score {
+          font-size: 4rem;
+        }
+        .jerseysName  {
+          font-size: 28px;
+          padding-top: 15px;
+          margin-bottom: 0;
+          font-family: HuluStyle-ExtraBold !important;
+        }
+        .jersey-outer{
+          height: 27%;
+        }
+        /*.jersey-outer {*/
+        /*  height: 43%;*/
+        /*}*/
+        .jersey {
+          width: 210px;
+          height: 320px;
+        }
+
+
+        .game-Challenge-model {
+          padding-left: 17%;
+          padding-right: 17%;
+        }
+        .rookie-challenge-title {
+          font-size: 3.5rem;
+        }
+      }
+
+      /*1920 x 1080 */
+      @media screen and (max-width: 1920px){
+        /*GOT it button*/
+        #gotIt{
+          font-size: 11px;
+        }
+
+        .scorecard-overlay-jersey-image{
+          position: absolute;
+          bottom: 6px;
+          right: 5%;
+          z-index: 0;
+          height: 106px;
+        }
+        .scorecard-overlay-image{
+          position: absolute;
+          right: 15%;
+          bottom: 0 !important;
+          height: 75px;
+        }
+        .c-t{
+          font-size: 20px;
+        }
+
+
+
+        /*score care*/
+        .scorecard-content {
+          background-color: rgb(0, 0, 0);
+          color: white;
+          margin: auto;
+          margin-top: 2%;
+          padding: 50px 100px;
+          border: 2px solid #888;
+          width: 80%;
+        }
+
+
+
+        .gameDescription-content {
+          /*height: 75vh;*/
+          width: 84vw;
+        }
+        .gameDescription-content {
+          /*padding: 60px 300px 0px 300px;*/
+          padding: 40px 250px 0px 250px;
+        }
+        .gameDescription h2 {
+          font-size: 2rem;
+        }
+
+        p.game-description-paragraph {
+          font-size: 22px !important;
+        }
+        .reward_instructions_container h4 {
+          font-size: 23px;
+          font-weight: bold;
+        }
+
+        .reward_instructions_container p {
+          font-size: 19px;
+          margin: 0;
+        }
+
+        .got-it-btn-desktop {
+          font-size: 1rem;
+          padding: 15px !important;
+          margin-top: 0;
+        }
+
+        /*Khan*/
+        .card-img-top{
+          height: 270px;
+          width: 100%;
+        }
+        .select-text{
+          font-size:32px;
+        }
+        .steps{
+          font-size:18px;
+        }
+        .players-name{
+          font-size:24px;
+          line-height:20px;
+        }
+        .card1{
+          display: flex;
+          justify-content: flex-end;
+        }
+        .card2{
+          display: flex;
+          justify-content: flex-start;
+        }
+        .card-inner{
+          width: 400px;
+          height: 400px;
+        }
+        /*////////////////////Player 1 /////////////////////*/
+        /*////////////////////////////////////////////////*/
+        .player1 {
+          font-size: 22px;
+        }
+        .player2 {
+          font-size: 22px;
+        }
+        .player-name {
+          font-size: 24px;
+          margin-bottom: 10px!important;
+        }
+        i.fa-user {
+          font-size: 148px;
+        }
+        .score-heading {
+          font-size: 26px;
+        }
+        .jersey-outer {
+          height: 16%;
+        }
+        .jersey {
+          width: 120px;
+          height: 180px;
+        }
+        /*.player-name {*/
+        /*  font-size: 28px;*/
+        /*  margin-bottom: 20px!important;*/
+        /*}*/
+        /*.player1 {*/
+        /*  font-size: 26px;*/
+        /*}*/
+        /*.player2 {*/
+        /*  font-size: 26px;*/
+        /*}*/
+        /*.score {*/
+        /*  font-size: 2rem;*/
+        /*}*/
+        /*.jersey-outer {*/
+        /*  height: 43%;*/
+        /*}*/
+        /*.jersey {*/
+        /*  width: 210px;*/
+        /*  height: 320px;*/
+        /*}*/
+        /*i.fa-user {*/
+        /*  font-size: 148px;*/
+        /*}*/
+        .game-Challenge-model{
+          padding-left: 20%;
+          padding-right: 20%;
+        }
+
+        .rookie-challenge-title {
+          font-size: 2.5rem;
+        }
+        #startButton {
+          width: 30%;
+          padding: 20px;
+          font-size: 1rem;
+        }
+
+        /*feedback content*/
+        .container-fluid .score-footer-content p{
+          font-size: 13px;
+        }
+        .container-fluid .score-footer-content{
+          width: 82%;
+          margin-top: 8px;
+        }
+      }
+
+      @media screen and (max-width: 1600px){
+        .player-name {
+          font-size: 18px;
+          margin-bottom: 5px!important;
+        }
+        .player1 {
+          font-size: 16px;
+        }
+        .player2 {
+          font-size: 16px;
+        }
+        .player-name {
+          padding-top: 15px;
+        }
+        i.fa-user {
+          font-size: 70px;
+        }
+        .score-heading {
+          font-size: 18px;
+        }
+        .jersey {
+          width: 80px;
+          height: 140px;
+        }
+        .jersey-outer {
+          height: 18%;
+        }
+        .score-board {
+          padding: 0 30px 10px;
+        }
+        .score-heading {
+          font-size: 16px;
+        }
+        /*.challengeravatar{*/
+        /*  width: 50% !important;*/
+        /*  height: 70px;*/
+        /*}*/
+        .white-line-outer{
+          margin-top: 0;
+        }
+      }
+      @media screen and (max-width: 1500px){
+
+
+        /*score card*/
+        .score-board-outer-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 400px;
+          height: 400px;
+          background: url("./images/scorecardbg.png") no-repeat;
+          position: relative;
+        }
+        .score-board-inner-container {
+          position: relative;
+          left: 0px;
+          width: 300px;
+          height: 300px;
+          background-color: black;
+          border: 12px solid #fff;
+        }
+
+        .gameDescription-content{
+          padding: 40px 150px 0px 150px;
+        }
+
+        /*.dunked{*/
+        /*  font-size: 39px !important;*/
+        /*  line-height: 32px !important;*/
+        /*}*/
+        /*.w-l{*/
+        /*  font-size: 14px !important;*/
+        /*}*/
+        .f-s{
+          padding: 0px;
+          margin: 0px
+        }
+        .dunked{
+          font-size: 25px;
+          line-height: 25px;
+          max-width: 185px;
+        }
+        .c-t{
+          font-size: 13px !important;
+        }
+        .w-l{
+          font-size: 13px;
+        }
+        .h-u{
+          font-size:13px;
+        }
+
+
+
+        .player-name {
+          font-size: 18px;
+          margin-bottom: 5px!important;
+        }
+        .player1 {
+          font-size: 16px;
+        }
+        .player2 {
+          font-size: 16px;
+        }
+        .player-name {
+          padding-top: 15px;
+        }
+        i.fa-user {
+          font-size: 70px;
+        }
+        .score-heading {
+          font-size: 18px;
+        }
+        .jersey {
+          width: 80px;
+          height: 140px;
+        }
+        .jersey-outer {
+          height: 18%;
+        }
+        .score-board {
+          padding: 0 30px 10px;
+        }
+        .score-heading {
+          font-size: 16px;
+        }
+        /*.challengeravatar{*/
+        /*  width: 50% !important;*/
+        /*  height: 70px;*/
+        /*}*/
+        .white-line-outer{
+          margin-top: 0;
+        }
+      }
+      @media screen and (max-width: 1680px){
+        p.game-description-paragraph{
+          font-size: 21px !important;
+        }
+        .reward_instructions_container h4{
+          font-size : 21px !important;
+        }
+        .reward_instructions_container p{
+          font-size: 18px !important;
+        }
+        /*feedback content*/
+        .container-fluid .score-footer-content p{
+          font-size: 11px;
+        }
+      }
+        @media (max-width: 1680px) and (min-width: 1170px) {
+
+        /*.dunked{*/
+        /*  margin: 0 auto;*/
+        /*  font-size: 45px;*/
+        /*  font-width: bold;*/
+        /*  line-height: 40px;*/
+        /*}*/
+        /*.f-s{*/
+        /*  font-size: 20px;*/
+        /*}*/
+        /*.c-t{*/
+        /*  font-size: 20px;*/
+        /*}*/
+        /*.web-link-font{*/
+        /*  font-size: 17px;*/
+        /*}*/
+        /*.h-u{*/
+        /*  font-size: 20px;*/
+        /*}*/
+
+
+
+        /*!*Score page*!*/
+        /*.scorecard-overlay-image{*/
+
+        /*}*/
+        /*.footer-feedback-link{*/
+        /*  font-family: HuluExtraBold;*/
+        /*}*/
+        /*.scorecard-overlay-jersey-image{*/
+        /*  top: 42.5px;*/
+        /*}*/
+        /*.score-page-tr{*/
+        /*  line-height: 15px;*/
+        /*}*/
+        /*.score-board-inner-container P{*/
+        /*  margin-bottom: 5px;*/
+        /*}*/
+        /*.scorecard-content{*/
+        /*  padding: 15px 100px;*/
+        /*  !*margin: 1% auto;*!*/
+        /*}*/
+        /*.score-board-outer-container{*/
+        /*  width: 300px;*/
+        /*  height: 31vh;*/
+        /*}*/
+        /*background-color{*/
+        /*  padding:20px 100px*/
+        /*}*/
+        /*.score-board-inner-container{*/
+        /*  height : 28vh;*/
+        /*}*/
+
+        /*.f-s{*/
+        /*  margin-bottom: 0px !important;*/
+        /*  padding-bottom: 0px !important;*/
+        /*}*/
+        /*.dunked{*/
+        /*  text-align: center;*/
+        /*  margin: 0 auto;*/
+        /*  font-size: 23px;*/
+        /*  font-weight: bold;*/
+        /*  line-height: 20px;*/
+        /*}*/
+        /*#quit{*/
+        /*  !*padding: 6px;*!*/
+
+        /*}*/
+        /*#go-to-party{*/
+        /*  width:30%;*/
+        /*  !*padding: 6px;*!*/
+        /*}*/
+        /*#replay{*/
+        /*  !*padding: 6px;*!*/
+        /*}*/
+        /*.w-l{*/
+        /*  font-size: 10px;*/
+        /*  margin-bottom: 0px !important;*/
+        /*}*/
+        /*.h-u{*/
+        /*  font-size : 10px;*/
+        /*  margin-bottom: 0px !important;*/
+        /*}*/
+        /*.c-t{*/
+        /*  margin-bottom: 0px !important;*/
+        /*}*/
+        /*#downloadScoreCard{*/
+        /*  color : #1CE783;*/
+        /*  font-weight: bold*/
+        /*}*/
+        /*.game-over-p{*/
+        /*  font-size: 11px;*/
+        /*  font-weight: bold;*/
+        /*  margin-bottom: 0px;*/
+        /*}*/
+        /*.game-over-title{*/
+        /*  font-weight: 900;*/
+        /*  font-size: 25px !important;*/
+        /*}*/
+        /*.game-over-dec-p{*/
+        /*  line-height: 20px;*/
+        /*  margin-bottom: 0px;*/
+        /*}*/
+
+        /*.container-fluid .score-footer-content{*/
+        /*  width: 82%;*/
+        /*}*/
+        /*.container-fluid .score-footer-content p{*/
+        /*  font-size: 8px;*/
+        /*  margin-bottom: 0px !important;*/
+        /*}*/
+        /*.container-fluid .score-footer-content h4{*/
+        /*  text-align: center;*/
+        /*  font-width: bold;*/
+        /*}*/
+
+
+      }
+      @media (max-width: 1170px) and (min-width: 900px) {
+
+        span{
+          width: auto !important;
+        }
+
+        /*Score page*/
+        .scorecard-overlay-image{
+
+        }
+        .footer-feedback-link{
+          font-family: HuluExtraBold;
+        }
+        .scorecard-overlay-jersey-image{
+          top: 42.5px;
+        }
+        .score-page-tr{
+          line-height: 15px;
+        }
+        .score-board-inner-container P{
+          margin-bottom: 5px;
+        }
+
+
+        /*.scorecard-content{*/
+        /*  padding: 15px 100px;*/
+        /*  margin: 1% auto;*/
+        /*}*/
+
+
+        /*.score-board-outer-container{*/
+        /*  width: 300px;*/
+        /*  height: 37vh;*/
+        /*}*/
+
+
+        background-color{
+          padding:20px 100px
+        }
+        .score-board-inner-container{
+          height : 30vh;
+        }
+        .f-s{
+          margin-bottom: 0px !important;
+          padding-bottom: 0px !important;
+        }
+        .dunked{
+          text-align: center;
+          margin: 0 auto;
+          font-size: 23px;
+          font-weight: bold;
+          line-height: 20px;
+        }
+        #quit{
+          padding: 6px;
+
+        }
+        #go-to-party{
+          width:40%;
+          padding: 6px;
+        }
+        span{
+          width: auto !important;
+        }
+        #replay{
+          padding: 6px;
+        }
+        .w-l{
+          font-size: 10px;
+          margin-bottom: 0px !important;
+        }
+        .h-u{
+          font-size : 10px;
+          margin-bottom: 0px !important;
+        }
+        .c-t{
+          margin-bottom: 0px !important;
+        }
+        #downloadScoreCard{
+          color : #1CE783;
+          font-weight: bold
+        }
+        .game-over-p{
+          font-size: 11px;
+          font-weight: bold;
+          margin-bottom: 0px;
+        }
+        .game-over-title{
+          font-weight: 900;
+          font-size: 25px !important;
+        }
+        .game-over-dec-p{
+          line-height: 20px;
+          margin-bottom: 0px;
+        }
+
+        .container-fluid .score-footer-content{
+          width: 82%;
+        }
+        .container-fluid .score-footer-content p{
+          font-size: 8px;
+          margin-bottom: 0px !important;
+        }
+        .container-fluid .score-footer-content h4{
+          text-align: center;
+          font-width: bold;
+        }
+
+
+      }
+      @media screen and (max-width: 1463px){
+        /*.gameDescription-content{*/
+        /*  margin-bottom: 100px !important;*/
+        /*}*/
+
+        /*Score card*/
+
+        /*score care*/
+        .scorecard-content {
+          padding: 17px 100px !important;
+        }
+        .gameDescription h2{
+          font-size: 1.5rem;
+        }
+        .gameDescription-content {
+          width: 79vw;
+        }
+        .reward_instructions_container p {
+          font-size: 18px;
+          margin: 0;
+        }
+        .reward_instructions_container {
+          margin: 25px 0px;
+        }
+        .got-it-btn-desktop {
+          font-size: 1rem;
+          padding: 12px !important;
+          margin-top: 0;
+        }
+        .gameDescription-content {
+          padding: 60px 90px 0px 90px;
+        }
+        .gameDescription-content {
+          padding: 20px 90px 0px 90px;
+        }
+        /*jesry page*/
+        .player-img img {
+          width: 40%;
+          padding: 32px;
+        }
+        .player-img h3 {
+          position: relative;
+          top: 23px;
+          font-family: HuluStyle;
+          font-weight: bold;
+          font-size: 20px !important;
+        }
+        .player-img-2 img{
+          width: 60%;
+          padding: 35px;
+
+        }
+        .player-img-2 p{
+          position: relative;
+          top: 25px;
+          font-family: HuluStyle;
+          font-weight: bold;
+          font-size: 23px !important;
+        }
+        .player1{
+          margin-top:0;
+          margin-bottom: 0;
+        }
+        .player2{
+          margin-top:0;
+          margin-bottom: 0;
+        }
+        .player-name{
+          padding-top:10px;
+          font-size: 16px;
+          margin-bottom: 2px!important;
+        }
+        .score{
+          font-size: 3rem;
+          padding: 7px;
+        }
+        .jerseysName{
+          font-size:14px;
+          padding-top: 7px;
+          margin-bottom:0
+        }
+        .jersey-outer {
+          height: 16%;
+        }
+        /*feedback content*/
+        .container-fluid .score-footer-content p{
+          font-size: 10px;
+        }
+      }
+
+
+      @media screen and (max-width: 1440px){
+
+        /*score care*/
+        .scorecard-content {
+          background-color: rgb(0, 0, 0);
+          color: white;
+          margin: auto;
+          margin-top: 2%;
+          padding: 17px 100px !important;
+          border: 2px solid #888;
+          width: 80%;
+        }
+        .order-first p {
+          /*padding-bottom: 5px;*/
+        }
+        .order-md-2 p {
+          padding-bottm: 5px;
+        }
+        .gameDescription-content {
+          padding: 20px 90px 0px 90px;
+        }
+        .gameDescription h2 {
+          font-size: 1.5rem;
+        }
+        .gameDescription-content {
+          /*height: 75vh;*/
+        }
+        p.game-description-paragraph {
+          font-size: 20px !important;
+        }
+        .reward_instructions_container h4 {
+          font-size: 20px;
+          font-weight: bold;
+        }
+        .reward_instructions_container p {
+          font-size: 18px;
+        }
+        .got-it-btn-desktop {
+          font-size: 1rem;
+          padding: 13px !important;
+          margin-top: 0;
+        }
+
+
+
+        /*Rookie Challenge:*/
+        /*.game-Challenge-model{*/
+        /*  padding-left: 18%;*/
+        /*  padding-right: 18%;*/
+        /*}*/
+        #startButton {
+          width: 30%;
+          padding: 15px;
+          font-size: 1rem;
+        }
+        .rookie-challenge-title {
+          font-size: 2rem;
+        }
+        /*Khan*/
+        .card-inner {
+          width: 340px;
+          height: 326px;
+        }
+        .players-name {
+          font-size: 20px;
+        }
+        .card-img-top{
+          height: 230px;
+        }
+
+        /*Jesri page*/
+        .player-img img {
+          width: 37%;
+          padding: 32px;
+        }
+        .player-img-2 img{
+          width: 60%;
+          padding: 45px;
+        }
+        .player-img-2 p{
+          position: relative;
+          top: 25px;
+          font-family: HuluStyle;
+          font-weight: bold;;
+        }
+      }
+      @media screen and (max-width: 1366px){
+        p.game-description-paragraph {
+          font-size: 20px !important;
+        }
+        .reward_instructions_container {
+          margin: 20px 0px;
+        }
+        .reward_instructions_container p {
+          font-size: 13px;
+        }
+        .reward_instructions_container h4 {
+          font-size: 18px;
+        }
+        .gameDescription-content {
+          /*height: 74vh;*/
+          padding: 10px 100px;
+        }
+        /*khan*/
+
+        .white-line-outer {
+          margin-top: 0;
+        }
+        .card-inner {
+          width: 250px;
+          height: 248px;
+        }
+        .players-name {
+          font-size: 14px;
+        }
+        .card-img-top {
+          height: 154px;
+        }
+
+        /*rookie challenge*/
+        .rookie-challenge-title {
+          font-size: 28px;
+        }
+        .game-Challenge-model {
+          padding-left: 22%;
+          padding-right: 17%;
+        }
+      /*  /////////////////////////////////////////////////////////*/
+      /*  ////////////////Game One Side Bar////////////////////////*/
+      /*  /////////////////////////////////////////////////////////*/
+        .jerseysName{
+          padding-top: 4px;
+        }
+        .jersey{
+          width: 75px;
+          height:125px;
+        }
+        .player-title {
+          padding-top: 8px;
+          padding-bottom: 7px;
+        }
+        .player1 {
+          margin-bottom: 0;
+        }
+        .player2 {
+          margin-bottom: 0;
+        }
+        .player-name {
+          font-size: 16px;
+          margin-bottom: 0px!important;
+          padding-bottom: 10px;
+        }
+        .score {
+          font-size: 3rem;
+          padding: 0px;
+        }
+
+        /*Jesri page*/
+        .player-img img {
+          width: 30%;
+          padding: 15px;
+        }
+        .player-img h3 {
+          position: relative;
+          top: 15px;
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+        .player-img-2 img {
+          width: 50%;
+          padding: 30px;
+        }
+        .player-img-2 p{
+          position: relative;
+          top: 25px;
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+
+
+        /*score page*/
+        #go-to-party{
+          width: 40%;
+        }
+        /*.score-board-outer-container{*/
+        /*  width: 350px;*/
+        /*  height: 350px;*/
+        /*}*/
+
+      }
+    @media screen and (max-width: 1280px){
+      .MuiTypography-body2{
+        font-size: 12px !important;
+      }
+      .mt-4 {
+        margin-top: -0.5rem!important;
+      }
+      .game-Challenge-model {
+        padding-left: 19%;
+        padding-right: 18%;
+      }
+
+
+      .rookie-challenge-title {
+        font-size: 27px;
+      }
+      /*shirt */
+      .player-img img {
+        width: 30%;
+        padding: 15px;
+      }
+      .white-line-outer {
+        margin-top: -5px;
+      }
+
+    }
+      @media screen and (max-width: 1024px){
+        .jersey{
+          padding-top:8px;
+          width: 50px;
+          height: 85px;
+        }
+        .modal-content-outer{
+          height: 100%;
+          align-items: center;
+          justify-content: center;
+        }
+        #startButton{
+          width: 100%;
+          margin-left: 0;
+          margin-right: 0;
+          margin-top: 0;
+        }
+        .score-heading{
+          font-size: 8px;
+        }
+        .jerseysName{
+          font-size: 8px;
+        }
+        .jersey-outer{
+          height: 22%;
+        }
+        .player-name{
+          font-size: 10px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+        .player1 {
+          font-size: 12px;
+        }
+        .player2 {
+          font-size: 12px;
+        }
+      }
+      @media screen and (max-width: 768px){
+
+        /*setp 3 of 3*/
+        .skylar-inner img{
+
+          margin-bottom: 10px;
+        }
+        .skylar-outer{
+          text-align: center;
+        }
+        .damian-inner img{
+
+        }
+        .damian-outer{
+          text-align: center;
+          justify-content: center;
+          margin-bottom: 10px;
+        }
+
+
+
+        .gameDescription-content {
+          height: 130vh;
+          padding: 10px 65px;
+        }
+        .white-line-outer {
+          margin-top: 0;
+        }
+        /*jersi page*/
+        .player-img {
+          margin-bottom: 10px;
+          height: 34vh;
+          overflow: hidden;
+        }
+        .player1 {
+          font-size: 10px;
+        }
+        .player2 {
+          font-size: 10px;
+        }
+        .player-name {
+          font-size: 10px;
+          padding-top: 4px;
+          padding-bottom: 4px;
+          line-height: 16px;
+        }
+
+        /*shirt 3*/
+        .player-img-2 p {
+          position: relative;
+          top: 5px;
+          font-weight: bold;
+          font-family: 'HuluExtraBold';
+          font-size: 30px;
+        }
+        .player-img-2{
+          height: 23vh;
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+        .player-img-2 img {
+          width: 31%;
+          padding: 0px;
+        }
+
+
+        .score-heading {
+          font-size: 10px;
+        }
+        .score {
+          font-size: 20px;
+        }
+        i.fa-user {
+          font-size: 55px;
+        }
+        .jersey-outer {
+          height: 26%;
+        }
+        /*.challengeravatar {*/
+        /*  width: 90% !important;*/
+        /*  height: 55px;*/
+        /*}*/
+        .time-inner {
+          font-size: 35px;
+        }
+
+
+
+      }
+      @media screen and (max-width: 840px)  {
+        .gameCanvasBodyBlocker .nabar-top {
+        display: none !important;
+        }
+        body.gameCanvasBodyBlocker {
+        padding: 0 !important;
+        }
+        .gameCanvasBodyBlocker #iframe-outer {
+        margin-top: 0 !important;
+        }
+        .gameCanvasBody .nabar-top {
+        display: none !important;
+
+        }
+        body#main-body.gameCanvasBody {
+        padding: 0 !important;
+          background-color: #151515!important;
+        }
+        .gameCanvasBody #iframe-outer {
+        margin-top: 0 !important;
+        }
+      }
+      /* @media screen and (max-width: 768px) and (min-width: 426px) and (orientation: landscape)  {
+        .gameCanvasBodyBlocker .nabar-top {
+       display: none !important;
+      }
+      body.gameCanvasBodyBlocker {
+       padding: 0 !important;
+      }
+      .gameCanvasBodyBlocker #iframe-outer {
+       margin-top: 0 !important;
+      }
+      .gameCanvasBody .nabar-top {
+       display: none !important;
+      }
+      body.gameCanvasBody {
+       padding: 0 !important;
+      }
+      .gameCanvasBody #iframe-outer {
+       margin-top: 0 !important;
+      }
+      }
+      @media screen and (max-width: 1024px) and (min-width: 769px) and (orientation: landscape)  {
+        .gameCanvasBodyBlocker .nabar-top {
+       display: none !important;
+      }
+      body.gameCanvasBodyBlocker {
+       padding: 0 !important;
+      }
+      .gameCanvasBodyBlocker #iframe-outer {
+       margin-top: 0 !important;
+      }
+      .gameCanvasBody .nabar-top {
+       display: none !important;
+      }
+      body.gameCanvasBody {
+       padding: 0 !important;
+      }
+      .gameCanvasBody #iframe-outer {
+       margin-top: 0 !important;
+      }
+      }
+      @media screen and (max-width: 830px) and (min-width: 426px) and (orientation: landscape) {
+        .gameCanvasBodyBlocker .nabar-top {
+       display: none !important;
+      }
+      body.gameCanvasBodyBlocker {
+       padding: 0 !important;
+      }
+      .gameCanvasBodyBlocker #iframe-outer {
+       margin-top: 0 !important;
+      }
+      .gameCanvasBody .nabar-top {
+       display: none !important;
+      }
+      body.gameCanvasBody {
+       padding: 0 !important;
+      }
+      .gameCanvasBody #iframe-outer {
+       margin-top: 0 !important;
+      }
+      } */
+      @media screen and (max-width: 767px){
+        .card1{
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+        .card2{
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+        #closeFeedback{
+          z-index: 10;
+        }
+      }
+
+
+      @media screen and (max-width: 425px){
+
+
+        .player-img{
+          border-bottom: 7px black solid;
+        }
+        .player-img-2{
+          border-bottom: 7px black solid;
+        }
+        button#gotIt{
+          display: none !important;
+        }
+        #quit{
+          margin-bottom: 20px !important;
+        }
+        #replay{
+          margin-bottom: 20px !important;
+        }
+        #go-to-party{
+          margin-bottom: 20px !important;
+        }
+        .score-card-1{
+          display: none;
+        }
+        .score-card-2{
+          display: block;
+        }
+
+        .download-btn-dt{
+          display: none;
+        }
+        .download-btn-mb{
+          display: block;
+          color: #1CE783 !important;
+          font-family: HuluStyle-ExtraBold;
+        }
+        .container-fluid .score-footer-content h4{
+          font-size: 20px !important;
+          margin: 10px 0px 150px 0px;
+        }
+        .container-fluid .score-footer-content{
+          width: 96% !important;
+        }
+        .game-over-p{
+          text-align: center;
+        }
+        .score-card-2{
+          display: block;
+          display: flex;
+          justify-content: center;
+        }
+        .scorecard-overlay-image{
+          height: 55px;
+          right: 60px;
+        }
+        .scorecard-overlay-jersey-image{
+          height: 70px;
+          bottom: -6px !important;
+        }
+        .dunked{
+          /*font-size: 20px !important;*/
+        }
+        .f-s{
+          padding: 0px !important;
+        }
+        .w-l {
+          font-size: 12px !important;
+        }
+        .td-mob{
+          padding-left: 0 !important;
+        }
+        .score-board-outer-container{
+          width: 346px !important;
+          height: 346px !important;
+          position: relative;
+          overflow: hidden;
+
+        }
+        .score-board-inner-container{
+          position: inherit;
+          left: 0px;
+          width: 290px;
+          height: 290px;
+
+        }
+
+
+        /*Feedback page*/
+        #feedback-btn{
+          width: 100% !important;
+        }
+        .textarea-mobile{
+         padding: 0 !important;
+        }
+        .feedback-title{
+          font-size: 18px;
+          text-align: left !important;
+        }
+        .feedback-div{
+          justify-content: left !important;
+          position: absolute;
+          top: -45px;
+        }
+
+
+
+
+        /*score card button*/
+        #quit{
+          width: 100% !important;
+          margin-bottom: 10px;
+        }
+        #replay{
+          width: 100% !important;
+          background-color: white !important;
+          color: black !important;
+          margin-bottom: 10px;
+        }
+        #go-to-party{
+          width: 100% !important;
+        }
+        .scorecard-content{
+          padding: 15px 15px !important;
+          width: 90% !important;
+        }
+
+
+
+        /*setp 3 of 3*/
+        .skylar-inner img{
+          height: 30vh;
+          margin-bottom: 10px;
+        }
+        .skylar-outer{
+          text-align: center;
+        }
+        .damian-inner img{
+          height: 30vh;
+        }
+        .damian-outer{
+          text-align: center;
+          justify-content: center;
+          margin-bottom: 10px;
+        }
+
+        h3.game-description-for-mbl.text-center.pb-3{
+          display:none !important;
+        }
+        h2.game-description.game-description-for-desktop.text-center {
+          color: black !important;
+          font-size: 27px;
+        }
+        p.arcade{
+          color:black;
+          margin-top: 10px !important;
+        }
+        .gameDescription-content {
+          padding: 30px 20px;
+          height: auto !important;
+          margin-bottom: 100px !important;
+        }
+        button#gotIt{
+          /*width: 100% !important;*/
+          /*margin-top: 15px !important;*/
+          /*margin-bottom: 200px !important;*/
+          width: 85% !important;
+          position: fixed;
+          bottom: 15%;
+        }
+        .reward_instructions_container{
+          margin-bottom: 70px;
+        }
+        p.game-description-paragraph {
+          font-size: 18px !important;
+        }
+        .reward_instructions_container p {
+          font-size: 18px;
+        }
+        .reward_instructions_container h4 {
+          font-size: 18px !important;
+        }
+        /*jersy page*/
+        .player-img img {
+          width: 38%;
+          padding: 25px;
+        }
+        .select-text {
+          font-size: 20px;
+          font-family: 'HuluStyle-ExtraBold';
+        }
+        .jersays{
+          display: none;
+        }
+        .player-img {
+          margin-bottom: 10px;
+          height: 25vh;
+        }
+        .player-img {
+          margin-bottom: 10px;
+          height: 25vh;
+          overflow: hidden;
+        }
+        .player-img h3 {
+          font-size: 18px !important;
+        }
+        .page-width {
+          width: 95vw;
+        }
+      }
+      @media screen and (max-width: 411px){
+        .score-board-outer-container{
+          width: 344px !important;
+        }
+        button#gotIt{
+          bottom: 23% !important;
+        }
+
+
+
+        /*jersi page*/
+        .player-img img {
+          width: 50%;
+          padding: 25px;
+        }
+        .player-img {
+          margin-bottom: 10px;
+          height: 31vh;
+          overflow: hidden;
+        }
+        .player-img img {
+          width: 52%;
+          padding: 25px;
+        }
+
+        /*shirt 3*/
+        .player-img-2 p {
+          top: 5px;
+          font-family: 'HuluExtraBold';
+          font-size: 20px;
+        }
+        .player-img-2 img {
+          width: 32%;
+          padding: 0px;
+        }
+        .player-img-2 {
+          height: 19vh !important;
+        }
+
+
+      }
+      @media screen and (max-width: 414px){
+        button#gotIt{
+          bottom: 22.5% !important;
+        }
+        .score-board-outer-container{
+          width: 334px !important;
+        }
+        .scorecard-overlay-jersey-image{
+          right: 3%;
+        }
+        .player-img img {
+          width: 55%;
+          padding: 25px;
+        }
+        /*shirt 3*/
+        .player-img-2 {
+          height: 19vh;
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+        .player-img-2 img {
+          width: 29%;
+          padding: 0px;
+        }
+
+      }
+      /* iphone 6+, 6s+, 7+, 8+ */
+      @media only screen
+      and (device-width: 414px)
+      and (device-height: 736px)
+      and (-webkit-device-pixel-ratio: 3) {
+        .player-img{
+          height: 30vh;
+        }
+        .player-img img{
+          width: 52%
+        }
+        .player-img-2{
+          height: 20vh;
+        }
+        .player-img-2 img{
+          width: 30%;
+        }
+
+
+
+      }
+      /* iphone 6, 6s, 7, 8 */
+      @media only screen
+      and (device-width: 375px)
+      and (device-height: 667px)
+      and (-webkit-device-pixel-ratio: 2) {
+        .player-img{
+          height: 30vh !important;
+        }
+        .player-img img{
+          width: 50% !important;
+        }
+        .player-img-2{
+          height: 20vh;
+        }
+        .player-img-2 img{
+          width: 29% !important;
+        }
+
+
+      }
+
+      /*iphone x*/
+      @media only screen
+      and (device-width : 375px)
+      and (device-height : 812px)
+      and (-webkit-device-pixel-ratio : 3) {
+        .player-img{
+          height: 32vh !important;
+        }
+      }
+
+
+
+
+      @media screen and (max-width: 375px){
+        button#gotIt{
+          bottom: 24% !important;
+        }
+
+        .score-board-outer-container{
+          width: 302px !important;
+          height: 312px !important;
+        }
+        .score-board-inner-container{
+          width: 252px !important;
+          height: 252px !important;
+        }
+        .dunked{
+          line-height: 19px;
+          font-size: 23px;
+        }
+        .scorecard-overlay-image{
+          height: 60px !important;
+        }
+        .scorecard-overlay-jersey-image{
+          height: 60px !important;
+        }
+        .c-t{
+          font-size: 11px !important;
+        }
+        .h-u{
+          font-size: 11px !important;
+        }
+        .w-l{
+          font-size: 11px !important;
+        }
+        .scorecard-overlay-image{
+          height: 52px !important;
+        }
+        .scorecard-overlay-jersey-image{
+          height: 70px !important;
+          right: 5%;
+        }
+
+
+
+
+
+
+
+        .player-img img {
+          width: 63%;
+          padding: 25px;
+        }
+        /*shirt 3*/
+        .player-img-2 {
+          height: 21vh !important;
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+        .player-img-2 img {
+          width: 41%;
+          padding: 0px;
+        }
+      }
+      @media screen and (max-width: 360px){
+        button#gotIt{
+          bottom: 25% !important;
+        }
+
+        .score-board-outer-container{
+          width: 288px !important;
+        }
+
+
+
+        .player-img {
+          margin-bottom: 10px;
+          height: 29vh;
+          overflow: hidden;
+        }
+        .player-img img {
+          width: 47%;
+          padding: 25px;
+        }
+
+        /*shirt 3*/
+        .player-img-2{
+          height: 19vh !important;
+        }
+        .player-img-2 img{
+          width: 25%;
+        }
+      }
+      @media screen and (max-width: 320px){
+        button#gotIt{
+          bottom: 27% !important;
+        }
+        /*score card*/
+        .score-board-outer-container{
+          width: 253px !important;
+          height: 263px !important
+        }
+        .score-board-inner-container{
+          width: 220px !important;
+          height: 220px !important;
+        }
+        .dunked{
+          font-size: 18px;
+        }
+        .player1-score, .player2-score{
+          font-size: 43px;
+        }
+        .w-l{
+          font-size: 9px !important;
+        }
+        .h-u{
+          font-size: 9px !important;
+        }
+        .h-u{
+          height: 0px;
+        }
+
+
+
+
+        .main-body #iframe-outer{
+          margin-top: 70px !important;
+        }
+        .player-img img{
+          width: 45%
+        }
+        .player-img {
+          margin-bottom: 10px;
+          height: 27vh;
+          overflow: hidden;
+        }
+        /*shirt 3*/
+        .player-img-2 {
+          height: 17vh !important;
+          overflow: hidden;
+          margin-bottom: 10px;
+        }
+        .player-img-2 img {
+          width: 18% !important;
+          padding: 0px;
+        }
+      }
+      @media only screen
+      and (min-device-width: 320px)
+      and (max-device-width: 568px)
+      and (-webkit-min-device-pixel-ratio: 2)
+      and (orientation: landscape) {
+        .jersey {
+          width: 65px!important;
+          height: 100px!important;
+        }
+        .jersey-outer{
+          height: 23%!important;
+        }
+
+      }
+      @media screen and (max-width: 320px) {
+        p.game-description-paragraph {
+          font-size: 16px !important;
+        }
+        .reward_instructions_container p {
+          font-size: 17px;
+        }
+
+      }
+
+      .backIcon{
+        display: none;
+      }
+
+      #feedbackPage {
+        display: none;
+        position: fixed;
+        z-index: 3;
+      }
+      .feedback-title{
+        font-family: HuluStyle;
+      }
+      #feedback-btn{
+        font-size: 11px !important;
+        font-weight: 900 !important;
+        letter-spacing: 1px !important;
+        color: #4A4A4A !important;
+        border: none;
+        border-radius: 5px;
+        width: 15%;
+        padding: 15px !important;
+      }
+
+    </style>
+  </head>
+  <body  scrolling="no" style="overflow: hidden; position: relative">
+    <i id="backArrowIcon" class="fas fa-chevron-left backIcon" style="position: absolute; font-size: 2rem; z-index: 9; padding-top: 20px; left: 10px; cursor: pointer;" ></i>
+    <div class="container-fluid hide-scroll">
+      <!-- The Modal -->
+      <div id="discountDescription" class="modal game-Challenge-model " >
+        <!-- Modal content -->
+        <div class="modal-content modal-content-outer">
+          <div class="container-fluid">
+            <div class="row">
+<!--              <div class="col-lg-6 col-md-6 col-sm-6">-->
+<!--                <h2 style="text-align: left" class="rookie-challenge-title challenge-title-color">-->
+<!--                  Rookie Challenge:-->
+<!--                </h2>-->
+<!--                <h2 class="beginner-challenge text-white rookie-challenge-title">-->
+<!--                  Beat the All-Star score of X points in X minutes to  <span class="d-inline" style="color: #ffffff; text-decoration: underline;"-->
+<!--                >unlock 15% off the Mitchell & Ness x Hulu Has Live Sports collaboration.</span>-->
+<!--                </h2>-->
+
+<!--              </div>-->
+<!--              <div class="col-lg-6 col-md-6 col-sm-6">-->
+<!--                <h2 style=" text-align: left" class="rookie-challenge-title challenge-title-color">MVP Challenge:</h2>-->
+<!--                <h2 class="beginner-challenge text-white rookie-challenge-title">-->
+<!--                  Beat the All-Star score of X points in X minutes to <span class="d-inline" style="color: #ffffff; text-decoration: underline;"-->
+<!--                >unlock 20% off the Mitchell & Ness x Hulu Has Live Sports collaboration.</span>-->
+<!--                </h2>-->
+<!--              </div>-->
+            </div>
+          </div>
+          <center>
+            <button id="startButton" class="hide-on-mbl hide-on-landscape">
+              START GAME
+            </button>
+            <!-- <button
+              id="startButtonForMbl"
+              class="display-game-start-for-landscape"
+            >
+              Start game
+            </button> -->
+          </center>
+        </div>
+      </div>
+      <div id="myModal2" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <label id="winnerName"></label>is winner
+          <button id="reloadButton">Okay</button>
+        </div>
+      </div>
+      <div id="gameDescription" class="gameDescription">
+         <center>
+          <p class="text-center mb-0 arcade">Hulu Hoops Arcade</p>
+        <h2
+          class="game-description game-description-for-desktop text-center"
+          style="font-weight: bolder; margin-top: 2%"
+        >
+          Welcome to the All-Star Challenge
+        </h2>
+<!--         for mobile-->
+        <h3
+          class="game-description-for-mbl text-center pb-3"
+          style="font-weight: bolder; margin-top: 5%; color: black"
+        >
+          Welcome to the All-Star Challenge
+        </h3>
+        <!-- </center> -->
+        <!-- Modal content -->
+        <div class="gameDescription-content">
+          <p class="game-description-paragraph text-left" style="font-weight: bold">
+            Go head-to-head against your favorite pro athlete in a timed pop-a-shot challenge. Beat your All-Star opponent to unlock an exclusive discount code from Mitchell & Ness.
+          </p>
+
+          <!-- changed ayyaz -->
+          <!-- changed ayyaz -->
+          <div class="reward_instructions_container">
+            <div class="row">
+              <div class="col-sm-12 col-lg-6 text-left order-md-2">
+                <h4>Rewards</h4>
+                <p>
+                  <strong style="font-family: HuluExtraBold;color: #43f979;">Rookie Challenge:</strong> Beat the All-Star score of X points in X minutes to
+                  <a href="https://www.mitchellandness.com/collections/hulu" target="_blank" style="color: #ffffff;">
+                    <span class="d-inline" style="text-decoration: underline;">unlock 15% off the Mitchell & Ness x Hulu Has Live Sports collaboration.</span>
+                  </a>
+                </p>
+                <p>
+                 <strong style="font-family: HuluExtraBold;color: #43f979;" >MVP Challenge: </strong> Beat the All-Star score of X points in X minutes to
+                  <a href="https://www.mitchellandness.com/collections/hulu" target="_blank" style="color: #ffffff;">
+                    <span class="d-inline" style="text-decoration: underline;">unlock 20% off the Mitchell & Ness x Hulu Has Live Sports collaboration.</span>
+                  </a>
+                </p>
+              </div>
+              <div class="col-sm-12 col-lg-6 text-left order-first">
+                <h4>Instructions</h4>
+                <p>
+                  On your desktop, click on the basketball and drag your cursor forward in the direction of the hoop.
+                </p>
+
+                <p>
+                  On your mobile device, use your finger to touch and drag the ball toward the hoop.
+                </p>
+
+                <p>
+                  Make as many baskets as you can before the shot clock hits zero. Beat your pro opponent and you'll win big.
+                </p>
+              </div>
+            </div>
+            <!-- got it for desktop -->
+            <div class="d-flex justify-content-center w-100">
+              <button class="got-it-btn-desktop w-25 w-sm-100  " id="gotIt">GOT IT</button>
+            </div>
+            <!-- end of got it for desktop -->
+            <!-- got it for mobile -->
+           <button
+             id="gotItMbl"
+             class="got-it-mbl-only-btn btn btn-block text-white my-4 p-2"
+           >
+             GOT IT
+           </button>
+            <!-- end of got it for mobile -->
+          </div>
+          <!-- end changed ayyaz -->
+
+          <!-- <p class="beginner-challenge-mbl">
+            Beginner Challenge: Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Morbi vel velit lectus.
+          </p>
+          <p class="beginner-challenge-mbl">
+            Advance Challenge: Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit. Morbi vel velit lectus.
+          </p> -->
+          <!-- <table class="reward_instructions_container">
+            <tr>
+              <th class=""><h3>Rewards</h3></th>
+              <th class="game-description-instruction">
+                <h3>Instructions</h3>
+              </th>
+            </tr>
+            <tr>
+              <td class="beginner-challenge-reward-para">
+                <p class="beginner-challenge">
+                  <span class="d-inline" style="color: #43f979"
+                    >Rookie Challenge:</span
+                  >
+                  Beat the All-Star score of X point in X minutes to unlock 15%
+                  off the Mitchell & Ness x HHLS collaboration.
+                </p>
+                <p class="beginner-challenge">
+                  <span class="d-inline" style="color: #43f979"
+                    >MVP Challenge:</span
+                  >
+                  Beat the All-Star score of X point in X minutes to unlock 20%
+                  off the Mitchell & Ness x HHLS collaboration.
+                </p>
+              </td>
+              <td style="padding-right: 10px">
+                <p class="on-your-desktop">
+                  On your desktop, click on basket ball and drag your cursor
+                  forward in the direction of the hoop.
+                </p>
+                <p class="on-your-desktop">
+                  On your mobile device, use your finger to touch and drag the
+                  ball toward the hoop. Make sure your aim is sharp or you may
+                  fail to sink the shot. Make as many baskets as you can before
+                  the shot clock hits zero. Beat your pro opponent and you'll
+                  win big.
+                </p>
+              </td>
+            </tr>
+          </table> -->
+
+          <!-- <center> -->
+          <!-- <div class="text-center">
+            <button class="got-it-btn-desktop" id="gotIt">GOT IT</button>
+            <button class="got-it-btn-desktop" id="gotIt">GOT IT</button>
+          </div> -->
+          <!-- </center> -->
+        </div>
+        <!-- footnote -->
+<!--        <div class="container hide-on-mbl">-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-10 m-auto">-->
+<!--              <p class="m-0">* Footnote 1</p>-->
+<!--              <p class="m-0">-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit.-->
+<!--                Recusandae eos quae quam eius voluptatibus maxime natus atque-->
+<!--                obcaecati vitae in qui dignissimos quisquam exercitationem-->
+<!--                itaque, beatae a veniam quos animi tempora velit architecto-->
+<!--                reprehenderit.-->
+<!--              </p>-->
+<!--              <p class="mb-0 mt-2">* Footnote 2</p>-->
+<!--              <p class="m-0">-->
+<!--                Lorem ipsum dolor sit amet consectetur adipisicing elit.-->
+<!--                Recusandae eos quae quam eius voluptatibus maxime natus atque-->
+<!--                obcaecati vitae in qui dignissimos quisquam exercitationem-->
+<!--                itaque, beatae a veniam quos animi tempora velit architecto-->
+<!--                reprehenderit.-->
+<!--              </p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <!-- footnote end -->
+        <!-- <button
+          id="gotItMbl"
+          class="got-it-mbl-only-btn btn btn-block text-white my-4 p-2"
+          style="background-color: black"
+        >
+          GOT IT
+        </button> -->
+      </div>
+
+      <div id="selectName" class="selectName">
+
+
+
+        <div class="container-fluid page-width">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex justify-content-center ">
+                <div>
+                  <p class="font-weight-bold steps">Step 2 of 3</p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div>
+                  <p class="font-weight-bold select-text">Select Your Player Name</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 " id="playerName1" >
+              <div class="player-img-2">
+                <p style="color: white; text-align: center;">Home</p>
+                <img id="playerNameJersey1" class="img-responsive mobile-img-shirt" src="./images/playerName.png">
+              </div>
+            </div>
+            <div class="col-lg-4 " id="playerName2" >
+              <div class="player-img-2">
+                <p style="color: white; text-align: center;">Home</p>
+                <img id="playerNameJersey2" class="img-responsive mobile-img-shirt" src="./images/playerName.png">
+              </div>
+            </div>
+            <div class="col-lg-4" id="playerName3" >
+              <div class="player-img-2">
+                <p style="color: white; text-align: center; ">Away</p>
+                <img id="playerNameJersey3" class="img-responsive mobile-img-shirt" src="./images/playerName.png">
+              </div>
+            </div>
+<!--            <div class="col-12 jersy-bottom-text " style="text-align: center;">-->
+<!--              <div class="text-center mt-1 jer">-->
+<!--                <h5 class="jersays mt-3">JERSEYS ARE AVAILABLE FOR PURCHASE AFTER THE GAME!</h5>-->
+<!--              </div>-->
+<!--            </div>-->
+          </div>
+        </div>
+
+<!--        -->
+<!--        <div class="container">-->
+<!--          <div class="text-center font-weight-bold steps mt-1">-->
+<!--            Step 2 of 3-->
+<!--          </div>-->
+<!--          <div class="text-center font-weight-bold select-text mt-2">-->
+<!--            <br>-->
+<!--            Select Your Player Name-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-sm-4 py-3 py-sm-0">-->
+<!--              <div class="card"  id="playerName1">-->
+<!--                <div class="card-body bg-dark">-->
+<!--                  <p class="card-title text-center text-white">THE SWISH</p>-->
+<!--                  <img id="playerNameJersey1" class="card-img-top" src="./images/playerName.png" alt="Card image cap">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-sm-4 py-3 py-sm-0">-->
+<!--              <div class="card"  id="playerName2">-->
+
+<!--                <div class="card-body bg-dark">-->
+<!--                  <p class="card-title text-center text-white">THE BLOCKBUSTER</p>-->
+<!--                  <img id="playerNameJersey2" class="card-img-top" src="./images/playerName.png" alt="Card image cap">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="col-sm-4 py-3 py-sm-0">-->
+<!--              <div class="card" id="playerName3">-->
+<!--                <div class="card-body bg-dark">-->
+<!--                  <p class="card-title text-center text-white">BIG SHOT</p>-->
+<!--                  <img id="playerNameJersey3" class="card-img-top" src="./images/playerName.png" alt="Card image cap">-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        ////////////////////////////playert 1 old-->
+
+        <!-- <center> -->
+<!--        <p-->
+<!--          class="steps text-center steps-for-mbl"-->
+<!--          style="font-weight: bold; margin-top: 1%"-->
+<!--        >-->
+<!--          STEP 1 OF 3-->
+<!--        </p>-->
+<!--        <h2-->
+<!--          class="select-player-name select-player-name-for-desktop text-center"-->
+<!--          style="font-weight: bolder; margin-top: 2%"-->
+<!--        >-->
+<!--          Select Your Player Name-->
+<!--        </h2>-->
+<!--        &lt;!&ndash; </center> &ndash;&gt;-->
+<!--        &lt;!&ndash; Modal content &ndash;&gt;-->
+<!--        <div class="selectName-content">-->
+<!--          <div class="container selectName-container">-->
+<!--            <div class="row">-->
+<!--              <div id="playerName1" class="randomizedName col-sm p-4">-->
+<!--                <p>THE SWISH</p>-->
+<!--                <img-->
+<!--                  id="playerNameJersey1"-->
+<!--                  src="./images/playerName.png"-->
+<!--                  alt=""-->
+<!--                  class="pt-4 hide-on-mbl"-->
+<!--                />-->
+<!--              </div>-->
+<!--              <div id="playerName2" class="randomizedName col-sm p-4">-->
+<!--                  <p>DUNKMASTER</p>-->
+<!--                <img-->
+<!--                id="playerNameJersey2"-->
+<!--                  src="./images/playerName.png"-->
+<!--                  alt=""-->
+<!--                  class="pt-4 hide-on-mbl"-->
+<!--                />-->
+<!--              </div>-->
+<!--              <div id="playerName3" class="randomizedName col-sm p-4">-->
+<!--                  <p>BIG SHOT</p>-->
+<!--                <img-->
+<!--                id="playerNameJersey3"-->
+<!--                  src="./images/playerName.png"-->
+<!--                  alt=""-->
+<!--                  class="pt-4 hide-on-mbl"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+        <!--   sumair      ////////////////////////////playert 1 old-->
+      </div>
+      <div id="selectJersey" class="selectJersey">
+
+        <div class="container-fluid page-width">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex justify-content-center ">
+                <div>
+                  <p class="font-weight-bold steps">Step 1 of 3</p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div>
+                  <p class="font-weight-bold select-text">Select Your Jersey</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 " id="jersey1">
+              <div class="player-img">
+                <h3 style="color: white; text-align: center;">Home</h3>
+                <img class="img-responsive mobile-img-shirt" src="./images/jersey.png">
+              </div>
+            </div>
+            <div class="col-lg-6" id="jersey2">
+              <div class="player-img">
+                <h3 style="color: white; text-align: center; ">Away</h3>
+                <img class="img-responsive mobile-img-shirt" src="./images/jersey2.png">
+              </div>
+            </div>
+            <div class="col-12 jersy-bottom-text " style="text-align: center;">
+              <div class="text-center mt-1 jer">
+                <h5 class="jersays mt-3">JERSEYS ARE AVAILABLE FOR PURCHASE!</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+<!--        <div class="container ">-->
+<!--          <div class="d-flex justify-content-center ">-->
+<!--            <div>-->
+<!--              <p class="font-weight-bold steps">Step 1 of 3</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="d-flex justify-content-center">-->
+<!--            <div>-->
+<!--              <p class="font-weight-bold select-text">Select Your Jersey</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row box">-->
+<!--            <div class="col-sm-12 col-md-6 col-lg-6  shirt mt-2">-->
+<!--              <div class="card ml-auto" id="jersey1">-->
+<!--                <div class="card-body">-->
+<!--                  <h5 class="card-title text-center text-white font-weight-bold  players-name">HOME</h5>-->
+<!--                </div>-->
+<!--                <img class="card-img-top" src="./images/jersey.png" alt="Card image cap">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class=" col-sm-12 col-md-6 col-lg-6  shirt mt-2">-->
+<!--              <div class="card mr-auto " id="jersey2">-->
+<!--                <div class="card-body">-->
+<!--                  <h5 class="card-title text-center text-white font-weight-bold  players-name">AWAY</h5>-->
+<!--                </div>-->
+<!--                <img class="card-img-top" src="./images/jersey2.png" alt="Card image cap">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+<!--        <div class="text-center mt-1 jer">-->
+<!--          <h3 class="jersays">JERSEYS ARE AVAILABLE FOR PURCHASE AFTER THE GAME!</h3>-->
+<!--        </div>-->
+        <!--        ////////////////////////////playert 1 old-->
+<!--        <center>-->
+<!--          <p-->
+<!--            style="font-weight: bold; margin-top: 1%"-->
+<!--            class="steps steps-for-mbl mt-4"-->
+<!--          >-->
+<!--            STEP 2 OF 3-->
+<!--          </p>-->
+<!--          <h2-->
+<!--            class="select-your-jersey select-your-jersey-for-mbl mb-4"-->
+<!--            style="font-weight: bolder; margin-top: 2%"-->
+<!--          >-->
+<!--            Select Your Jersey-->
+<!--          </h2>-->
+<!--        </center>-->
+        <!-- Modal content -->
+<!--        <div class="selectJersey-content">-->
+<!--          <div class="container selectJersey-container">-->
+<!--            <div class="row justify-content-center">-->
+<!--              <div id="jersey1" class="jerseyOptions col-sm-12 col-md-4 ml-4 mr-4 mb-4 border-0" >-->
+<!--                <h6 class="jersy-option-home">Home</h6>-->
+<!--                <img src="./images/jersey.png" alt="" class="jersey" />-->
+<!--              </div>-->
+<!--              <div id="jersey2" class="jerseyOptions col-sm-12 col-md-4 ml-4 mr-4 mb-4 border-0" >-->
+<!--                <h6 class="jersy-option-home">Away</h6>-->
+<!--                <img src="./images/jersey2.png" alt="" class="jersey" />-->
+<!--              </div>-->
+<!--              &lt;!&ndash; <div id="jersey2" class="jerseyOptions col-sm-12 col-md-4 w-100" style="border:2px solid #43f979;">-->
+<!--                <h6 class="jersy-option-away">Away</h6>-->
+<!--                <img src="./images/jersey2.png" alt="" class="jersey" />-->
+<!--              </div> &ndash;&gt;-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div style="width: 50%; margin: auto">-->
+<!--          <h3 class="text-center">-->
+<!--            JERSEYS ARE AVAILABLE FOR PURCHASE AFTER THE GAME.-->
+<!--          </h3>-->
+<!--        </div>-->
+        <!--        ////////////////////////////playert 1 old-->
+      </div>
+      <div id="selectChallenger" class="selectChallenger">
+<!--        <div class="row white-line-outer white-line100 mx-0">-->
+<!--          <div class="col-12 white-line"></div>-->
+<!--        </div>-->
+        <div class="container-fluid page-width">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex justify-content-center ">
+                <div>
+                  <p class="font-weight-bold steps">Step 3 of 3</p>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                <div>
+                  <p class="font-weight-bold select-text">Select Your All-Star Opponent</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 damian-outer" id="challenger1">
+              <div class="damian-inner">
+<!--                <h3 style="color: white; text-align: center;">Home</h3>-->
+                <img class="" src="./images/Damian.png">
+              </div>
+            </div>
+            <div class="col-lg-6 skylar-outer" id="challenger2">
+              <div class="skylar-inner">
+<!--                <h3 style="color: white; text-align: center; ">Away</h3>-->
+                <img class="" src="./images/Skylar.png">
+              </div>
+            </div>
+<!--            <div class="col-12 jersy-bottom-text " style="text-align: center;">-->
+<!--              <div class="text-center mt-1 jer">-->
+<!--                <h5 class="jersays mt-3">JERSEYS ARE AVAILABLE FOR PURCHASE!</h5>-->
+<!--              </div>-->
+<!--            </div>-->
+          </div>
+        </div>
+
+
+
+
+
+<!--        <div class="container container-outer">-->
+<!--          <div class="row">-->
+<!--            <div class="col-12 d-flex justify-content-center ">-->
+<!--              <div>-->
+<!--                <p class="font-weight-bold steps">Step 3 of 3</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-12 d-flex justify-content-center">-->
+<!--              <div>-->
+<!--                <p class="font-weight-bold select-text">Select Your All-Star Opponent</p>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row justify-content-center">-->
+<!--              <div class="col-12 col-md-6 mt-2 card1">-->
+<!--                  <div class="card card-inner" id="challenger1">-->
+<!--                      <div class="card-body">-->
+<!--                          <h5 class="card-title text-center text-white players-name">DAMIAN LILLARD</h5>-->
+<!--                      </div>-->
+<!--                        <img class="card-img-top" src="./images/opponent1.png" alt="Card image cap">-->
+<!--                  </div>-->
+<!--              </div>-->
+<!--              <div class="col-12 col-md-6 mt-2 card2">-->
+<!--                  <div class="card card-inner" id="challenger2">-->
+<!--                      <div class="card-body">-->
+<!--                          <h5 class="card-title text-center text-white players-name">SKYLAR DIGGINS-SMITH</h5>-->
+<!--                      </div>-->
+<!--                        <img class="card-img-top" src="./images/opponent2.png" alt="Card image cap">-->
+<!--                  </div>-->
+<!--              </div>-->
+<!--&lt;!&ndash;              <div class="col-12 text-center mt-3">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <h3>JERSAYS ARE AVAILABLE FOR THE GAME</h3>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+
+
+<!--        <center>-->
+<!--          <p-->
+<!--            style="font-weight: bold; margin-top: 1%"-->
+<!--            class="steps steps-for-mbl"-->
+<!--          >-->
+<!--            STEP 3 OF 3-->
+<!--          </p>-->
+<!--          <h2-->
+<!--            style="font-weight: bolder; margin-top: 2%"-->
+<!--            class="select-your-challenger select-your-challenger-for-mbl"-->
+<!--          >-->
+<!--            Select Your All-Star Opponent-->
+<!--          </h2>-->
+<!--        </center>-->
+        <!-- Modal content -->
+<!--        <div class="selectChallenger-content">-->
+<!--          <div class="container selectChallenger-container">-->
+<!--            <div class="row">-->
+<!--              <div id="challenger1" class="challengerOptions mb-4 col-sm">-->
+<!--                <h6 class="challenger-name">DAMIAN LILLARD</h6>-->
+<!--                <img src="./images/opponent1.png" alt="" width="100%"-->
+<!--                  height="90%"-->
+<!--                />-->
+<!--              </div>-->
+<!--              <div id="challenger2" class="challengerOptions mb-4 col-sm">-->
+<!--                <h6 class="challenger-name">SKYLAR DIGGINS-SMITH</h6>-->
+<!--                <img-->
+<!--                  src="./images/opponent2.png"-->
+<!--                  class="jersey-2 img-fluid"-->
+<!--                  alt=""-->
+<!--                  height="90%"-->
+<!--                  width="100%"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+      <div id="screenRotator" class="screen-rotator">
+        <div class="screen-rotator-title text-center text-white py-4">
+          <h2 class="m-auto w-75 pt-4">Rotate your phone horizontally</h2>
+        </div>
+        <div class="screen-rotator-image text-center mb-4">
+          <img
+            src="./images/rotate-image-screen.png"
+            alt="Screen rotate image"
+          />
+        </div>
+        <div class="d-flex justify-content-center" >
+        <button
+          id="screenRotationGameStartBtn"
+          class="btn-block start-game-button"
+          disabled
+        >
+          START GAME
+        </button>
+        </div>
+      </div>
+
+      <div
+        id="screenRotatorForScoreCard"
+        class="screen-rotator-for-score"
+        style="display: none"
+      >
+        <div class="screen-rotator-title text-center text-white py-4">
+          <h2 class="m-auto w-75 pt-4">Rotate your phone vertically</h2>
+        </div>
+        <div class="screen-rotator-image text-center mb-4">
+          <img
+            src="./images/rotate-image-screen.png"
+            alt="Screen rotate image"
+          />
+        </div>
+      </div>
+
+      <div id="scorecard" class="scorecard">
+        <!-- Modal content -->
+        <div class="scorecard-content">
+          <table class="scorecard_container">
+            <tr class="score-page-tr">
+              <td class="score-card-1">
+                <!-- <img src="./images/challenger1.png" alt="" class="jersey" /> -->
+                <div
+                  id="scoreCardDownloadable"
+                  class="score-board-outer-container"
+                >
+                  <div class="score-board-inner-container">
+                    <p
+                      class="py-2 text-white text-center f-s"
+                    >
+                      Final Score
+                    </p>
+                    <p class="py-2 g-o text-white text-center game-over-for-mbl">
+                      Game Over
+                    </p>
+                    <div class="text-center player-score-for-desktop">
+                      <span
+                        id="player1-score"
+                        class="d-inline display-4 border-right pr-2 player1-score"
+                        >0</span
+                      >
+                      <span
+                        id="player2-score"
+                        class="d-inline display-4 pl-2 player2-score"
+                        >0</span
+                      >
+                    </div>
+                    <p
+                      id="scorecoardResultHeading"
+                      class="text-uppercase dunked hide-on-mbl"
+                      style=""
+                    >
+                      I DUNKED ON DAME
+                    </p>
+                    <p
+                      class="hide-on-mbl c-t"
+                      style="
+                        text-align: center;
+                        margin: 0 auto;
+                        font-size: 13px;
+                      "
+                    >
+                      AND YOU CAN TOO!
+                    </p>
+                    <p class=" web-link-font text-center w-l hide-on-mbl" style="color: #43f979">
+                      <strong> www.huluhaslivesportsjersey.com</strong>
+                    </p>
+                    <div class=" hide-on-mbl" style="text-align: center">
+                      <p class=" h-u m-0" style=" margin: 5px">
+                        <strong  > #HuluHasLiveSports</strong>
+                      </p>
+                      <img src="/logoNew.png" alt="Loading..." width="70%" />
+                    </div>
+                  </div>
+                  <img
+                    id="scorecardOpponentImg"
+                    src="./images/scoreOverlayImage.png"
+                    class="scorecard-overlay-image"
+                    alt=""
+                  />
+                  <img
+                    id= "scorecardJerseyOpponent"
+                    height="40px"
+                    src="./images/jersey.png"
+                    class="scorecard-overlay-jersey-image"
+                    alt=""
+                  />
+                </div>
+              </td>
+              <td class="td-mob" style="padding-left: 20px;">
+                <p class="game-over-p">GAME OVER</p><br>
+                <h2 id="removeSpanStyle"  class="game-over-title" style="text-align: left">
+                  <span id="scoreAndTimeMessage">Great job! You scored</span>
+                  <span id="scoreCard-score" style="display: inline">0</span><span> points in </span> <span class="d-inline" id="scored-time">0</span>
+                  <span id="scoreAndTimeMessage2" >seconds</span>
+                </h2><br>
+                <div class="score-card-2">
+                  <div
+                          id="scoreCardDownloadable2"
+                          class="score-board-outer-container"
+                  >
+                    <div class="score-board-inner-container">
+                      <p
+                              class="py-2 text-white text-center f-s"
+                      >
+                        Final Score
+                      </p>
+<!--                      <p class="py-2 g-o text-white text-center game-over-for-mbl">-->
+<!--                        Game Over-->
+<!--                      </p>-->
+                      <div class="text-center player-score-for-desktop">
+                      <span
+                              id="player1-score2"
+                              class="d-inline display-4 border-right pr-2 player1-score"
+                      >0</span
+                      >
+                        <span
+                                id="player2-score2"
+                                class="d-inline display-4 pl-2 player2-score"
+                        >0</span
+                        >
+                      </div>
+                      <p
+                              id="scorecoardResultHeading2"
+                              class="text-uppercase dunked hide-on-mbl"
+                              style=""
+                      >
+                        I DUNKED ON DAME
+                      </p>
+                      <p
+                              class="hide-on-mbl c-t"
+                              style="
+                        text-align: center;
+                        margin: 0 auto;
+                        font-size: 13px;
+                      "
+                      >
+                        AND YOU CAN TOO!
+                      </p>
+                      <p class=" web-link-font text-center w-l hide-on-mbl" style="color: #43f979">
+                        <strong> www.huluhaslivesportsjersey.com</strong>
+                      </p>
+                      <div class=" hide-on-mbl" style="text-align: center">
+                        <p class=" h-u m-0" style=" margin: 5px">
+                          <strong  > #HuluHasLiveSports</strong>
+                        </p>
+                        <img src="/logoNew.png" alt="Loading..." width="70%" />
+                      </div>
+                    </div>
+                    <img
+                            id="scorecardOpponentImg2"
+                            src="./images/opponent1.png"
+                            class="scorecard-overlay-image"
+                            alt=""
+                    />
+                    <img
+                            id= "scorecardJerseyOpponent2"
+                            height="40px"
+                            src="./images/jersey.png"
+                            class="scorecard-overlay-jersey-image"
+                            alt=""
+                    />
+                  </div>
+                </div>
+<!--                <div-->
+<!--                  id="scoreCardDownloadableMblEle"-->
+<!--                  class="score-board-image-for-mbl"-->
+<!--                >-->
+<!--                  <p class="text-center text-white m-0">Final Score</p>-->
+<!--                  <div class="pt-2 text-white text-center">-->
+<!--                    <span-->
+<!--                      id="player1-score-mbl"-->
+<!--                      class="border-right d-inline pr-2"-->
+<!--                    ></span>-->
+<!--                    <span id="player2-score-mbl" class="d-inline pl-2"></span>-->
+<!--                  </div>-->
+<!--                  <h4 class="text-white w-75 text-center mx-4 mb-0">-->
+<!--                    AND YOU CAN TOO!-->
+<!--                  </h4>-->
+<!--                  <p class="text-white text-center mb-0">AND YOU CAN DO IT!</p>-->
+<!--                  <p class="text-center mb-0" style="color: #43f979">-->
+<!--                    www.huluhaslivesportsjersey.com-->
+<!--                  </p>-->
+
+<!--                  <div class="w-100 ml-2">-->
+<!--                    <p class="mb-0" style="color: #43f979; font-size: 12px">-->
+<!--                      #HuluHasLiveSports-->
+<!--                    </p>-->
+<!--                    <img src="/logo.png" alt="" class="m-0 w-50" />-->
+<!--                  </div>-->
+<!--                </div>-->
+                <!-- <img src="./images//scorecardbg.png" img alt="" /> -->
+                <p><span id="removeSpanStyle" class="game-over-dec-p" style="text-align: left; margin: 0px; ">You've unlocked <span id="discountPercent">20%</span> off the limited-edition collaboration!<br> Here’s your discount code <strong id="discountCode"> HHLSMN20.*</strong></span></p><br>
+                <h6
+                  id="discountDescription"
+                  class="discount-description-for-mbl">
+                  <span class="game-over-dec-p" style="text-align: left; margin: 0px;"> Download your scorecard and challenge your friends.<br> Share on social using <strong> #HuluHasLiveSports</strong></span>
+                </h6><br>
+
+<!--                <h5 id="discountCode" class="">LIVESPORTS2020</h5>-->
+                <!-- <h6>Download Scorecard</h6> -->
+                <a class="download-btn-dt" href="#" id="downloadScoreCard" onclick="return false" class="hide-on-mbl"
+                >Download Scorecard <i class="fa fa-download"></i>
+                </a>
+                <a class="download-btn-mb" href="#" id="downloadScoreCardMbl" onclick="return false" class="hide-on-mbl"
+                >Download Scorecard <i class="fa fa-download"></i>
+                </a>
+
+                <!-- <a
+                  href="#".gameDescription-content
+                  id="downloadScoreCardForMbl"
+                  class="score-card-download-btn-for-mbl"
+                  >DOWNLOAD SCORECARD
+                  <i class="fa fa-download" aria-hidden="true"></i
+                ></a> -->
+              </td>
+            </tr>
+          </table>
+
+          <center style="text-align: left; margin-top: 30px;" class="text-center">
+            <button class="hide-on-mbl" id="quit">QUIT</button>
+            <button class="hide-on-mbl" id="replay">REPLAY</button>
+            <button class="hide-on-mbl" id="go-to-party">GO TO THE BLOCK PARTY</button>
+
+          </center>
+
+        </div>
+        <div class="container-fluid score-footer-content">
+          <p>
+            *Ends 12/31/20 at 11:59:59 p.m. PT. Online exclusive. Use coupon HHLSMNXX at checkout for XX percent (XX%) off one (1) qualifying Hulu x Mitchell & Ness Collection product per customer (before taxes, shipping, delivery and handling). Only redeemable for a purchase on the specific page linked above, while supplies last. Not valid for prior purchases or orders for in-store pick-up. Not redeemable for cash, credit or other value; not combinable with other promotional offers or credit; not valid for resale.  Terms subject to change at any time without notice. Additional terms and restrictions apply.
+          </p>
+          <h4 style="cursor: pointer" id="feedbackPageLink" class="footer-feedback-link">GIVE US YOUR FEEDBACK <i class="fas fa-caret-right"></i></h4>
+        </div>
+        <button class="hide-on-desktop  quit-for-mbl" id="quit2">
+          QUIT
+        </button>
+        <button
+          id="replay-for-mbl"
+          class="hide-on-desktop  reply-for-mbl"
+        >
+          REPLY
+        </button>
+      </div>
+
+<!--      Feedback page-->
+      <div  id="feedbackPage" class="scorecard" >
+      <div  class="container-fluid mh-100 justify-content-center mt-5 ">
+        <div class="row">
+
+          <div class=" offset-1 col-10 align-self-center" style="background-color: #151515;">
+            <div class="col-12 d-flex justify-content-end mt-2">
+              <img id="closeFeedback" src="./images/close-menu.png">
+            </div>
+            <div class="col-12 d-flex justify-content-center feedback-div mt-5">
+              <h3 class="text-white text-center feedback-title">
+                Please tell us about your<br>experience on this site.
+              </h3>
+            </div>
+
+
+              <div class="col-12 d-flex justify-content-center  align-self-center">
+
+                <div class="col-lg-8 col-md-10  mt-3 textarea-mobile ">
+                  <textarea style="background-color: white; color: black; border: none; "  rows="8" cols="9" class="form-control d-flex" placeholder="Enter message here"></textarea><br />
+                </div>
+
+              </div>
+            <div class="col-12 d-flex justify-content-center  mt-4 mb-5">
+<!--              <button type="button" class="btn btn-light">SUBMIT</button>-->
+              <div class="d-flex justify-content-center w-100">
+                <button class="got-it-btn-desktop w-25 w-sm-100  " id="feedback-btn">SUBMIT</button>
+              </div>
+
+            </div>
+          </div>
+
+
+      </div>
+      </div>
+      </div>
+
+
+
+
+
+
+      <div class="row vh-100" id="game-area">
+        <div
+          id="player1area"
+          class="col-2 text-center p-0 overflow-hidden player1-area"
+          style="background-color: #000"
+        >
+          <div
+            id="turn1"
+            class="d-flex w-100 align-items-center justify-content-center player-title border-bottom border-dark"
+            style="background-color: #000"
+          >
+            <h6 class="text-white player1">PLAYER 1</h6>
+          </div>
+          <div class="player-name-and-icon">
+            <div>
+              <h1 class="player-name px-3 text-white" id="name"></h1>
+            </div>
+            <div class="border-bottom border-dark">
+              <img
+                      src="./images/iconGame.png"
+                      alt=""
+                      style=""
+                      class="w-100 px-3 challengeravatar"
+              />
+<!--              <i-->
+<!--                class="fas fa-user border-bottom border-dark w-100 px-3"-->
+<!--                style="color: #43f979"-->
+<!--              ></i>-->
+            </div>
+          </div>
+          <div class="score-board border-bottom border-dark">
+            <div>
+              <p class="score-heading text-white m-0 p-2">SCORE</p>
+            </div>
+            <div>
+              <h3 class="score" id="score">0</h3>
+            </div>
+          </div>
+          <p class="text-center text-white jerseysName" id="jerseyType">Home</p>
+          <div
+            class="d-flex align-items-center justify-content-center jersey-outer"
+          >
+            <img
+              id="player1jersey"
+              src="./images/jersey2.png"
+              alt=""
+              class="jersey"
+            />
+          </div>
+        </div>
+        <div class="col-8">
+          <center>
+            <div class="row position-relative">
+              <div class="col-6 p-0" id="player1" style="display: block">
+                <!-- <img src="./images/bg1.png" alt="" class="vh-100 w-100"> -->
+              </div>
+              <div class="col-6 p-0" id="player2" style="display: block">
+                <!-- <img src="./images/bg2.png" alt="" class="vh-100 w-100"> -->
+              </div>
+              <div class="position-absolute time-outer">
+                <h3 class="time-inner" id="time">00:30</h3>
+              </div>
+            </div>
+          </center>
+        </div>
+        <div
+          id="player2area"
+          class="col-2 text-center p-0 overflow-hidden"
+          style="background-color: #000"
+        >
+          <div
+            id="turn2"
+            class="d-flex align-items-center justify-content-center player-title border-bottom border-dark"
+            style="background-color: #000"
+          >
+            <h6 id="turn2" class="text-white player2">PLAYER 2</h6>
+          </div>
+          <div class="player-name-and-icon">
+            <div>
+              <h1 id="player2Name" class="player-name px-3 text-white m-0"></h1>
+            </div>
+            <div class="border-bottom border-dark">
+              <img
+                id="challengerAvatar"
+                src="./images/damianGame.png
+                alt=""
+                style=""
+                class="w-100 px-3 challengeravatar"
+              />
+            </div>
+          </div>
+          <div class="score-board border-bottom border-dark">
+            <div>
+              <p class="score-heading text-white m-0 p-2">SCORE</p>
+            </div>
+            <div>
+              <h3 class="score" id="score2">0</h3>
+            </div>
+          </div>
+
+          <p class="text-center text-white jerseysName" id="jerseyType2">Away</p>
+          <div
+            class="d-flex align-items-center justify-content-center jersey-outer"
+          >
+            <img
+              id="player2jersey"
+              src="./images/jersey.png"
+              alt=""
+              class="jersey"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+    <!-- &lt;!&ndash; TODO: Add SDKs for Firebase products that you want to use -->
+    <!-- https://firebase.google.com/docs/web/setup#available-libraries &ndash;&gt; -->
+    <script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.min.js"
+      integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+<script>
+  $(function() {
+    // $() ==
+    if ($('#gameDescription')){
+      $('#main-body').addClass('main-body');
+    }
+  });
+</script>
+    <script>
+
+      function removeClassCustom()
+        {
+        var mainBody = parent.document.getElementById('main-body');
+        mainBody.classList.remove("gameDescriptionBody",
+        "selectJerseyBody",
+        "selectNameBody",
+        "selectChallengerBody",
+        "discountDescriptionBody",
+        "gameCanvasBody",
+        "scorecardBody",
+        "gameDescriptionBodyBlocker",
+        "selectJerseyBodyBlocker",
+        "selectNameBodyBlocker",
+        "discountDescriptionBodyBlocker",
+        "gameCanvasBodyBlocker",
+        "scorecardBodyBlocker",
+        "instructionBodyFanCam",
+        "cameraViewBodyFanCam",
+        "startOverBodyFanCam"
+           );
+        }
+
+      var Name = "";
+      var playerName = "";
+      var thorwBall = false;
+      // Get the modal
+      var modal = document.getElementById("discountDescription");
+      var modal2 = document.getElementById("myModal2");
+      var scorecard = document.getElementById("scorecard");
+      var gameDescription = document.getElementById("gameDescription");
+      var selectName = document.getElementById("selectName");
+      var selectJersey = document.getElementById("selectJersey");
+      var selectChallenger = document.getElementById("selectChallenger");
+      var gotItButton = document.getElementById("gotIt");
+      var gotItButtonMbl = parent.document.getElementById("gotItFloatForMbl");
+      var reloadButton = document.getElementById("reloadButton");
+      var replay = document.getElementById("replay");
+      var replayMobile = document.getElementById("replay-for-mbl");
+      var jersey1 = document.getElementById("jersey1");
+      var jersey2 = document.getElementById("jersey2");
+      var challenger1 = document.getElementById("challenger1");
+      var challenger2 = document.getElementById("challenger2");
+      var selectScreenRotator = document.getElementById("screenRotator");
+      var screenRotationGameStartBtn = document.getElementById(
+        "screenRotationGameStartBtn"
+      );
+      var challengerAvatar = document.getElementById("challengerAvatar");
+      var player1jersey = document.getElementById("player1jersey");
+      var player2jersey = document.getElementById("player2jersey");
+      var playerName1 = document.getElementById("playerName1");
+      var playerName2 = document.getElementById("playerName2");
+      var playerName3 = document.getElementById("playerName3");
+      var player1ScoreCard = document.getElementById("player1-score");
+      var player1ScoreCardForMbl = document.getElementById("player1-score2");
+      var player2ScoreCard = document.getElementById("player2-score");
+      var player2ScoreCardForMbl = document.getElementById("player2-score2");
+      var player1ScoreCardMbl = document.getElementById("player1-score-mbl");
+      var player2ScoreCardMbl = document.getElementById("player2-score-mbl");
+      var player1score = document.getElementById("score");
+      var player2score = document.getElementById("score2");
+      var scoreCardScore = document.getElementById("scoreCard-score");
+      var scoreCardDownloadable = document.getElementById(
+        "scoreCardDownloadable"
+      );
+      var downloadScoreCardbtn = document.getElementById("downloadScoreCard");
+      var gameArea = document.getElementById("game-area");
+      // var downloadScoreCardForMblBtn = document.getElementById("downloadScoreCardForMbl");
+
+      ///////////backArrowIcon//////
+      var backArrowIcon = document.getElementById("backArrowIcon");
+      var feedbackPage = document.getElementById("feedbackPage");
+      var feedbackPageLink = document.getElementById("feedbackPageLink");
+      var closeFeedback = document.getElementById("closeFeedback");
+
+
+      backArrowIcon.onclick = function(){
+        if(selectJersey.style.display == "block"){
+          selectJersey.style.display = "none"
+          gameDescription.style.display = "block"
+          ////////////////////////
+          if(screen.availWidth < 426){
+            gotItButtonMbl.style.display = "block"
+          }
+          // console.log("called1")
+          parent.document.body.scrollTop = 0; // For Safari
+          parent.document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+          removeClassCustom();
+            var tempMainBody = parent.document.getElementById('main-body');
+            tempMainBody.classList.add("gameDescriptionBody");
+          backArrowIcon.style.display = "none"
+        }else if(selectName.style.display == "block"){
+          selectName.style.display = "none"
+          selectJersey.style.display = "block"
+          removeClassCustom();
+            var tempMainBody = parent.document.getElementById('main-body');
+            tempMainBody.classList.add("selectJerseyBody");
+        }else if(selectChallenger.style.display == "block"){
+          selectChallenger.style.display = "none"
+          selectName.style.display = "block"
+          removeClassCustom();
+            var tempMainBody = parent.document.getElementById('main-body');
+            tempMainBody.classList.add("selectNameBody");
+        }else if(discountDescription.style.display == "block"){
+          discountDescription.style.display == "none"
+          selectChallenger.style.display = "block"
+          removeClassCustom();
+            var tempMainBody = parent.document.getElementById('main-body');
+            tempMainBody.classList.add("selectChallengerBody");
+        }else {}
+      }
+
+
+
+      var discountCode = document.getElementById("discountCode");
+      var discountDescription = document.getElementById("discountDescription");
+      var scoredTimer = document.getElementById("scored-time")
+      var jerseyType = document.getElementById("jerseyType")
+      var jerseyType2 = document.getElementById("jerseyType2")
+
+      var scorecardOpponentImg = document.getElementById("scorecardOpponentImg")
+      var scorecardOpponentImg2 = document.getElementById("scorecardOpponentImg2")
+      var scorecoardResultHeading = document.getElementById("scorecoardResultHeading")
+      var scorecoardResultHeading2 = document.getElementById("scorecoardResultHeading2")
+      var scorecardJerseyOpponent = document.getElementById("scorecardJerseyOpponent")
+      var scorecardJerseyOpponent2 = document.getElementById("scorecardJerseyOpponent2")
+      var scoreAndTimeMessage = document.getElementById("scoreAndTimeMessage")
+      var scoreAndTimeMessage2 = document.getElementById("scoreAndTimeMessage2")
+      var discountCode = document.getElementById("discountCode")
+
+
+      // screenRotationGameStartBtn.onclick = function () {
+      //   selectScreenRotator.style.display = "none";
+      // };
+      var randomNames = ["The Swish","Hot Shot","Dunkmaster","Hoop Start", "Stream Team","Point Guard", "The Captain", "Big Shop","Big Baller", "Sixth Man", "Sellout", "Benchwarmer", "A-Team"];
+        var randNameIndex  = Math.floor(Math.random() * 10);
+        // console.log("randomIndex",  randomNames[randNameIndex]);
+        if(randNameIndex > 8){ randNameIndex = 3};
+        document.querySelector('#playerName1 p').innerHTML = randomNames[randNameIndex]
+        document.querySelector('#playerName2 p').innerHTML = randomNames[randNameIndex + 1]
+        document.querySelector('#playerName3 p').innerHTML = randomNames[randNameIndex + 2]
+
+      replay.onclick = function () {
+        window.location.reload();
+        ////////////////
+        if(screen.availWidth < 426){
+          gotItButtonMbl.style.display = "block";
+        }
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("gameDescriptionBody");
+      };
+
+      feedbackPageLink.onclick = function () {
+       feedbackPage.style.display = "block";
+      };
+
+      closeFeedback.onclick = function () {
+       feedbackPage.style.display = "none";
+      };
+
+      replayMobile.onclick = function () {
+        window.location.reload();
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("gameDescriptionBody");
+      };
+
+      challenger1.onclick = function () {
+        selectChallenger.style.display = "none";
+        document.getElementById("player2Name").innerHTML = "Damian Lillard";
+        // if (screen.availWidth <= 426) {
+        //   selectScreenRotator.style.display = "block";
+        // }
+        // else{
+        //   console.log("else")
+        //   selectScreenRotator.style.display ="none";
+        //   ///////
+
+        // }
+        challengerAvatar.src = "./images/damianGame.png";
+        scorecardOpponentImg.src = "./images/opponent1.png"
+        scorecardOpponentImg2.src = "./images/opponent1.png"
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("discountDescriptionBody");
+      };
+
+      challenger2.onclick = function () {
+        selectChallenger.style.display = "none";
+        document.getElementById("player2Name").innerHTML =
+          "Skylar Diggins-Smith";
+        // if (screen.availWidth <= 426) {
+        //   selectScreenRotator.style.display = "block";
+        // }
+        challengerAvatar.src = "./images/skylarGame.png";
+        scorecardOpponentImg.src = "./images/opponent2.png";
+        scorecardOpponentImg2.src = "./images/opponent2.png";
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("discountDescriptionBody");
+      };
+
+      jersey1.onclick = function () {
+        selectJersey.style.display = "none";
+        // selectChallenger.style.display = "block";
+        selectName.style.display = "block";
+        player1jersey.src = "./images/jersey.png";
+        player2jersey.src = "./images/jersey2.png";
+        scorecardJerseyOpponent.src = "./images/jersey.png"
+        scorecardJerseyOpponent2.src = "./images/jersey.png"
+        document.getElementById('playerNameJersey1').src = "./images/playerName.png";
+        document.getElementById('playerNameJersey2').src = "./images/playerName.png";
+        document.getElementById('playerNameJersey3').src = "./images/playerName.png";
+        jerseyType.innerHTML = "Home";
+        jerseyType2.innerHTML = "Away";
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("selectNameBody");
+      };
+
+      jersey2.onclick = function () {
+        selectJersey.style.display = "none";
+        // selectChallenger.style.display = "block";
+        selectName.style.display = "block";
+        player1jersey.src = "./images/jersey2.png";
+        player2jersey.src = "./images/jersey.png";
+        scorecardJerseyOpponent.src = "./images/jersey2.png"
+        scorecardJerseyOpponent2.src = "./images/jersey2.png"
+        jerseyType.innerHTML = "Away";
+        jerseyType2.innerHTML = "Home";
+        document.getElementById('playerNameJersey1').src = "./images/jerseyAway.png";
+        document.getElementById('playerNameJersey2').src = "./images/jerseyAway.png";
+        document.getElementById('playerNameJersey3').src = "./images/jerseyAway.png";
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("selectNameBody");
+      };
+
+      playerName1.onclick = function () {
+        selectName.style.display = "none";
+        // selectJersey.style.display = "block";
+        selectChallenger.style.display = "block";
+
+        document.getElementById("name").innerHTML = playerName1.innerText;
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("selectChallengerBody");
+      };
+
+      playerName2.onclick = function () {
+        selectName.style.display = "none";
+        // selectJersey.style.display = "block";
+        selectChallenger.style.display = "block";
+        document.getElementById("name").innerHTML = playerName2.innerText;
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("selectChallengerBody");
+      };
+
+      playerName3.onclick = function () {
+        selectName.style.display = "none";
+        // selectJersey.style.display = "block";
+        selectChallenger.style.display = "block";
+        document.getElementById("name").innerHTML = playerName3.innerText;
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("selectChallengerBody");
+      };
+
+      gotItButton.onclick = function () {
+        gameDescription.style.display = "none";
+        // selectName.style.display = "block";
+        selectJersey.style.display = "block";
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("selectJerseyBody");
+        backArrowIcon.style.display = "initial";
+        ////////////////////////////////////////////////
+        parent.document.body.scrollTop = 0; // For Safari
+        parent.document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
+      };
+      gotItButtonMbl.onclick = function () {
+        gameDescription.style.display = "none";
+        // selectName.style.display = "block";
+        selectJersey.style.display = "block";
+        removeClassCustom();
+        var tempMainBody = parent.document.getElementById('main-body');
+        tempMainBody.classList.add("selectJerseyBody");
+        backArrowIcon.style.display = "initial";
+        /////////////////////////////////////////
+        gotItButtonMbl.style.display = "none";
+      };
+      // Get the button that opens the modal
+      // var btn = document.getElementById("myBtn");
+      // var startButton = document.getElementById("startButton");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      // btn.onclick = function() {
+      // }
+      modal.style.display = "block";
+      // When the user clicks on <span> (x), close the modal
+      // span.onclick = function() {
+      //   modal.style.display = "none";
+      // }
+      // startButton.onclick = function() {
+      //   modal.style.display = "none";
+      // }
+
+      // When the user clicks anywhere outside of the modal, close it
+      // window.onclick = function(event) {
+      //   if (event.target == modal) {
+      // 	modal.style.display = "none";
+      //   }
+      // }
+
+      var ele = document.getElementById("scoreCardDownloadable");
+      $("#downloadScoreCard").click(function () {
+        var widthO = ele.style.width
+        var heightO = ele.style.height
+        // ele.style.width="500px";
+        // ele.style.height="500px";
+        // console.log("height:",ele);
+        html2canvas(ele).then(function (canvas) {
+          var anchor = document.createElement("a");
+          anchor.href = canvas.toDataURL("image/png", 0.9);
+          anchor.download = "scorecard.png";
+          anchor.click();
+        });
+        // ele.style.width= widthO;
+        // ele.style.height= heightO;
+      });
+      var ele2 = document.getElementById("scoreCardDownloadable2");
+      $("#downloadScoreCardMbl").click(function () {
+        var widthO = ele2.style.width
+        var heightO = ele2.style.height
+        // ele.style.width="500px";
+        // ele.style.height="500px";
+        // console.log("height:",ele);
+        html2canvas(ele2).then(function (canvas) {
+          var anchor = document.createElement("a");
+          anchor.href = canvas.toDataURL("image/png", 0.9);
+          anchor.download = "scorecard.png";
+          anchor.click();
+        });
+        // ele.style.width= widthO;
+        // ele.style.height= heightO;
+      });
+      // download scorecard for mobile
+      // var eleForMbl = document.getElementById("scoreCardDownloadableMblEle");
+      // $("#downloadScoreCardForMbl").click(function () {
+      //   html2canvas(eleForMbl).then(function (canvas) {
+      //     var anchor = document.createElement("a");
+      //     anchor.href = canvas.toDataURL("image/png", 0.9);
+      //     anchor.download = "scorecard.png";
+      //     anchor.click();
+      //   });
+      // });
+    </script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyBSsSzF7wlSF1ZGAjQ6rtBLkHSb2NIh1TE",
+        authDomain: "basketballgame-ca3f1.firebaseapp.com",
+        databaseURL: "https://basketballgame-ca3f1.firebaseio.com",
+        projectId: "basketballgame-ca3f1",
+        storageBucket: "basketballgame-ca3f1.appspot.com",
+        messagingSenderId: "941712457648",
+        appId: "1:941712457648:web:ea762eda76cf0758b86075",
+        measurementId: "G-6EJJ863RLH",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <script>
+      var screenHeight = screen.availHeight;
+      var screenWidth = screen.availWidth;
+
+      if(screenWidth < 500){
+      setInterval(() => {
+        // console.log(window.orientation, "orientationnnn")
+        var game =  parent.document.getElementsByClassName('discountDescriptionBody')
+        var game2 =  parent.document.getElementsByClassName('gameCanvasBody')
+        // console.log(game, "gameeeee")
+        // console.log(game2, "gameeeee2")
+      if(window.orientation === 0 || window.orientation === 180){
+        document.getElementById("screenRotatorForScoreCard").style.display = "none"
+        if(game.length > 0 || game2.length > 0){
+        document.getElementById("screenRotator").style.display = "block"
+        }
+      }
+      if(window.orientation === 90 || window.orientation === -90){
+        if(game.length > 0 || game2.length > 0 ){
+          document.getElementById("screenRotatorForScoreCard").style.display = "none"
+          document.getElementById("screenRotator").style.display = "none"
+        }else {
+          document.getElementById("screenRotatorForScoreCard").style.display = "block"
+        }
+          // selectJersey.style.display = "none"
+          // gameDescription.style.display = "none"
+          // backArrowIcon.style.display = "none"
+          // selectName.style.display = "none"
+          // selectChallenger.style.display = "none"
+          // discountDescription.style.display == "none"
+      }
+      }, 100);
+      }
+      console.log(screenHeight, screenWidth, "h w");
+
+      document.getElementById("turn1").style.cssText =
+        "background: black; color: black; font-weight: bolder; display:block";
+
+      // if (screenHeight < screenWidth) {
+      //   document.getElementById("player2").style.display = "block";
+      //   document.getElementById("player2").className = "col-6 p-0";
+      //   document.getElementById("player1").className = "col-6 p-0";
+      // }
+      var executed = false;
+      var totalTime;
+
+      function startTimer(duration, display) {
+        var timer = duration,
+          minutes,
+          seconds;
+          totalTime = timer;
+        setInterval(function () {
+          minutes = parseInt(timer / 60, 10);
+          seconds = parseInt(timer % 60, 10);
+
+          minutes = minutes < 10 ? "0" + minutes : minutes;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+
+          display.textContent = minutes + ":" + seconds;
+
+          if (timer >= 0) {
+            --timer;
+          }
+
+          if (timer < 0) {
+            thorwBall = false;
+            clearTimeout(window.timeoutLose)
+            clearTimeout(window.timeoutWin)
+            // game.destroy();
+            // game2.destroy();
+            if(!executed){
+            scoreCardScore.innerText = player1score.innerText;
+            scoredTimer.innerText = totalTime;
+            timer = 0;
+           
+            // console.log(document.getElementById("player2Name").innerText === "Skylar Diggins-Smith");
+            // console.log(document.getElementById("player2Name").innerText);
+
+
+            if(document.getElementById("player2Name").innerText === "Damian Lillard"){
+            if(parseInt(player1score.innerText) >= parseInt(player2score.innerText)){
+              scorecoardResultHeading.innerHTML = "I DUNKED ON DAME"
+              scorecoardResultHeading2.innerHTML = "I DUNKED ON DAME"
+              scoreAndTimeMessage.innerText = "Great job! You scored ";
+              scoreAndTimeMessage2.innerText = "seconds.";
+              discountCode.innerText = "HHLSMN20.*";
+              discountPercent.innerText = "20%";
+            } else {
+              scorecoardResultHeading.innerHTML = "I CHALLENGED DAME"
+              scorecoardResultHeading2.innerHTML = "I CHALLENGED DAME"
+              scoreAndTimeMessage.innerText = "You're just getting warmed up! You scored ";
+              scoreAndTimeMessage2.innerText = "seconds. Play again to shoot for a higher score.";
+              discountCode.innerText = "HHLSMN15.*";
+              discountPercent.innerText = "15%";
+            } }
+            else {
+              if(parseInt(player1score.innerText) >= parseInt(player2score.innerText)){
+              scorecoardResultHeading.innerHTML = "I DUNKED ON SKYLAR"
+              scorecoardResultHeading2.innerHTML = "I DUNKED ON SKYLAR"
+              scoreAndTimeMessage.innerText = "Great job! You scored ";
+              scoreAndTimeMessage2.innerText = "seconds.";
+              discountCode.innerText = "HHLSMN20.*";
+              discountPercent.innerText = "20%";
+            } else {
+              scorecoardResultHeading.innerHTML = "I CHALLENGED SKYLAR"
+              scorecoardResultHeading2.innerHTML = "I CHALLENGED SKYLAR"
+              scoreAndTimeMessage.innerText = "You're just getting warmed up! You scored ";
+              scoreAndTimeMessage2.innerText = "seconds. Play again to shoot for a higher score.";
+              discountCode.innerText = "HHLSMN15.*";
+              discountPercent.innerText = "15%";
+            }
+
+            }
+
+
+
+
+            player1ScoreCard.innerHTML = player1score.innerText;
+            player2ScoreCard.innerHTML = player2score.innerText;
+            player1ScoreCardForMbl.innerHTML = player1score.innerText;
+            player2ScoreCardForMbl.innerHTML = player2score.innerText;
+            executed = true;
+            removeClassCustom();
+            var tempMainBody = parent.document.getElementById('main-body');
+            tempMainBody.classList.add("scorecardBody");
+            }
+            ///////////////////////////////////////
+            document.getElementById("game-area").style.display = "none";
+            scorecard.style.display = "block";
+            ///////////////////////////////////////
+            // if (screen.width > 426 && screen.width <= 1000) {
+            //   document.getElementById(
+            //     "screenRotatorForScoreCard"
+            //   ).style.display = "block";
+            //   document.getElementById("game-area").style.display = "none";
+            //   console.log("Rotate your screen");
+            //   scorecard.style.display = "none";
+            // } else {
+            //   document.getElementById(
+            //     "screenRotatorForScoreCard"
+            //   ).style.display = "none";
+            //   document.getElementById("game-area").style.display = "none";
+            //   scorecard.style.display = "block";
+            // }
+
+            // if (player1score.innerText < -1) {
+            //   scoreCardDownloadable.style.display = "none";
+            //   discountCode.innerHTML = "Good job! Better luck next Time";
+            //   discountDescription.style.display = "none";
+            //   downloadScoreCardbtn.style.display = "none";
+            // }
+
+
+
+
+            // fra = parent.document.getElementById("iframeId");
+            // iframeOuter = parent.document.getElementById("iframe-outer");
+            // mainHeader = parent.document.getElementById("main-header");
+
+            // iframeOuter.style.marginTop = "0";
+            // mainHeader.style.display = "block";
+            // fra.style.height = "100vh";
+
+            // if (high_score > high_score2) {
+            //   // console.log(high_score2, high_score , "1 -- 2")
+            //   // alert("player 1 wins")
+            //   scorecard.style.display = "block";
+            //   document.getElementById("winnerName").innerHTML = Name;
+            //   reloadButton.onclick = function() {
+            //     window.location.reload();
+            //   };
+            // } else if (high_score < high_score2) {
+            //   scorecard.style.display = "block";
+            //   document.getElementById("winnerName").innerHTML = "Player 2";
+            //   reloadButton.onclick = function() {
+            //     window.location.reload();
+            //   };
+            //   // console.log(high_score2, high_score , "1 -- 2")
+            //   // alert("player 2 wins")
+            //   // window.location.reload();
+            // } else {
+            //   scorecard.style.display = "block";
+            //   document.getElementById("winnerName").innerHTML = "No one";
+            //   reloadButton.onclick = function() {
+            //     window.location.reload();
+            //   };
+            //   // alert("Match Tied")
+            //   // window.location.reload();
+            // }
+            // timer = duration;
+
+          }
+        }, 1000);
+      }
+
+      window.onload = function () {
+        if(screen.availWidth < 426){
+          gotItButtonMbl.style.display = "block";
+        }
+
+        function scrollZero() {
+          parent.document.body.scrollTop = 0; // For Safari
+          parent.document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+        scrollZero();
+
+        var fiveMinutes = 60 * 0.5,
+        // var ThirtySec = 30,
+        //       abc
+          display = document.querySelector("#time");
+        startButton = document.getElementById("startButton");
+        // startButtonForMbl = document.getElementById("startButtonForMbl");
+        // var mainHeader = document.getElementById("main-header");
+        // var iframeOuter = document.getElementById("iframe-outer");
+        // var fra = document.getElementById("iframeId");
+        // console.log(iframeOuter);
+        startButton.onclick = function () {
+          // alert("iframe inner");
+          // iframeOuter.style.marginTop = "0";
+          //   fra.style.height = "100vh";
+          //   mainHeader.style.display = "none";
+          ////////////////////
+          gameArea.style.display = "flex"
+          ////////////////////
+          startTimer(fiveMinutes, display);
+          createBall();
+          createBall2();
+          modal.style.display = "none";
+          // selectScreenRotator.style.display = "none";
+          thorwBall = true;
+          backArrowIcon.style.display = "none"
+
+          // fra = parent.document.getElementById("iframeId");
+          // iframeOuter = parent.document.getElementById("iframe-outer");
+          // mainHeader = parent.document.getElementById("main-header");
+
+          // iframeOuter.style.marginTop = "0!important";
+          // mainHeader.style.display = "none";
+          // fra.style.height = "100vh";
+
+          removeClassCustom();
+          var tempMainBody = parent.document.getElementById('main-body');
+          tempMainBody.classList.add("gameCanvasBody");
+
+          // setTimeout(() => {
+          //   iframeOuter.style.marginTop = "0";
+          //   mainHeader.style.display = "block";
+          //   fra.style.height = "100vh";
+          // }, 16000);
+
+
+          setTimeout(() => {
+            launch2(-1 ^ (1 * -53));
+          }, 2000);
+
+          // Name = prompt('Enter your name');
+          // Name = document.getElementById("yourName").value;
+        };
+
+        // startButtonForMbl.onclick = function () {
+        //   startTimer(fiveMinutes, display);
+        //   modal.style.display = "none";
+        //   selectScreenRotator.style.display = "none";
+        //   thorwBall = true;
+        //   createBall();
+        //   createBall2();
+        //   removeClassCustom();
+        //   var tempMainBody = parent.document.getElementById('main-body');
+        //   tempMainBody.classList.add("gameCanvasBody");
+        //   setTimeout(() => {
+        //     launch2(-1 ^ (1 * -53));
+        //   }, 2000);
+        //   backArrowIcon.style.display = "none"
+
+          // Name = prompt('Enter your name');
+          // Name = document.getElementById("yourName").value;
+        // };
+      };
+    </script>
+
+<script type="text/javascript">
+  var db = firebase.firestore();
+
+      if(screen.availWidth < 360){
+      ////// 145 x 250 ////
+      ////// Game parameters /////
+    var CanvasWidth = 145; //Previous 290
+    var CanvasHeight = 250;//Previous 500
+    var createBallY =230;//Previous 420
+    var ballGravity = 8500;//Previous 4000
+    var backgroundSpriteX = 10;//Previous -100
+    var backgroundSpriteY = 20;//Previous -110
+    var hoopSpriteX = 63;//Previous 95
+    var hoopSpriteY = 103;//Previous 115
+    var svgSpriteX = 63;//Previous 95
+    var svgSpriteY = 103;//Previous 115
+    var borderSpriteX = 63;//Previous 95
+    var borderSpriteY = 103;//Previous 115
+    var leftRimSpriteX = 67;//Previous 95
+    var leftRimSpriteY = 123;//Previous 184
+    var rightRimSpriteX = 100;//Previous 200
+    var rightRimSpriteY = 123;//Previous 184
+    var frontRimSpriteX = 64;//Previous 94
+    var frontRimSpriteY = 122;//Previous 170
+    var emojiSpriteX = 55;//Previous 130
+    var emojiSpriteY = 40;//Previous 100
+    var ballHoopY = 123;//Previous 188
+    var randomXpos1 = 100;//Previous 230
+    var randomXpos2 = 100;//Previous 230
+    var minXpos1 = 10;
+    var minXpos2 = 10;
+    var ballRadiusHooped = 12;
+    var ballRadiusLaunch = 18;
+    ///// game images //////
+
+    var backgroundImagePlayer1 = "assets/images/145bg1.png";//Previous assets/images/bg1.png
+    var backgroundImagePlayer2 = "assets/images/145bg2.png";//Previous assets/images/bg2.png
+    var ballImage = "assets/images/ball145.png";//Previous assets/images/ball.png
+    var hoopImage = "assets/images/hoop450.png";//Previous assets/images/hoop.png
+    var svgImage = "assets/images/svg450.png";//Previous assets/images/svg.png
+    var borderImage = "assets/images/border145.png";//Previous assets/images/border.png
+    var sideRimImage = "assets/images/side_rim.png";//Previous assets/images/side_rim.png
+    var frontRimImage = "assets/images/front_rim450.png";//Previous assets/images/front_rim.png
+      }
+
+      if(screen.availWidth >= 360 && screen.availWidth < 1300){
+      ////// 210 x 300 ////
+      ////// Game parameters /////
+    var CanvasWidth = 210; //Previous 290
+    var CanvasHeight = 300;//Previous 500
+    var createBallY =260;//Previous 420
+    var ballGravity = 8000;//Previous 4000
+    var backgroundSpriteX = 0;//Previous -100
+    var backgroundSpriteY = 0;//Previous -110
+    var hoopSpriteX = 83;//Previous 95
+    var hoopSpriteY = 110;//Previous 115
+    var svgSpriteX = 83;//Previous 95
+    var svgSpriteY = 110;//Previous 115
+    var borderSpriteX = 83;//Previous 95
+    var borderSpriteY = 110;//Previous 115
+    var leftRimSpriteX = 85;//Previous 95
+    var leftRimSpriteY = 131;//Previous 184
+    var rightRimSpriteX = 120;//Previous 200
+    var rightRimSpriteY = 131;//Previous 184
+    var frontRimSpriteX = 85;//Previous 94
+    var frontRimSpriteY = 130;//Previous 170
+    var emojiSpriteX = 55;//Previous 130
+    var emojiSpriteY = 40;//Previous 100
+    var ballHoopY = 130;//Previous 188
+    var randomXpos1 = 100;//Previous 230
+    var randomXpos2 = 100;//Previous 230
+    var minXpos1 = 10;
+    var minXpos2 = 10;
+    var ballRadiusHooped = 12;
+    var ballRadiusLaunch = 18;
+    ///// game images //////
+
+    var backgroundImagePlayer1 = "assets/images/210bg1.png";//Previous assets/images/bg1.png
+    var backgroundImagePlayer2 = "assets/images/210bg2.png";//Previous assets/images/bg2.png
+    var ballImage = "assets/images/ball145.png";//Previous assets/images/ball.png
+    var hoopImage = "assets/images/hoop450.png";//Previous assets/images/hoop.png
+    var svgImage = "assets/images/svg450.png";//Previous assets/images/svg.png
+    var borderImage = "assets/images/border145.png";//Previous assets/images/border.png
+    var sideRimImage = "assets/images/side_rim.png";//Previous assets/images/side_rim.png
+    var frontRimImage = "assets/images/front_rim450.png";//Previous assets/images/front_rim.png
+      }
+
+  if(screen.availWidth >= 1300 && screen.availWidth < 1800){
+  ////// 290 x 500 ////
+  ////// Game parameters /////
+  var CanvasWidth = 290;
+  var CanvasHeight = 500;
+  var createBallY = 420;
+  var ballGravity = 4000;
+  var backgroundSpriteX = -100;
+  var backgroundSpriteY = -110;
+  var hoopSpriteX = 95;
+  var hoopSpriteY = 115;
+  var svgSpriteX = 95;
+  var svgSpriteY = 115;
+  var borderSpriteX = 95;
+  var borderSpriteY = 115;
+  var leftRimSpriteX = 95;
+  var leftRimSpriteY = 184;
+  var rightRimSpriteX = 200;
+  var rightRimSpriteY = 184;
+  var frontRimSpriteX = 94;
+  var frontRimSpriteY = 170;
+  var emojiSpriteX = 130;
+  var emojiSpriteY = 100;
+  var ballHoopY = 188;
+  var randomXpos1 = 230;
+  var randomXpos2 = 230;
+  var minXpos1 = 60;
+  var minXpos2 = 60;
+  var ballRadiusHooped = 36;
+  var ballRadiusLaunch = 60;
+
+  ///// game images //////
+
+  var backgroundImagePlayer1 = "assets/images/bg1.png";
+  var backgroundImagePlayer2 = "assets/images/bg2.png";
+  var ballImage = "assets/images/ball.png";
+  var hoopImage = "assets/images/hoop.png";
+  var svgImage = "assets/images/svg.png";
+  var borderImage = "assets/images/border.png";
+  var sideRimImage = "assets/images/side_rim.png";
+  var frontRimImage = "assets/images/front_rim.png";
+  }
+
+
+  if(screen.availWidth > 1800 && screen.availWidth <= 1920){
+  ///// 400 x 625 ////
+   ////// Game parameters /////
+   var CanvasWidth = 400;
+  var CanvasHeight = 625;
+  var createBallY = 547;
+  var ballGravity = 3000;
+  var backgroundSpriteX = -45;
+  var backgroundSpriteY = -110;
+  var hoopSpriteX = 150;
+  var hoopSpriteY = 115;
+  var svgSpriteX = 150;
+  var svgSpriteY = 115;
+  var borderSpriteX = 150;
+  var borderSpriteY = 115;
+  var leftRimSpriteX = 150;
+  var leftRimSpriteY = 184;
+  var rightRimSpriteX = 249;
+  var rightRimSpriteY = 184;
+  var frontRimSpriteX = 148;
+  var frontRimSpriteY = 170;
+  var emojiSpriteX = 180;
+  var emojiSpriteY = 100;
+  var ballHoopY = 188;
+  var randomXpos1 = 280;
+  var randomXpos2 = 280;
+   var minXpos1 = 60;
+  var minXpos2 = 60;
+  var ballRadiusHooped = 36;
+  var ballRadiusLaunch = 60;
+
+  ///// game images //////
+
+  var backgroundImagePlayer1 = "assets/images/bg1.png";
+  var backgroundImagePlayer2 = "assets/images/bg2.png";
+  var ballImage = "assets/images/ball.png";
+  var hoopImage = "assets/images/hoop.png";
+  var svgImage = "assets/images/svg.png";
+  var borderImage = "assets/images/border.png";
+  var sideRimImage = "assets/images/side_rim.png";
+  var frontRimImage = "assets/images/front_rim.png";
+  }
+
+  if(screen.availWidth > 1920){
+    ///// 700 x 1025 ////
+   ////// Game parameters /////
+   var CanvasWidth = 700;
+  var CanvasHeight = 1025;
+  var createBallY = 947;
+  var ballGravity = 2400;
+  var backgroundSpriteX = 0;
+  var backgroundSpriteY = 0;
+  var hoopSpriteX = 297;
+  var hoopSpriteY = 375;
+  var svgSpriteX = 297;
+  var svgSpriteY = 375;
+  var borderSpriteX = 297;
+  var borderSpriteY = 375;
+  var leftRimSpriteX = 297;
+  var leftRimSpriteY = 440;
+  var rightRimSpriteX = 389;
+  var rightRimSpriteY = 440;
+  var frontRimSpriteX = 295;
+  var frontRimSpriteY = 440;
+  var emojiSpriteX = 320;
+  var emojiSpriteY = 380;
+  var ballHoopY = 440;
+  var randomXpos1 = 380;
+  var randomXpos2 = 380;
+   var minXpos1 = 60;
+  var minXpos2 = 60;
+  var ballRadiusHooped = 36;
+  var ballRadiusLaunch = 60;
+
+
+  ///// game images //////
+
+  var backgroundImagePlayer1 = "assets/images/bg1700.png";
+  var backgroundImagePlayer2 = "assets/images/bg2700.png";
+  var ballImage = "assets/images/ball.png";
+  var hoopImage = "assets/images/hoop.png";
+  var svgImage = "assets/images/svg.png";
+  var borderImage = "assets/images/border.png";
+  var sideRimImage = "assets/images/side_rim.png";
+  var frontRimImage = "assets/images/front_rim.png";
+  }
+
+
+
+
+
+
+
+  // db.collection("game2").get()
+  //   .then(function(querySnapshot) {
+  // 	Name = prompt('Enter your name');
+  // 	document.getElementById('name').innerHTML= Name;
+  // 	var user = [];
+  // 	querySnapshot.forEach(function(doc) {
+  // 	  // doc.data() is never undefined for query doc snapshots
+  // 	  console.log(doc.id, " => ", doc.data());
+  // 	  let obj = {username: doc.id, score: doc.data().score}
+  // 	  user.push(obj);
+  //   });
+  //   user.map(u => {if(u.username === Name)
+  // 	{confirm('User with this name already exist!!\n Try other Name');
+  // 	window.location.reload()}
+  // 	})
+  // });
+
+  // NOTE: Originally 640x1000. Other possible sizes: 512x800, 400x625
+  var game = new Phaser.Game(CanvasWidth, CanvasHeight, Phaser.CANVAS, "player1", {
+    preload: preload,
+    create: create,
+    update: update,
+  });
+
+  function preload() {
+    game.load.image("background1", backgroundImagePlayer1);
+    game.load.image("ball", ballImage);
+    game.load.image("hoop", hoopImage);
+    game.load.image("svg", svgImage);
+    game.load.image("border", borderImage);
+    game.load.image("side rim", sideRimImage);
+    game.load.image("front rim", frontRimImage);
+
+    game.load.image("win0", "assets/images/win0.png");
+    game.load.image("win1", "assets/images/win1.png");
+    game.load.image("win2", "assets/images/win2.png");
+    game.load.image("win3", "assets/images/win3.png");
+    game.load.image("win4", "assets/images/win4.png");
+    game.load.image("lose0", "assets/images/lose0.png");
+    game.load.image("lose1", "assets/images/lose1.png");
+    game.load.image("lose2", "assets/images/lose2.png");
+    game.load.image("lose3", "assets/images/lose3.png");
+    game.load.image("lose4", "assets/images/lose4.png");
+
+    game.load.audio("score", "assets/audio/score.wav");
+    game.load.audio("backboard", "assets/audio/backboard.wav");
+    game.load.audio("whoosh", "assets/audio/whoosh.wav");
+    game.load.audio("fail", "assets/audio/fail.wav");
+    game.load.audio("spawn", "assets/audio/spawn.wav");
+  }
+
+  var hoop,
+    BG,
+    svg,
+    border,
+    left_rim,
+    right_rim,
+    ball,
+    front_rim,
+    current_score = 0,
+    current_score_text,
+    high_score = 0,
+    high_score_text,
+    current_best_text;
+
+  var score_sound, backboard, whoosh, fail, spawn;
+
+  var moveInTween,
+    fadeInTween,
+    moveOutTween,
+    fadeOutTween,
+    emoji,
+    emojiName;
+
+  var collisionGroup;
+
+  function create() {
+    game.physics.startSystem(Phaser.Physics.P2JS);
+
+    game.physics.p2.setImpactEvents(true);
+
+    game.physics.p2.restitution = 0.63;
+    game.physics.p2.gravity.y = 0;
+
+    collisionGroup = game.physics.p2.createCollisionGroup();
+
+    score_sound = game.add.audio("score");
+    backboard = game.add.audio("backboard");
+    backboard.volume = 0.5;
+    whoosh = game.add.audio("whoosh");
+    fail = game.add.audio("fail");
+    fail.volume = 0.1;
+    spawn = game.add.audio("spawn");
+
+    // game.stage.backgroundColor = "#43f979";
+    game.stage.backgroundColor = "black";
+
+    // high_score_text = game.add.text(450, 25, 'High Score\n' + high_score, { font: 'Arial', fontSize: '32px', fill: '#000', align: 'center' });
+    current_score_text = game.add.text(187, 312, "", {
+      font: "Arial",
+      fontSize: "40px",
+      fill: "#000",
+      align: "center",
+    }); // 300, 500
+    current_best_text = game.add.text(143, 281, "", {
+      font: "Arial",
+      fontSize: "20px",
+      fill: "#000",
+      align: "center",
+    }); // 230, 450
+    current_best_score_text = game.add.text(187, 312, "", {
+      font: "Arial",
+      fontSize: "40px",
+      fill: "#00e6e6",
+      align: "center",
+    }); // 300, 500
+
+    BG = game.add.sprite(backgroundSpriteX, backgroundSpriteY, "background1"); // 141, 100
+    hoop = game.add.sprite(hoopSpriteX, hoopSpriteY, "hoop"); // 141, 100
+    svg = game.add.sprite(svgSpriteX, svgSpriteY, "svg"); // 141, 100
+    border = game.add.sprite(borderSpriteX, borderSpriteY, "border"); // 141, 100
+    left_rim = game.add.sprite(leftRimSpriteX, leftRimSpriteY, "side rim"); // 241, 296
+    right_rim = game.add.sprite(rightRimSpriteX, rightRimSpriteY, "side rim"); // 398, 296
+    front_rim = game.add.sprite(frontRimSpriteX, frontRimSpriteY, "front rim");
+    game.physics.p2.enable([left_rim, right_rim], false);
+
+    left_rim.body.setCircle(2.5);
+    left_rim.body.static = true;
+    left_rim.body.setCollisionGroup(collisionGroup);
+    left_rim.body.collides([collisionGroup]);
+
+    right_rim.body.setCircle(2.5);
+    right_rim.body.static = true;
+    right_rim.body.setCollisionGroup(collisionGroup);
+    right_rim.body.collides([collisionGroup]);
+
+    // createBall();
+
+    cursors = game.input.keyboard.createCursorKeys();
+
+    game.input.onDown.add(click, this);
+    game.input.onUp.add(release, this);
+
+    // var instructions = document.createElement("span");
+    // instructions.innerHTML =
+    //   "Instructions: Quickly drag the ball to shoot the ball into the hoop!";
+    // document.body.appendChild(instructions);
+  }
+
+  function update() {
+    if (ball && ball.body.velocity.y > 0) {
+      front_rim = game.add.sprite(frontRimSpriteX, frontRimSpriteY, "front rim");
+
+      ball.body.collides([collisionGroup], hitRim, this);
+    }
+
+    if (
+      ball &&
+      ball.body.velocity.y > 0 &&
+      ball.body.y > ballHoopY &&
+      !ball.isBelowHoop
+    ) {
+      ball.isBelowHoop = true;
+      ball.body.collideWorldBounds = false;
+      var rand = Math.floor(Math.random() * 5);
+      if (ball.body.x > (leftRimSpriteX-2) && ball.body.x < (rightRimSpriteX-2)) {
+        emojiName = "win" + rand;
+        current_score += 2;
+        if (Name === null || Name === "") {
+          Name = "guest user";
+        }
+        document.getElementById("score").innerHTML = current_score;
+        // setTimeout(() => {
+        //   document.getElementById("turn2").style.cssText =
+        //     "background: rgb(0, 255, 150); color: black; font-weight: bolder;";
+        //   document.getElementById("turn1").style.cssText =
+        //     "background: black; color: black;";
+        // }, 1000);
+        // if (screenHeight > screenWidth) {
+        //   setTimeout(() => {
+        //     document.getElementById("player2").style.display = "block";
+        //     document.getElementById("player1").style.display = "none";
+        //     if (screenWidth < 500) {
+        //       document.getElementById("player2area").style.display =
+        //         "block";
+        //       document.getElementById("player1area").style.display = "none";
+        //     }
+        //   }, 1000);
+        // }
+
+        // db.collection('game').doc(Name).set({ score: current_score,
+        // 	   // any other data you have
+        //    })
+        // current score can be obtained from here
+        current_score_text.text = current_score;
+        score_sound.play();
+        high_score = current_score;
+      } else {
+        emojiName = "lose" + rand;
+        fail.play();
+        if (current_score > high_score) {
+          high_score = current_score;
+          // high_score_text.text = 'High Score\n' + high_score;
+        }
+        // current_score = 0;
+        current_score_text.text = "";
+        current_best_text.text = "Current Best";
+        current_best_score_text.text = high_score;
+        if (Name === null || Name === "") {
+          Name = "guest user";
+        }
+        document.getElementById("score").innerHTML = high_score;
+        // setTimeout(() => {
+        //   document.getElementById("turn2").style.cssText =
+        //     "background: rgb(0, 255, 150); color: black; font-weight: bolder;";
+        //   document.getElementById("turn1").style.cssText =
+        //     "background: black; color: black;";
+        // }, 1000);
+        // if (screenHeight > screenWidth) {
+        //   setTimeout(() => {
+        //     document.getElementById("player2").style.display = "block";
+        //     document.getElementById("player1").style.display = "none";
+        //     if (screenWidth < 500) {
+        //       document.getElementById("player2area").style.display =
+        //         "block";
+        //       document.getElementById("player1area").style.display = "none";
+        //     }
+        //   }, 1000);
+        // }
+
+        // db.collection('game').doc(Name).set({ score: high_score,
+        // 	   // any other data you have
+        //    })
+      }
+      emoji = game.add.sprite(emojiSpriteX, emojiSpriteY, emojiName);
+      emoji.scale.setTo(0.25, 0.25);
+      moveInTween = game.add
+        .tween(emoji)
+        .from({ y: 150 }, 500, Phaser.Easing.Elastic.Out, true);
+      fadeInTween = game.add
+        .tween(emoji)
+        .from(
+          { alpha: 0 },
+          200,
+          Phaser.Easing.Linear.None,
+          true,
+          0,
+          0,
+          false
+        );
+      moveInTween.onComplete.add(tweenOut, this);
+    }
+
+    if (ball && ball.body.y > 1200) {
+      game.physics.p2.gravity.y = 0;
+      ball.kill();
+      createBall();
+    }
+  }
+
+  function tweenOut() {
+    moveOutTween = game.add
+      .tween(emoji)
+      .to({ y: 50 }, 600, Phaser.Easing.Elastic.In, true);
+    moveOutTween.onComplete.add(function () {
+      emoji.kill();
+    }, this);
+    setTimeout(function () {
+      fadeOutTween = game.add
+        .tween(emoji)
+        .to(
+          { alpha: 0 },
+          300,
+          Phaser.Easing.Linear.None,
+          true,
+          0,
+          0,
+          false
+        );
+    }, 450);
+  }
+
+  function hitRim() {
+    backboard.play();
+  }
+
+  function createBall() {
+    var xpos;
+    if (current_score === 0 && minXpos1 > 100) {
+      xpos = 200;
+    } else {
+      xpos = minXpos1 + Math.random()*randomXpos1;
+      console.log(xpos, "xposssss");
+    }
+    if(thorwBall){
+    spawn.play();
+    }
+    ball = game.add.sprite(xpos, createBallY, "ball");
+    game.add
+      .tween(ball.scale)
+      .from(
+        { x: 0.7, y: 0.7 },
+        100,
+        Phaser.Easing.Linear.None,
+        true,
+        0,
+        0,
+        false
+      );
+    game.physics.p2.enable(ball, false);
+    ball.body.setCircle(ballRadiusLaunch); // NOTE: Goes from 60 to 36
+    ball.launched = false;
+    ball.isBelowHoop = false;
+  }
+
+  var location_interval;
+  var isDown = false;
+  var start_location;
+  var end_location;
+
+  function click(pointer) {
+    var bodies = game.physics.p2.hitTest(pointer.position, [ball.body]);
+    if (bodies.length) {
+      start_location = [pointer.x, pointer.y];
+      isDown = true;
+      location_interval = setInterval(
+        function () {
+          start_location = [pointer.x, pointer.y];
+        }.bind(this),
+        200
+      );
+    }
+  }
+
+  function release(pointer) {
+    if (isDown) {
+      window.clearInterval(location_interval);
+      isDown = false;
+      end_location = [pointer.x, pointer.y];
+
+      if (end_location[1] < start_location[1]) {
+        var slope = [
+          end_location[0] - start_location[0],
+          end_location[1] - start_location[1],
+        ];
+        var x_traj = (-2300 * slope[0]) / slope[1];
+        launch(x_traj);
+      }
+    }
+  }
+
+  function launch(x_traj) {
+    if (ball.launched === false) {
+      ball.body.setCircle(ballRadiusHooped);
+      ball.body.setCollisionGroup(collisionGroup);
+      current_best_text.text = "";
+      current_best_score_text.text = "";
+      ball.launched = true;
+      game.physics.p2.gravity.y = ballGravity;
+      game.add
+        .tween(ball.scale)
+        .to(
+          { x: 0.6, y: 0.6 },
+          500,
+          Phaser.Easing.Linear.None,
+          true,
+          0,
+          0,
+          false
+        );
+      ball.body.velocity.x = x_traj;
+      ball.body.velocity.y = -1750;
+      ball.body.rotateRight(x_traj / 3);
+      whoosh.play();
+    }
+  }
+</script>
+
+<script>
+  //// player two
+  var game2 = new Phaser.Game(CanvasWidth, CanvasHeight, Phaser.CANVAS, "player2", {
+    preload: preload2,
+    create: create2,
+    update: update2,
+  });
+
+  function preload2() {
+    game2.load.image("background2", backgroundImagePlayer2);
+    game2.load.image("ball", ballImage);
+    game2.load.image("hoop", hoopImage);
+    game2.load.image("svg", svgImage);
+    game2.load.image("border", borderImage);
+    game2.load.image("side rim", sideRimImage);
+    game2.load.image("front rim", frontRimImage);
+
+    game2.load.image("win0", "assets/images/win0.png");
+    game2.load.image("win1", "assets/images/win1.png");
+    game2.load.image("win2", "assets/images/win2.png");
+    game2.load.image("win3", "assets/images/win3.png");
+    game2.load.image("win4", "assets/images/win4.png");
+    game2.load.image("lose0", "assets/images/lose0.png");
+    game2.load.image("lose1", "assets/images/lose1.png");
+    game2.load.image("lose2", "assets/images/lose2.png");
+    game2.load.image("lose3", "assets/images/lose3.png");
+    game2.load.image("lose4", "assets/images/lose4.png");
+
+    game2.load.audio("score", "assets/audio/score.wav");
+    game2.load.audio("backboard2", "assets/audio/backboard2.wav");
+    game2.load.audio("whoosh", "assets/audio/whoosh.wav");
+    game2.load.audio("fail", "assets/audio/fail.wav");
+    game2.load.audio("spawn", "assets/audio/spawn.wav");
+  }
+
+  var hoop2,
+    BG2,
+    svg2,
+    border2,
+    left_rim2,
+    right_rim2,
+    ball2,
+    front_rim2,
+    current_score2 = 0,
+    current_score_text2,
+    high_score2 = 0,
+    high_score_text2,
+    current_best_text2;
+
+  var score_sound2, backboard2, whoosh2, fail2, spawn2;
+
+  var moveInTween2,
+    fadeInTween2,
+    moveOutTween2,
+    fadeOutTween2,
+    emoji2,
+    emojiName2;
+
+  var collisionGroup2;
+
+  function create2() {
+    game2.physics.startSystem(Phaser.Physics.P2JS);
+
+    game2.physics.p2.setImpactEvents(true);
+
+    game2.physics.p2.restitution = 0.63;
+    game2.physics.p2.gravity.y = 0;
+
+    collisionGroup2 = game2.physics.p2.createCollisionGroup();
+
+    score_sound2 = game2.add.audio("score");
+    backboard2 = game2.add.audio("backboard2");
+    backboard2.volume = 0.5;
+    whoosh2 = game2.add.audio("whoosh");
+    fail2 = game2.add.audio("fail");
+    fail2.volume = 0.1;
+    spawn2 = game2.add.audio("spawn");
+
+    // game2.stage.backgroundColor = "#ffffff";
+    game2.stage.backgroundColor = "black";
+
+    // high_score_text2 = game2.add.text(450, 25, 'High Score\n' + high_score2, { font: 'Arial', fontSize: '32px', fill: '#000', align: 'center' });
+    current_score_text2 = game2.add.text(187, 312, "", {
+      font: "Arial",
+      fontSize: "40px",
+      fill: "#000",
+      align: "center",
+    }); // 300, 500
+    current_best_text2 = game2.add.text(143, 281, "", {
+      font: "Arial",
+      fontSize: "20px",
+      fill: "#000",
+      align: "center",
+    }); // 230, 450
+    current_best_score_text2 = game2.add.text(187, 312, "", {
+      font: "Arial",
+      fontSize: "40px",
+      fill: "#00e6e6",
+      align: "center",
+    }); // 300, 500
+
+    BG2 = game2.add.sprite(backgroundSpriteX, backgroundSpriteY, "background2"); // 141, 100
+    hoop2 = game2.add.sprite(hoopSpriteX, hoopSpriteY, "hoop"); // 141, 100
+    svg2 = game2.add.sprite(svgSpriteX, svgSpriteY, "svg"); // 141, 100
+    border2 = game2.add.sprite(borderSpriteX, borderSpriteY, "border"); // 141, 100
+    left_rim2 = game2.add.sprite(leftRimSpriteX, leftRimSpriteY, "side rim"); // 241, 296
+    right_rim2 = game2.add.sprite(rightRimSpriteX, rightRimSpriteY, "side rim"); // 398, 296
+    front_rim2 = game2.add.sprite(frontRimSpriteX, frontRimSpriteY, "front rim");
+    game2.physics.p2.enable([left_rim2, right_rim2], false);
+
+    left_rim2.body.setCircle(2.5);
+    left_rim2.body.static = true;
+    left_rim2.body.setCollisionGroup(collisionGroup2);
+    left_rim2.body.collides([collisionGroup2]);
+
+    right_rim2.body.setCircle(2.5);
+    right_rim2.body.static = true;
+    right_rim2.body.setCollisionGroup(collisionGroup2);
+    right_rim2.body.collides([collisionGroup2]);
+
+    // createBall2();
+
+    // cursors = game2.input.keyboard.createCursorKeys();
+
+    // game2.input.onDown.add(click2, this);
+    // game2.input.onUp.add(release2, this);
+
+    // var instructions = document.createElement("span");
+    // instructions.innerHTML = "Instructions: Quickly drag the ball to shoot the ball into the hoop!";
+    // document.body.appendChild(instructions);
+  }
+
+  function update2() {
+    if (ball2 && ball2.body.velocity.y > 0) {
+      front_rim2 = game2.add.sprite(frontRimSpriteX, frontRimSpriteY, "front rim");
+
+      ball2.body.collides([collisionGroup2], hitRim2, this);
+    }
+
+    if (
+      ball2 &&
+      ball2.body.velocity.y > 0 &&
+      ball2.body.y > ballHoopY &&
+      !ball2.isBelowHoop
+    ) {
+      ball2.isBelowHoop = true;
+      ball2.body.collideWorldBounds = false;
+      var rand = Math.floor(Math.random() * 5);
+      if (ball2.body.x > (leftRimSpriteX-2) && ball2.body.x < (rightRimSpriteX-2)) {
+        emojiName2 = "win" + rand;
+        current_score2 += 2;
+        if (Name === null || Name === "") {
+          Name = "guest user";
+        }
+        if (thorwBall) {
+          window.timeoutWin = setTimeout(() => {
+            isDown = false;
+            launch2(-1 ^ (rand * -53));
+          }, 2000);
+        }
+        // setTimeout(() => {
+        //   document.getElementById("turn1").style.cssText =
+        //     "background: rgb(0, 255, 150); color: black; font-weight: bolder;";
+        //   document.getElementById("turn2").style.cssText =
+        //     "background: black; color: black;";
+        // }, 1000);
+        // if (screenHeight > screenWidth) {
+        //   setTimeout(() => {
+        //     document.getElementById("player1").style.display = "block";
+        //     document.getElementById("player2").style.display = "none";
+        //     if (screenWidth < 500) {
+        //       document.getElementById("player1area").style.display =
+        //         "block";
+        //       document.getElementById("player2area").style.display = "none";
+        //     }
+        //   }, 1000);
+        // }
+        document.getElementById("score2").innerHTML = current_score2;
+        // db.collection('game2').doc(Name).set({ score: current_score2,
+        // 	   // any other data you have
+        //    })
+        // current score can be obtained from here
+        current_score_text2.text = current_score2;
+        score_sound2.play();
+        high_score2 = current_score2;
+      } else {
+        emojiName2 = "lose" + rand;
+        fail2.play();
+        if (current_score2 > high_score2) {
+          high_score2 = current_score2;
+          // high_score_text2.text = 'High Score\n' + high_score2;
+        }
+        // current_score2 = 0;
+        current_score_text2.text = "";
+        current_best_text2.text = "Current Best";
+        current_best_score_text2.text = high_score2;
+        if (Name === null || Name === "") {
+          Name = "guest user";
+        }
+        if (thorwBall) {
+          window.timeoutLose = setTimeout(() => {
+            isDown = false;
+            launch2(-1 ^ (rand * -53));
+          }, 2000);
+        }
+        // setTimeout(() => {
+        //   document.getElementById("turn1").style.cssText =
+        //     "background: rgb(0, 255, 150); color: black; font-weight: bolder;";
+        //   document.getElementById("turn2").style.cssText =
+        //     "background: black; color: black;";
+        // }, 1000);
+        // if (screenHeight > screenWidth) {
+        //   setTimeout(() => {
+        //     document.getElementById("player1").style.display = "block";
+        //     document.getElementById("player2").style.display = "none";
+        //     if (screenWidth < 500) {
+        //       document.getElementById("player1area").style.display =
+        //         "block";
+        //       document.getElementById("player2area").style.display = "none";
+        //     }
+        //   }, 1000);
+        // }
+        document.getElementById("score2").innerHTML = high_score2;
+        // db.collection('game2').doc(Name).set({ score: high_score2,
+        // 	   // any other data you have
+        //    })
+      }
+      emoji2 = game2.add.sprite(emojiSpriteX, emojiSpriteY, emojiName2);
+      emoji2.scale.setTo(0.25, 0.25);
+      moveInTween2 = game2.add
+        .tween(emoji2)
+        .from({ y: 150 }, 500, Phaser.Easing.Elastic.Out, true);
+      fadeInTween2 = game2.add
+        .tween(emoji2)
+        .from(
+          { alpha: 0 },
+          200,
+          Phaser.Easing.Linear.None,
+          true,
+          0,
+          0,
+          false
+        );
+      moveInTween2.onComplete.add(tweenOut2, this);
+    }
+
+    if (ball2 && ball2.body.y > 1200) {
+      game2.physics.p2.gravity.y = 0;
+      ball2.kill();
+      createBall2();
+    }
+  }
+
+  function tweenOut2() {
+    moveOutTween2 = game2.add
+      .tween(emoji2)
+      .to({ y: 50 }, 600, Phaser.Easing.Elastic.In, true);
+    moveOutTween2.onComplete.add(function () {
+      emoji2.kill();
+    }, this);
+    setTimeout(function () {
+      fadeOutTween2 = game2.add
+        .tween(emoji2)
+        .to(
+          { alpha: 0 },
+          300,
+          Phaser.Easing.Linear.None,
+          true,
+          0,
+          0,
+          false
+        );
+    }, 450);
+  }
+
+  function hitRim2() {
+    backboard2.play();
+  }
+
+  function createBall2() {
+    var xpos;
+    if (current_score2 === 0 && minXpos2 > 100) {
+      xpos = 200;
+    } else {
+      xpos = minXpos2 + Math.random()*randomXpos2;
+    }
+    if(thorwBall){
+    spawn2.play();
+    }
+    ball2 = game2.add.sprite(xpos, createBallY, "ball");
+    game2.add
+      .tween(ball2.scale)
+      .from(
+        { x: 0.7, y: 0.7 },
+        100,
+        Phaser.Easing.Linear.None,
+        true,
+        0,
+        0,
+        false
+      );
+    game2.physics.p2.enable(ball2, false);
+    ball2.body.setCircle(ballRadiusLaunch); // NOTE: Goes from 60 to 36
+    ball2.launched = false;
+    ball2.isBelowHoop = false;
+  }
+
+  var location_interval2;
+  var isDown2 = false;
+  var start_location2;
+  var end_location2;
+
+  function click2(pointer) {
+    var bodies = game2.physics.p2.hitTest(pointer.position, [ball2.body]);
+    if (bodies.length) {
+      start_location2 = [pointer.x, pointer.y];
+      isDown2 = true;
+      location_interval2 = setInterval(
+        function () {
+          start_location2 = [pointer.x, pointer.y];
+        }.bind(this),
+        200
+      );
+    }
+  }
+
+  function release2(pointer) {
+    if (isDown2) {
+      window.clearInterval(location_interval2);
+      isDown2 = false;
+      end_location2 = [pointer.x, pointer.y];
+
+      if (end_location2[1] < start_location2[1]) {
+        var slope = [
+          end_location2[0] - start_location2[0],
+          end_location2[1] - start_location2[1],
+        ];
+        var x_traj = (-2300 * slope[0]) / slope[1];
+        launch2(x_traj);
+      }
+    }
+  }
+
+  function launch2(x_traj) {
+    if (ball2.launched === false) {
+      ball2.body.setCircle(ballRadiusHooped);
+      ball2.body.setCollisionGroup(collisionGroup2);
+      current_best_text2.text = "";
+      current_best_score_text2.text = "";
+      ball2.launched = true;
+      game2.physics.p2.gravity.y = ballGravity;
+      game2.add
+        .tween(ball2.scale)
+        .to(
+          { x: 0.6, y: 0.6 },
+          500,
+          Phaser.Easing.Linear.None,
+          true,
+          0,
+          0,
+          false
+        );
+      ball2.body.velocity.x = x_traj;
+      ball2.body.velocity.y = -1750;
+      ball2.body.rotateRight(x_traj / 3);
+      whoosh2.play();
+    }
+  }
+</script>
+</body>
+</html>

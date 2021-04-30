@@ -1,0 +1,425 @@
+/*!*body {*!*/
+/*!*  margin: 0;*!*/
+/*!*  font-family: "Roboto";*!*/
+/*!*  font-size: 16px;*!*/
+/*!*  display: flex;*!*/
+/*!*  flex-direction: column;*!*/
+/*!*  height: auto;*!*/
+/*!*  width: auto;*!*/
+/*!*  justify-content: center;*!*/
+/*!*  !* background: linear-gradient(rgb(23, 231, 85, 0.5), rgb(23, 231, 85, 0.5)),*!*/
+/*!*    url("../../basketball/images/homebg.png"); *!*!*/
+/*!*  background-color: #43f979 !important;*!*/
+/*!*  background: url("../../basketball/images/homebg.png");*!*/
+/*!*}*!*/
+
+/*@media screen and (min-width: 4096px) {*/
+/*}*/
+
+/*@media screen and (max-width: 360px) {*/
+/*  .nabar-top {*/
+/*    height: 80px;*/
+/*  }*/
+/*  .logo-image {*/
+/*    width: 280px;*/
+/*  }*/
+/*  .carousel {*/
+/*    position: relative !important;*/
+/*    right: 0px;*/
+/*    !*margin-top: -370px !important;*!*/
+/*  }*/
+/*  .games-btn {*/
+/*    width: 100%;*/
+/*    margin-left: 18px;*/
+/*    margin-right: 18px;*/
+/*  }*/
+/*}*/
+
+/*.header-jersy {*/
+/*  width: 55px;*/
+/*}*/
+
+/*.carousel {*/
+/*  margin-top: -370px;*/
+/*  padding: 20px;*/
+/*  overflow: hidden;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*}*/
+/*.carousel-indicators li {*/
+/*  width: 10px !important;*/
+/*  height: 10px !important;*/
+/*  border-radius: 100% !important;*/
+/*}*/
+/*.carousel-controls {*/
+/*  cursor: pointer;*/
+/*  margin: 0 240px;*/
+/*  border-radius: 50%;*/
+/*}*/
+/*.carousel-indicators .active {*/
+/*  background-color: #43f979 !important;*/
+/*}*/
+/*.carousel > * {*/
+/*  flex: 0 0 auto;*/
+/*}*/
+/*.carousel figure {*/
+/*  margin: 0;*/
+/*  width: 400px;*/
+/*  transform-style: preserve-3d;*/
+/*  transition: transform 0.5s;*/
+/*  transform-origin: 50% 50% -482.8427124746px;*/
+/*}*/
+/*.carousel figure img {*/
+/*  width: 100%;*/
+/*  box-sizing: border-box;*/
+/*  padding: 0 40px;*/
+/*  opacity: 0.9;*/
+/*  border: solid black 20px;*/
+/*}*/
+/*.carousel figure img:not(:first-of-type) {*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  top: 0;*/
+/*  transform-origin: 50% 50% -482.8427124746px;*/
+/*}*/
+/*.carousel figure img:nth-child(2) {*/
+/*  transform: rotateY(0.7853981634rad);*/
+/*}*/
+/*.carousel figure img:nth-child(3) {*/
+/*  transform: rotateY(1.5707963268rad);*/
+/*}*/
+/*.carousel figure img:nth-child(4) {*/
+/*  transform: rotateY(2.3561944902rad);*/
+/*}*/
+/*.carousel figure img:nth-child(5) {*/
+/*  transform: rotateY(3.1415926536rad);*/
+/*}*/
+/*.carousel figure img:nth-child(6) {*/
+/*  transform: rotateY(3.926990817rad);*/
+/*}*/
+/*.carousel figure img:nth-child(7) {*/
+/*  transform: rotateY(4.7123889804rad);*/
+/*}*/
+/*.carousel figure img:nth-child(8) {*/
+/*  transform: rotateY(5.4977871438rad);*/
+/*}*/
+/*.carousel nav {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  margin: 75px 0 0;*/
+/*}*/
+/*.carousel nav button {*/
+/*  flex: 0 0 auto;*/
+/*  margin: 0 5px;*/
+/*  cursor: pointer;*/
+/*  color: #333;*/
+/*  background: none;*/
+/*  border: 1px solid;*/
+/*  letter-spacing: 1px;*/
+/*  padding: 5px 10px;*/
+/*}*/
+
+/*#topTextContainer {*/
+/*  background: url("../../Top.png");*/
+/*  background-size: 100%;*/
+/*  background-position: center;*/
+/*  width: 500px;*/
+/*  height: 120px;*/
+/*}*/
+/*.games-btn-container{*/
+/*  margin-top: 40px;*/
+/*}*/
+/*#topText {*/
+/*  margin-top: 85px;*/
+/*  width: 400px;*/
+/*}*/
+/*#cylinder {*/
+/*  background: url("../../cylinder.png");*/
+/*  height: 350px;*/
+/*  width: 400px;*/
+/*  background-size: 100%;*/
+/*  background-repeat: no-repeat;*/
+/*}*/
+
+/*#bottomText {*/
+/*  height: 40px;*/
+/*  width: 400px;*/
+/*  margin-top: 70px;*/
+/*}*/
+
+/*!*# sourceMappingURL=styles.css.map *!*/
+/*@media (max-width: 3840px) {*/
+/*  .makeStyles-carouselContainer-12 {*/
+/*    margin-top: 8%;*/
+/*  }*/
+/*  #topTextContainer {*/
+/*    width: 1500px;*/
+/*  }*/
+/*  .containerNew {*/
+/*    margin-top: 125px;*/
+/*  }*/
+/*  .carousel {*/
+/*    height: 50vh;*/
+/*  }*/
+/*  !*#topText {*!*/
+/*  !*  margin-top: 105px;*!*/
+/*  !*  width: 890px;*!*/
+/*  !*}*!*/
+/*  #topText {*/
+/*    margin-top: 97px;*/
+/*    width: 651px;*/
+/*  }*/
+/*  .itemNew {*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    background: #000;*/
+/*    width: 25vw!important;*/
+/*    height: 180px;*/
+/*    line-height: 150px;*/
+/*    font-size: 5em;*/
+/*    text-align: center;*/
+/*    color: #fff;*/
+/*    opacity: 1;*/
+/*    border-radius: 10px;*/
+/*  }*/
+/*  .containerNew{*/
+/*    width: 25vw;*/
+/*    perspective: 4000px!important;*/
+/*    margin-top: 153px!important;*/
+/*  }*/
+/*  #cylinder {*/
+/*    width: 668px;*/
+/*    margin-top: 33px;*/
+/*    height: 600px;*/
+/*  }*/
+/*  .carousel-indicators{*/
+/*    margin-top: 140px!important;*/
+/*  }*/
+/*  #bottomText {*/
+/*    width: 665px;*/
+/*    margin-top: 179px;*/
+/*  }*/
+/*  .a {*/
+/*    transform: rotateY(0deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .b {*/
+/*    transform: rotateY(45deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .c {*/
+/*    transform: rotateY(90deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .d {*/
+/*    transform: rotateY(135deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .e {*/
+/*    transform: rotateY(180deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .f {*/
+/*    transform: rotateY(225deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .g {*/
+/*    transform: rotateY(270deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .h {*/
+/*    transform: rotateY(315deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*}*/
+/*@media (max-width: 2560px) {*/
+/*  .itemNew {*/
+/*    width: 25vw!important;*/
+/*    height:30vh!important;*/
+/*  }*/
+/*  .containerNew{*/
+/*    width: 25vw!important;*/
+/*    height: 20vh!important;*/
+/*    margin-top: 20px!important;*/
+/*  }*/
+/*  .a {*/
+/*    transform: rotateY(0deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .b {*/
+/*    transform: rotateY(45deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .c {*/
+/*    transform: rotateY(90deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .d {*/
+/*    transform: rotateY(135deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*  .e {*/
+/*    transform: rotateY(180deg) translateZ(30vw) !important ;*/
+/*  }*/
+/*    .f {*/
+/*        transform: rotateY(225deg) translateZ(30vw) !important ;*/
+/*    }*/
+/*    .g {*/
+/*        transform: rotateY(270deg) translateZ(30vw) !important ;*/
+/*    }*/
+/*    .h {*/
+/*        transform: rotateY(315deg) translateZ(30vw) !important ;*/
+/*    }*/
+/*  #topTextContainer {*/
+/*    width: 770px;*/
+/*  }*/
+/*  .carousel {*/
+/*    height: 70vh!important;*/
+/*    margin-top: -300px!important;*/
+/*  }*/
+/*  !*.makeStyles-carouselContainer-12 {*!*/
+/*  !*  margin-top: 12%;*!*/
+/*  !*}*!*/
+/*  .carousalMainContainer{*/
+/*      margin-top: 13%!important;*/
+/*  }*/
+/*  .games-btn-container {*/
+/*      margin-top: 15px;*/
+/*  }*/
+/*  #cylinder {*/
+/*    width: 34vw ;*/
+/*    background-size: 100% 100%;*/
+/*    height:450px;*/
+/*    margin-top: 33px*/
+/*  }*/
+/*  #bottomText {*/
+/*    width: 652px;*/
+/*    margin-top: 182px;*/
+/*  }*/
+/*  .carousel {*/
+/*    height: 70vh;*/
+/*    margin-top: -356px;*/
+/*  }*/
+/*  .containerNew {*/
+/*      margin-top: 0;*/
+/*  }*/
+/*  .carousel-indicators {*/
+/*    margin-bottom: 105px!important;*/
+/*  }*/
+/*  !*.makeStyles-carouselContainer-13 {*!*/
+/*  !*  margin-top: 13% !important;*!*/
+/*  !*}*!*/
+/*  .MuiBox-root-49 {*/
+/*    margin-top: 0 !important;*/
+/*  }*/
+/*  .carousal-outer-btn{*/
+/*      display: flex;*/
+/*      top: 38%;*/
+/*      left: 23.8%;*/
+/*  }*/
+/*}*/
+/*@media (max-width: 1440px) {*/
+
+/*}*/
+/*@media (max-width: 480px) {*/
+/*  body {*/
+/*    background: linear-gradient(rgb(67, 249, 122, 0.3), rgb(67, 249, 122, 0.3)),*/
+/*      url("/homebg.png");*/
+/*    !* background-color: rgb(67, 249, 122) !important;*/
+/*    background: url("/homebg.png"); *!*/
+/*  }*/
+/*  .games-btn {*/
+/*    width: 100%;*/
+/*    margin-left: 18px;*/
+/*    margin-right: 18px;*/
+/*  }*/
+/*  .carousel {*/
+/*    margin-top: -95px;*/
+/*    perspective: 85px;*/
+/*  }*/
+/*  .carousel img {*/
+/*    width: 500px;*/
+
+/*    !* width: 100% !important; *!*/
+/*  }*/
+/*  .carousel figure {*/
+/*    margin: 0;*/
+/*    width: 100% !important;*/
+/*  }*/
+/*  .carousal-video-for-mbl {*/
+/*    margin-top: 20px !important;*/
+/*  }*/
+/*  #topTextContainer {*/
+/*    background: url("../../Top.png");*/
+/*    background-size: 100%;*/
+/*    background-position: center;*/
+/*    width: 350px;*/
+/*    height: 120px;*/
+/*  }*/
+
+/*  #topText {*/
+/*    margin-top: 85px;*/
+/*    width: 300px !important;*/
+/*  }*/
+/*  #cylinder {*/
+/*    background: url("../../cylinder.png");*/
+/*    height: 350px;*/
+/*    width: 400px;*/
+/*    background-size: 280px 300px;*/
+/*    background-position: center;*/
+/*    background-repeat: no-repeat;*/
+/*  }*/
+
+/*  #bottomText {*/
+/*    width: 280px;*/
+/*    margin-top: 5px;*/
+/*  }*/
+
+/*  .carousel-indicators li {*/
+/*    display: none;*/
+/*    width: 10px !important;*/
+/*    height: 10px !important;*/
+/*    border-radius: 100% !important;*/
+/*  }*/
+/*}*/
+
+/*body {*/
+/*  background: #333;*/
+/*  padding: 70px 0;*/
+/*  font: 15px/20px Arial, sans-serif;*/
+/*}*/
+
+/*.container {*/
+/*  margin: 0 auto;*/
+/*  width: 250px;*/
+/*  height: 200px;*/
+/*  position: relative;*/
+/*  perspective: 1000px;*/
+/*}*/
+
+/*.carousel {*/
+/*  !*height: 100%;*!*/
+/*  width: 100%;*/
+/*  position: absolute;*/
+/*  transform-style: preserve-3d;*/
+/*  transition: transform 1s;*/
+/*}*/
+
+/*.item {*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  background: #000;*/
+/*  width: 250px;*/
+/*  height: 200px;*/
+/*  line-height: 200px;*/
+/*  font-size: 5em;*/
+/*  text-align: center;*/
+/*  color: #fff;*/
+/*  opacity: 0.95;*/
+/*  border-radius: 10px;*/
+/*}*/
+
+/*!*#bottomText { height: 40px; width: 400px; margin-top: 70px; }.carousel { margin-top: -370px;}#topText { margin-top: 85px; width: 400px; }*!*/
+/*.containerNew {margin-top: 34px;}*/
+/*  .itemNew {*/
+/*    display: block;*/
+/*    position: absolute;*/
+/*    background: #000;*/
+/*    width: 280px;*/
+/*    height: 180px;*/
+/*    line-height: 150px;*/
+/*    font-size: 5em;*/
+/*    text-align: center;*/
+/*    color: #fff;*/
+/*    opacity: 1;*/
+/*    border-radius: 10px;*/
+/*  }*/

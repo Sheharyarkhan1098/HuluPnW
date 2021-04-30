@@ -1,0 +1,841 @@
+<html>
+  <head>
+    <title>GIF Photobooth</title>
+    <!-- <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+      integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+      crossorigin="anonymous"
+    /> -->
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/gif.js/gif.js"></script>
+    <script src="js/glfx/glfx.js"></script>
+    <!-- <meta charset="UTF-8"></script> -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      @font-face {
+        font-family: Graphik;
+        src: url("/basketball/fonts/Graphik.ttc");
+      }
+      @font-face {
+        font-family: hulustyle-bold;
+        src: url("/basketball/fonts/hulustyle-bold-webfont.ttf");
+      }
+      @font-face {
+        font-family: hulustyle-extrabold;
+        src: url("/basketball/fonts/hulustyle-extrabold-webfont.ttf");
+      }
+      @font-face {
+        font-family: HuluStyle;
+        src: url("/basketball/fonts/hulustyle-extrabold-webfont.ttf");
+      }
+      @font-face {
+        font-family: hulustyle-extralight;
+        src: url("/basketball/fonts/hulustyle-extralight-webfont.ttf");
+      }
+      @font-face {
+        font-family: hulustyle-heavy;
+        src: url("/basketball/fonts/hulustyle-heavy-webfont.ttf");
+      }
+      @font-face {
+        font-family: hulustyle-light;
+        src: url("/basketball/fonts/hulustyle-light-webfont.ttf");
+      }
+      @font-face {
+        font-family: hulustyle-medium;
+        src: url("/basketball/fonts/hulustyle-medium-webfont.ttf");
+      }
+      @font-face {
+        font-family: hulustyle-regular;
+        src: url("/basketball/fonts/hulustyle-regular-webfont.ttf");
+      }
+      #cameraNotFound {
+        font-family: hulustyle-bold;
+      }
+      .photoboothDescription-content {
+        width: 75vw;
+      }
+      /* button#gotIt:hover {
+        background-color: #43f979 !important;
+      } */
+      .disabled {
+        background-color: #e0e0e0 !important;
+      }
+      .disabled:hover {
+        background-color: #e0e0e0 !important;
+      }
+      .activated {
+        background-color: #ffffff !important;
+      }
+      .activated:hover {
+        background-color: #43f979 !important;
+      }
+      #gotIt {
+        font-size: 20px;
+        font-weight: 900;
+        letter-spacing: 1px;
+        /*font-family: Graphik;*/
+        font-weight: 900;
+        color: #4a4a4a;
+      }
+
+      .start-over-btn {
+        font-size: 11px !important;
+        font-weight: 900 !important;
+        letter-spacing: 1px !important;
+        font-family: Graphik;
+        font-weight: 600;
+      }
+      .photobooth-description-paragraph {
+        font-family: hulustyle-regular;
+      }
+      /*4k screen */
+      @media screen and (max-width: 3840px) {
+        .photobooth-description {
+          font-size: 4rem;
+          font-family: hulustyle-extrabold;
+          font-weight: 800 !important;
+          margin: 20px !important;
+        }
+        h2.photobooth-description {
+          margin-top: 15px !important;
+        }
+        p.photobooth-description-paragraph {
+          font-size: 60px;
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+        td.photobooth-description-instruction {
+          font-size: 65px;
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+        p.beginner-challenge {
+          font-size: 60px;
+          font-family: hulustyle-regular;
+        }
+        strong {
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+        .photobooth-description-paragraph p {
+          margin-left: 20px;
+          font-size: 60px;
+        }
+        .turnoncamera-div {
+          width: 36vw;
+          height: 13vh;
+          border: 1px solid #4a4a4a;
+          padding: 10px;
+          text-align: center;
+        }
+        .on-of-text p {
+          margin: 0px 0px 0px 80px;
+        }
+        .turn-camera-on-p {
+          font-size: 50px;
+          margin: 0;
+          margin: 25px;
+          font-family: hulustyle-extrabold;
+        }
+        .photobooth-description {
+          font-size: 5rem;
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+        #gotIt {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 20%;
+          padding: 40px;
+          /*color: black;*/
+          /*font-size: 32px;*/
+          /*margin-bottom: 80px;*/
+          margin-top: 80px;
+        }
+        .start-over-btn {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 20%;
+          padding: 40px;
+          color: black;
+          font-size: 32px;
+          margin-bottom: 80px;
+          margin-top: 80px;
+        }
+      }
+      @media screen and (max-width: 2560px) {
+        /*GOT it button*/
+        #gotIt {
+          font-size: 15px;
+        }
+        .photobooth-description {
+          font-size: 5rem;
+          font-family: HuluStyle;
+          font-weight: bold;
+          margin: 20px;
+        }
+        p.photobooth-description-paragraph {
+          font-size: 36px;
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+        td.photobooth-description-instruction {
+          font-size: 36px;
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+        p.beginner-challenge {
+          font-size: 31px;
+          font-family: hulustyle-regular;
+        }
+        .turn-camera-on-p {
+          font-size: 35px;
+          margin: 15px;
+        }
+        .photobooth-description-paragraph p {
+          margin-left: 20px;
+          font-size: 31px;
+        }
+
+        /*#gotIt {*/
+        /*  background-color: white;*/
+        /*  border: 0px solid black;*/
+        /*  border-radius: 5px;*/
+        /*  width: 24%;*/
+        /*  padding: 30px;*/
+        /*  color: black;*/
+        /*  font-size: 32px;*/
+        /*  margin-top: 40px;*/
+        /*  margin-bottom: 0;*/
+        /*}*/
+
+        .start-over-btn {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 24%;
+          padding: 30px;
+          color: black;
+          font-size: 32px;
+          margin-top: 40px;
+          margin-bottom: 0;
+        }
+      }
+      @media screen and (max-width: 1920px) {
+        /*GOT it button*/
+        #gotIt {
+          font-size: 11px;
+        }
+        p.photobooth-description-paragraph {
+          font-size: 22px;
+          margin-left: 10px;
+        }
+        .photobooth-description {
+          font-size: 2rem;
+          font-family: HuluStyle;
+          font-weight: bold;
+          margin: 12px !important;
+        }
+        td.photobooth-description-instruction {
+          font-size: 22px;
+          font-family: HuluStyle;
+          font-weight: bold;
+        }
+        p.beginner-challenge {
+          font-size: 19px;
+          font-family: hulustyle-regular;
+        }
+
+        .photobooth-description-paragraph p {
+          margin-left: 20px;
+          font-size: 19px;
+        }
+        .turn-camera-on-p {
+          font-size: 28px;
+          margin: 5px;
+        }
+        .photoboothDescription-content {
+          background-color: #151515;
+          color: white;
+          margin: auto;
+          padding: 40px 224px 0px 240px;
+          width: 57vw;
+          text-align: left;
+          padding-bottom: 25px;
+        }
+        #gotIt {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 24%;
+          padding: 20px;
+          /*color: black;*/
+          /*font-size: 20px;*/
+          margin-top: 15px;
+        }
+
+        .start-over-btn {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 24%;
+          padding: 20px;
+          color: black;
+          font-size: 20px;
+          margin-top: 15px;
+        }
+        .turnoncamera-div {
+          width: 27vw;
+          height: 10vh;
+          border: 1px solid #4a4a4a;
+          padding: 10px;
+          text-align: center;
+        }
+      }
+      @media screen and (max-width: 1680px) {
+        .description_instructions_container {
+          margin-top: 20px;
+          margin-bottom: 10px;
+        }
+        p.photobooth-description-paragraph {
+          font-size: 21px !important;
+        }
+        td.photobooth-description-instruction {
+          font-size: 21px !important;
+        }
+        p.beginner-challenge {
+          font-size: 18px !important;
+        }
+        .photobooth-description-paragraph p {
+          font-size: 18px !important;
+        }
+      }
+      @media screen and (max-width: 1500px) {
+        .photoboothDescription-content {
+          padding: 20px 120px 20px 120px;
+          width: 65vw;
+        }
+        .turn-camera-on-p {
+          font-size: 20px;
+        }
+        .description_instructions_container {
+          margin-top: 0px;
+        }
+      }
+      @media screen and (max-width: 1463px) {
+        .photobooth-description {
+          font-size: 1.7rem;
+          margin: 0 !important;
+        }
+        p.photobooth-description-paragraph {
+          font-size: 25px;
+          margin: 10px;
+        }
+        td.photobooth-description-instruction {
+          font-size: 22px;
+        }
+        p.beginner-challenge {
+          font-size: 18px;
+        }
+        .photobooth-description-paragraph p {
+          margin-left: 20px;
+          font-size: 18px;
+        }
+        .turn-camera-on-p {
+          font-size: 18px;
+          margin: 0px;
+        }
+        #gotIt {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 24%;
+          padding: 16px;
+          /*color: black;*/
+          /*font-size: 16px;*/
+          margin-top: 0px;
+        }
+
+        .start-over-btn {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 24%;
+          padding: 16px;
+          color: black;
+          font-size: 16px;
+          margin-top: 0px;
+        }
+        .description_instructions_container {
+          margin-bottom: 0px;
+          margin-top: 5px;
+          margin-left: 0px;
+          margin-right: 0px;
+          /* margin: 50px 0px; */
+          color: white;
+        }
+        .photoboothDescription-content {
+          background-color: rgb(0, 0, 0);
+          color: white;
+          margin: auto;
+          padding: 10px 100px;
+          width: 69vw;
+          text-align: left;
+          padding-bottom: 15px;
+        }
+        .turnoncamera-div {
+          width: 20vw;
+          height: 10vh;
+          border: 1px solid #4a4a4a;
+          padding: 10px;
+          text-align: center;
+        }
+      }
+      @media screen and (max-width: 1366px) {
+        .fan-cam-td {
+          /*padding: 0px !important;*/
+        }
+        p.beginner-challenge {
+          /*margin-bottom: 0px;*/
+          /*margin-top: 6px;*/
+        }
+
+        /*p.beginner-challenge {*/
+        /*  font-size: 22px;*/
+        /*}*/
+        /*.photoboothDescription-content {*/
+        /*  background-color: rgb(0, 0, 0);*/
+        /*  color: white;*/
+        /*  margin: auto;*/
+        /*  padding: 10px 100px;*/
+        /*  width: 80%;*/
+        /*  text-align: left;*/
+        /*  padding-bottom: 5px;*/
+        /*}*/
+        /*.photobooth-description {*/
+        /*  font-size: 1.5rem;*/
+        /*  margin: 0 !important;*/
+        /*}*/
+      }
+      @media screen and (max-width: 1024px) {
+        p.photobooth-description-paragraph {
+          font-size: 15px;
+          margin: 10px;
+        }
+        td.photobooth-description-instruction {
+          font-size: 16px;
+        }
+        p.beginner-challenge {
+          font-size: 11px;
+        }
+        .photobooth-description-paragraph p {
+          margin-left: 20px;
+          font-size: 11px;
+        }
+        .game-Challenge-model {
+          padding-left: 18%;
+          padding-right: 16%;
+        }
+        .rookie-challenge-title {
+          font-size: 23px;
+        }
+        #gotIt {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 58%;
+          padding: 16px;
+          /*color: black;*/
+          /*font-size: 16px;*/
+          margin-top: 55px !important;
+          margin-bottom: 50px !important;
+        }
+
+        .start-over-btn {
+          background-color: white;
+          border: 0px solid black;
+          border-radius: 5px;
+          width: 58%;
+          padding: 16px;
+          color: black;
+          font-size: 16px;
+          margin-top: 55px !important;
+          margin-bottom: 50px !important;
+        }
+      }
+      @media screen and (max-width: 768px) {
+        .turn-camera-on-p {
+          font-size: 13px;
+          margin: 0px;
+        }
+      }
+      @media screen and (max-width: 425px) {
+        .photoboothDescription-content {
+          min-height: 100vh;
+        }
+        .description_instructions_container td {
+          padding: 0 !important;
+        }
+        h2.photobooth-description {
+          margin-top: 100px;
+        }
+        button#letsGo {
+          margin-bottom: 200px;
+        }
+        .turnoncamera-div {
+          width: 90% !important;
+        }
+        .photobooth-description-paragraph p {
+          margin: 0px;
+        }
+        #TurnOnCameraContainer {
+          display: block;
+        }
+        .photoboothDescription-content {
+          margin: 15px auto !important;
+          padding: 15px !important;
+          border: 5px solid #43f979 !important;
+          width: 82% !important;
+        }
+        p.photobooth-description-paragraph {
+          font-size: 18px !important;
+          margin: 0px;
+          line-height: normal;
+        }
+        td.photobooth-description-instruction {
+          padding: 0;
+          font-size: 18px !important;
+          line-height: normal;
+        }
+        p.beginner-challenge {
+          font-size: 18px !important;
+          line-height: normal;
+        }
+        .photobooth-description-paragraph p {
+          font-size: 18px !important;
+        }
+      }
+      @media screen and (max-width: 320px) {
+        .main-body #iframe-outer {
+          margin-top: 70px !important;
+        }
+      }
+    </style>
+  </head>
+  <body id="body">
+    <div class="processing" id="processing">
+      <img src="images/processing.gif" />
+    </div>
+
+    <div id="photoboothDescription" class="photoboothDescription">
+      <center>
+        <h2 class="photobooth-description" style="">
+          Fan Cam
+        </h2>
+      </center>
+      <!-- Modal content -->
+      <div class="photoboothDescription-content">
+        <p class="photobooth-description-paragraph">
+          Capture your time courtside in the Hulu Has Live Sports Fan Cam.
+        </p>
+        <!--        <p class="photobooth-description-forMobile">-->
+        <!--          Capture youreself live at the event through your destop browser or-->
+        <!--          mobile device to be dropped into the official HHLS x Mitchell & Ness-->
+        <!--          step-and repeat, with a jersey overlay and a Hulu-green basketball to-->
+        <!--          "hold".-->
+        <!--        </p>-->
+        <!--        <p class="photobooth-description-forMobile">-->
+        <!--          Direct download to your computer or smartphone offers an easy social-->
+        <!--          share solution with limited data collection. The final file is a GIF-->
+        <!--          with a spinning basketball.-->
+        <!--        </p>-->
+        <table class="description_instructions_container">
+          <tr>
+            <!--            <td class="photobooth-description-description">Description</td>-->
+            <td class="photobooth-description-instruction">Instructions</td>
+          </tr>
+          <tr>
+            <td class="fan-cam-td">
+              <p class="beginner-challenge">
+                Try on the exclusive Hulu x MItchell & Ness collaboration by
+                lining the jersey over your body and toss up your hand to spin
+                the Hulu-green basketball. Press the capture button to
+                commemorate your MVP status in GIF form.
+              </p>
+              <p class="beginner-challenge">
+                Download your Fan Cam capture directly to your device and post
+                to social using <strong> #HuluHasLiveSports</strong>
+              </p>
+              <br />
+            </td>
+            <!--            <td>-->
+            <!--              <p class="on-your-desktop">-->
+            <!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi-->
+            <!--                vel velit lectus. Sed convallis nisi augue, ut rutrum nibh-->
+            <!--                elementum at. Lorem ipsum dolor sit amet, consectetur adipiscing-->
+            <!--                elit. Morbi vel velit lectus. Sed convallis nisi augue, ut-->
+            <!--                rutrum nibh elementum at.-->
+            <!--              </p>-->
+            <!--              <p class="on-your-desktop">-->
+            <!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi-->
+            <!--                vel velit lectus. Sed convallis nisi augue, ut rutrum nibh-->
+            <!--                elementum at. Lorem ipsum dolor sit amet, consectetur adipiscing-->
+            <!--                elit.-->
+            <!--              </p>-->
+            <!--            </td>-->
+          </tr>
+        </table>
+
+        <div id="TurnOnCameraContainer">
+          <div class="turnoncamera-div">
+            <p class="turn-camera-on-p">
+              Turn camera on
+            </p>
+            <label class="switch" style="text-align: center">
+              <input
+                id="startCameraSwitch"
+                value="0"
+                type="checkbox"
+                onclick="switchbtn()"
+              />
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="photobooth-description-paragraph on-of-text ">
+            <p>
+              If you choose to turn on your camera, this website will capture
+              photos of you when you click “Capture.” By agreeing to turn your
+              camera on, you consent to being photographed.
+            </p>
+          </div>
+        </div>
+
+        <center>
+          <button id="gotIt">GOT IT</button>
+          <p id="cameraNotFound"></p>
+          <button id="letsGo">LET'S GO</button>
+        </center>
+      </div>
+    </div>
+    <div class="switchCameraContainer">
+      <img id="switchCameraBtn" src="images/switchCameraIcon.png" />
+      <span id="editMenu">
+        <img id="closelink" src="images/cancelBtn.png" />
+        <span class="download-link-font" id="editHeading"> Download </span>
+        <img id="rightArrowBtn" src="images/rightArrow.png" />
+        <a id="downloadlink" href="#"><img src="images/downloadBtn.png"/></a>
+      </span>
+    </div>
+
+    <video autoplay="autoplay" id="video" muted playsinline></video>
+
+    <div id="fanCamOuter" class="fan-cam-outer">
+      <center>
+        <img class="fan-cam" id="preview" />
+      </center>
+      <img class="fan-cam" id="basketball" src="images/basketball.gif" />
+      <canvas class="fan-cam" id="videomirror"> </canvas>
+    </div>
+
+    <div id="savedImage">
+      <h2 class="heading-saved-image">
+        Your image has been saved as a GIF to your photo library.
+        <br />
+      </h2>
+      <button class="start-over-btn" id="startOver">Start Over</button>
+      <!-- <a class="feedback-page-link" >GIVE US YOUR FEEDBACK</a> -->
+    </div>
+    <center>
+      <div class="fan-cam fanCamera" id="buttonContainer">
+        <span id="buttonContainerDesktop">
+          <!-- <p id="exitBtn2">Retake</p> -->
+
+          <div id="countingOuter" class="countDown">
+            <span id="countingContainer" class="counting">
+              <span id="count3">3</span>
+              <span id="count2">2</span>
+              <span id="count1">1</span>
+            </span>
+          </div>
+          <div id="cameraIcon" class="camera-icon-desktop">
+            <img
+              class="cameraPic"
+              alt="cameraIcon"
+              src="images/cameraIcon2.png"
+            />
+          </div>
+
+          <div id="photoTakenDiv" class="photoTakenDiv1" style="display: none">
+            <div class="photoTakenDiv2">
+              <p class="mb-0 retake-font" id="retake">Retake</p>
+            </div>
+            <div
+              id="cameraIconDisabled"
+              class="photoTakenDiv3 camera-icon-disabled-desktop"
+            >
+              <img
+                class="cameraIconDisabled"
+                alt="cameraIconDisabled"
+                src="images/cameraIconDisabledNew.png"
+              />
+            </div>
+            <div class="photoTakenDiv4">
+              <a
+                href="#"
+                id="downloadlink2"
+                target="_blank"
+                style="color: #1CE783"
+              >
+                <span
+                  class="download-link-font"
+                  style="margin-right: 4px; font-size: 14px;"
+                  >Download Photo</span
+                ><img src="images/download.png" />
+              </a>
+            </div>
+          </div>
+        </span>
+        <center>
+          <span class="buttonContainerMobile">
+            <p class="retake-font" id="exitBtn">Cancel</p>
+            <span>
+              <p id="cameraBtnLabel">Photo</p>
+              <img
+                id="cameraIconMobile"
+                alt="cameraIconMobile"
+                src="images/cameraIconMobile.png"
+              />
+            </span>
+            <img
+              id="contrastBtn"
+              alt="contrastBtn"
+              src="images/contrastBtn.png"
+            />
+          </span>
+        </center>
+      </div>
+    </center>
+    <a href="#" id="statustext" style="display: none"> Warming up </a>
+
+    <div id="preview-wrapper">
+      <!-- <img id="preview" /> -->
+      <div class="links">
+        <!-- <a href="#" id="closelink">close</a> -->
+        <!-- <a href="#" id="downloadlink">download</a> -->
+      </div>
+    </div>
+    <form onsubmit="submitConfigForm()" style="display: none">
+      <label for="config_style">Style</label>
+      <select id="config_style">
+        <option value="none">None</option>
+        <option value="grayscale">Black & white</option>
+        <option value="beauty">Beauty</option>
+        <option value="purikura">Purikura (Japanese photobooth)</option>
+        <option value="sepia">Sepia-tone</option>
+        <option value="vignette">Vignette</option>
+        <option value="motionblur">Motion blur</option>
+      </select>
+      <label for="config_width">Photo strip width</label>
+      <input id="config_width" type="text" />
+      <label for="config_height">Photo strip height</label>
+      <input id="config_height" type="text" />
+      <p>
+        The size of the preview frame above is calculated by taking the total
+        strip height divided by the number of poses, minus any gutter size. The
+        total size is important for sharing and printing, choose wisely.
+      </p>
+      <label for="config_rows">Number of poses</label>
+      <input id="config_rows" type="text" />
+      <p>
+        Warning: Facebook kinda hates GIFs so you're best off doing one or two
+        poses. Twitter works great regardless!
+      </p>
+      <label for="config_gutter_color">Gutter color</label>
+      <input id="config_gutter_color" type="color" />
+      <label for="config_gutter">Gutter height (in pixels)</label>
+      <input id="config_gutter" type="text" />
+      <p>The gutter is the space in between photos in the strip.</p>
+      <label for="config_num_frames">Number of GIF frames</label>
+      <input id="config_num_frames" type="text" />
+      <label for="config_frame_delay"
+        >Time between frames (in milliseconds)</label
+      >
+      <input id="config_frame_delay" type="text" />
+      <p>
+        The length of the GIF is determined by the number of frames multiplied
+        by the time between frames. Many frames with a short time between them
+        will feel smoother, but the filesize will get out of hand. Find a
+        balance!
+      </p>
+      <label for="config_prep_time">Time between poses (in milliseconds)</label>
+      <input id="config_prep_time" type="text" />
+      <label for="config_auto_download">Automatically download</label>
+      <input id="config_auto_download" type="checkbox" />
+    </form>
+    <div id="purikura">
+      <!-- <img src="images/purikura-1.png" /> -->
+      <img src="images/basketball.gif" />
+      <img id="frame1" src="images/frame1.png" />
+      <img id="frame2" src="images/frame2.png" />
+      <img id="frame3" src="images/frame3.png" />
+      <img id="frame4" src="images/frame4.png" />
+      <img id="frame5" src="images/frame5.png" />
+      <img id="frame6" src="images/frame6.png" />
+      <img id="frame7" src="images/frame7.png" />
+      <img id="frame8" src="images/frame8.png" />
+      <img id="frame9" src="images/frame9.png" />
+      <img id="frame10" src="images/frame10.png" />
+      <img id="frame11" src="images/frame11.png" />
+      <img id="frame12" src="images/frame12.png" />
+      <img id="frame13" src="images/frame13.png" />
+      <img id="frame14" src="images/frame14.png" />
+      <img id="frame15" src="images/frame15.png" />
+      <img id="frame16" src="images/frame16.png" />
+      <img id="frame17" src="images/frame17.png" />
+      <img id="frame18" src="images/frame18.png" />
+      <img id="frame19" src="images/frame19.png" />
+      <img id="frame20" src="images/frame20.png" />
+      <img id="frameD1" src="images/frameD1.png" />
+      <img id="frameD2" src="images/frameD2.png" />
+      <img id="frameD3" src="images/frameD3.png" />
+      <img id="frameD4" src="images/frameD4.png" />
+      <img id="frameD5" src="images/frameD5.png" />
+      <img id="frameD6" src="images/frameD6.png" />
+      <img id="frameD7" src="images/frameD7.png" />
+      <img id="frameD8" src="images/frameD8.png" />
+      <img id="frameD9" src="images/frameD9.png" />
+      <img id="frameD11" src="images/frameD11.png" />
+      <img id="frameD12" src="images/frameD12.png" />
+      <img id="frameD13" src="images/frameD13.png" />
+      <img id="frameD14" src="images/frameD14.png" />
+      <img id="frameD15" src="images/frameD15.png" />
+      <img id="frameD16" src="images/frameD16.png" />
+      <img id="frameD17" src="images/frameD17.png" />
+      <img id="frameD18" src="images/frameD18.png" />
+      <img id="frameD19" src="images/frameD19.png" />
+      <img id="frameD20" src="images/frameD20.png" />
+    </div>
+    <script src="js/main.js"></script>
+    <script>
+      // function switchbtn(){
+      //   var switch = document.getElementById("startCameraSwitch").value;
+      //   if (switch === 0){
+      //     document.getElementById(gotIt).classList.add("disabled");
+      //   }
+      //   else{
+      //     document.getElementById(gotIt).classList.add("activated");
+      //   }
+      // }
+    </script>
+  </body>
+</html>

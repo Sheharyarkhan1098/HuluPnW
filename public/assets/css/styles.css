@@ -1,0 +1,1474 @@
+body.homepage {
+  margin: 0;
+  font-family: "Roboto";
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: auto;
+  justify-content: center;
+  /* background: linear-gradient(rgb(23, 231, 85, 0.5), rgb(23, 231, 85, 0.5)),
+    url("../../basketball/images/homebg.png"); */
+  background-color: #1CE783 !important;
+   background: url("/basketball/images/backgroundnew0.7.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/*@media screen and (min-width: 4096px) {*/
+/*}*/
+.marquee{
+  padding: 27px;
+}
+.cutted{
+  position: absolute;
+  bottom: 22px;
+  width: 100%;
+  color: #ffffff;
+  height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 5px solid #1CE783;
+  border-left: 5px solid #1CE783;
+  background-color: #151515;
+}
+.leftImg{
+  position: absolute;
+  padding-left: -21px;
+  border-left: 19px solid #1CE783;
+  left: -23px;
+  z-index: 4;
+  width: 65px;
+  margin-top: 16px;
+}
+.rightImg{
+  position: absolute;
+  border-right: 19px solid #1CE783;
+  margin-left: -1px;
+  z-index: 4;
+  width: 65px;
+  right: -25px;
+}
+.gifImg{
+  width: 100%;
+}
+.carousel-main-indicators{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style-type: none;
+  position: absolute;
+  top: -20px;
+}
+.carousel-main-indicators li{
+  background-color: #999999;
+  margin-right: 5px;
+}
+.carousel-main-indicators .active {
+  background-color: #1CE783 !important;
+}
+@media screen and (max-width: 360px) {
+  .nabar-top.homepage {
+    height: 80px;
+  }
+  .logo-image {
+    width: 280px;
+  }
+  .carousel {
+    position: relative !important;
+    right: 0px;
+    /*margin-top: -370px !important;*/
+  }
+  .games-btn {
+    width: 100%;
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+}
+/* Portrait and Landscape */
+/*@media only screen*/
+/*and (min-device-width: 375px)*/
+/*and (max-device-width: 667px)*/
+/*and (-webkit-min-device-pixel-ratio: 3)*/
+/*    !* uncomment for only portrait: *!*/
+/*     and (orientation: portrait)*/
+/*    !* uncomment for only landscape: *!*/
+/*    !* and (orientation: landscape) *! {*/
+/*    #topTextContainer { width: 305px; !important; }.carousel-main-indicators{ bottom: 64px !important;!important; }.salented-outer { margin: -48px 0px;!important; }*/
+/*}*/
+
+/*    @media only screen and (width : 326px) and (height : 724px) and (orientation : portrait){*/
+/*    #topTextContainer { width: 305px; !important; }.carousel-main-indicators{ bottom: 64px !important;!important; }.salented-outer { margin: -48px 0px;!important; }*/
+/*}*/
+.header-jersy {
+  width: 55px;
+}
+
+.carousel {
+  margin-top: -370px;
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.carousel-main-indicators li {
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 100% !important;
+}
+.carousel-controls {
+  cursor: pointer;
+  margin: 0 240px;
+  border-radius: 50%;
+}
+
+.carousel > * {
+  flex: 0 0 auto;
+}
+.carousel figure {
+  margin: 0;
+  width: 400px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  transform-origin: 50% 50% -482.8427124746px;
+}
+.carousel figure img {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 40px;
+  opacity: 0.9;
+  border: solid black 20px;
+}
+.carousel figure img:not(:first-of-type) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform-origin: 50% 50% -482.8427124746px;
+}
+.carousel figure img:nth-child(2) {
+  transform: rotateY(0.7853981634rad);
+}
+.carousel figure img:nth-child(3) {
+  transform: rotateY(1.5707963268rad);
+}
+.carousel figure img:nth-child(4) {
+  transform: rotateY(2.3561944902rad);
+}
+.carousel figure img:nth-child(5) {
+  transform: rotateY(3.1415926536rad);
+}
+.carousel figure img:nth-child(6) {
+  transform: rotateY(3.926990817rad);
+}
+.carousel figure img:nth-child(7) {
+  transform: rotateY(4.7123889804rad);
+}
+.carousel figure img:nth-child(8) {
+  transform: rotateY(5.4977871438rad);
+}
+.carousel nav {
+  display: flex;
+  justify-content: center;
+  margin: 75px 0 0;
+}
+.carousel nav button {
+  flex: 0 0 auto;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #333;
+  background: none;
+  border: 1px solid;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+}
+
+#topTextContainer {
+  background: url("../../Top.png");
+  background-size: 100%;
+  background-position: center;
+  width: 500px;
+  height: 120px;
+  z-index: 3;
+  background-repeat: no-repeat;
+}
+.games-btn-container {
+  margin-top: 40px;
+}
+#topText {
+  margin-top: 85px;
+  width: 400px;
+  z-index: -2;
+}
+#cylinder {
+  position: relative;
+  background: url("../../cylinder1.png");
+  height: 350px;
+  width: 400px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+#bottomText {
+  height: 40px;
+  width: 400px;
+  margin-top: 70px;
+}
+
+@media (max-width: 3840px) {
+  #topText {
+    margin-top: 120px;
+    width: 30vw;
+  }
+  .itemNew {
+    display: block;
+    position: absolute;
+    background: #000;
+    width: 25vw !important;
+    height: 30vh !important;
+    line-height: 150px;
+    font-size: 5em;
+    text-align: center;
+    color: #fff;
+    opacity: 1;
+    border-radius: 0;
+    border: 8px solid #000000 !important;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+  }
+  .carousel-main-indicators{
+    padding-left: 0;
+  }
+  .a {
+    transform: rotateY(0deg) translateZ(30vw) !important ;
+  }
+  .b {
+    transform: rotateY(45deg) translateZ(30vw) !important ;
+  }
+  .c {
+    transform: rotateY(90deg) translateZ(30vw) !important ;
+  }
+  .d {
+    transform: rotateY(135deg) translateZ(30vw) !important ;
+  }
+  .e {
+    transform: rotateY(180deg) translateZ(30vw) !important ;
+  }
+  .f {
+    transform: rotateY(225deg) translateZ(30vw) !important ;
+  }
+  .g {
+    transform: rotateY(270deg) translateZ(30vw) !important ;
+  }
+  .h {
+    transform: rotateY(315deg) translateZ(30vw) !important ;
+  }
+  .carousalMainContainer {
+    margin-top: 9.8% !important;
+  }
+
+  .games-btn-container {
+    margin-top: 15px;
+  }
+  #bottomText {
+    width: 658px;
+    margin-top: 190px;
+  }
+  .carousal-outer-btn {
+    display: flex;
+    top: 40vh;
+    left: 19.8%;
+  }
+  .carousel-controls {
+    margin: 0 375px;
+  }
+  #topTextContainer {
+    width: 900px;
+  }
+  #cylinder {
+    width: 30vw;
+    height: 624px;
+    margin-top: 65px;
+    background-size: 100% 100%;
+  }
+  /*#cylinder {*/
+  /*  width: 34vw;*/
+  /*  height: 450px;*/
+  /*  margin-top: 33px;*/
+  /*}*/
+  .containerNew {
+    width: 25vw;
+    perspective: 4000px !important;
+    margin-top: 27px !important;
+    height: 20vh !important;
+    z-index: 5;
+  }
+/*  //////////////////////////////////////////////*/
+/*  //////////////////////////////////////////////*/
+/*  ///////////////////Testing////////////////////*/
+/*  //////////////////////////////////////////////*/
+/*  //////////////////////////////////////////////*/
+
+/*  //////////////////////////////////////////////*/
+/*  //////////////////////////////////////////////*/
+/*  ///////////////////Testing////////////////////*/
+/*  //////////////////////////////////////////////*/
+/*  //////////////////////////////////////////////*/
+}
+@media (max-width: 2560px) {
+  /*  //////////////////////////////////////////////*/
+  /*  //////////////////////////////////////////////*/
+  /*  ///////////////////Testing////////////////////*/
+  /*  //////////////////////////////////////////////*/
+  /*  //////////////////////////////////////////////*/
+
+  /*  //////////////////////////////////////////////*/
+  /*  //////////////////////////////////////////////*/
+  /*  ///////////////////Testing////////////////////*/
+  /*  //////////////////////////////////////////////*/
+  /*  //////////////////////////////////////////////*/
+  .leftImg {
+    margin-top: 0;
+  }
+  .itemNew {
+    width: 25vw !important;
+    height: 30vh !important;
+  }
+  .a {
+    transform: rotateY(0deg) translateZ(30vw) !important ;
+  }
+  .b {
+    transform: rotateY(45deg) translateZ(30vw) !important ;
+  }
+  .c {
+    transform: rotateY(90deg) translateZ(30vw) !important ;
+  }
+  .d {
+    transform: rotateY(135deg) translateZ(30vw) !important ;
+  }
+  .e {
+    transform: rotateY(180deg) translateZ(30vw) !important ;
+  }
+  .f {
+    transform: rotateY(225deg) translateZ(30vw) !important ;
+  }
+  .g {
+    transform: rotateY(270deg) translateZ(30vw) !important ;
+  }
+  .h {
+    transform: rotateY(315deg) translateZ(30vw) !important ;
+  }
+  .carousel {
+    height: 70vh !important;
+    margin-top: -262px !important;
+  }
+  .carousalMainContainer {
+    margin-top: 9.8% !important;
+  }
+  .games-btn-container {
+    margin-top: 15px;
+  }
+  #cylinder {
+    width: 34vw;
+    background-size: 100% 100%;
+    height: 450px;
+    margin-top: 33px;
+  }
+  #bottomText {
+    width: 658px;
+    margin-top: 190px;
+  }
+  .carousel {
+    height: 70vh;
+    margin-top: -356px;
+  }
+  .carousal-outer-btn {
+    top: 37vh;
+  }
+  .carousel-controls {
+    margin: 0 375px;
+  }
+  #topTextContainer {
+    width: 900px;
+  }
+  #cylinder {
+    width: 30vw;
+    height: 624px;
+    margin-top: 65px;
+  }
+  /*.containerNew {*/
+  /*  margin-top: 27px !important;*/
+  /*}*/
+  .containerNew {
+    width: 25vw !important;
+    height: 20vh !important;
+    margin-top: 27px !important;
+  }
+  .games-btn-content {
+   bottom: 63px;
+  }
+}
+@media (max-width: 1920px)  {
+  .leftImg {
+    left: -24px;
+    width: 79px;
+    margin-top: 16px;
+  }
+  .rightImg {
+    right: -28px;
+    width: 74px;
+  }
+  .cutted {
+    height: 54px;
+  }
+  #topTextContainer {
+    width: 40vw;
+  }
+  #topText {
+    margin-top: 101px;
+  }
+  #cylinder {
+    height: 485px;
+    width: 32vw;
+    margin-top: 30px;
+  }
+  .cutted{
+    border-right: 0px solid #1CE783;
+    border-left: 0px solid #1CE783;
+    height:68px;
+  }
+  /*.slanted {*/
+  /*  !*clip-path: polygon(0% 78%, 99% 179px, 94% 100%, 38px 100%);*!*/
+  /*  !*position: fixed;*!*/
+  /*  !*top: 42.5%;*!*/
+  /*  clip-path: polygon(0% 78%, 100% 181px, 95.5% 99%, 36px 100%);*/
+  /*}*/
+  .carousalMainContainer {
+    margin-top: 13% !important;
+  }
+  #topText {
+    margin-top: 98px;
+  }
+  #bottomText {
+    margin-top: 195px;
+    margin-top: 195px;
+    height: 30px;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0.1% 78%, 100% 180px, 95% 99%, 39px 100%);*/
+  /*}*/
+  .carousal-outer-btn {
+    left: 22.8%;
+    top: 38%;
+    display: flex;
+  }
+  .carousel-controls {
+    margin: 0 249px;
+  }
+  .carousel-main-indicators {
+    /*position: fixed !important;*/
+    /*top: 61vh;*/
+    margin-bottom: 115px !important;
+  }
+  /*.carousal-outer-btn {*/
+  /*  display: flex;*/
+  /*  top: 40vh;*/
+  /*  left: 22.8%;*/
+  /*}*/
+  .slanted {
+    clip-path: polygon(0% 77%, 100% 180px, 95% 99%, 39px 100%);
+    /*position: fixed;*/
+    /*top: 46vh;*/
+  }
+  .salented-outer {
+    width: 100%;
+    margin: -2px;
+    padding-left: 3px;
+  }
+  /*#cylinder {*/
+  /*  height: 450px;*/
+  /*}*/
+  .containerNew {
+    margin-top: 10px !important;
+  }
+}
+@media (max-width: 1680px) {
+  .carousalMainContainer {
+    margin-top: 14% !important;
+  }
+  .games-btn-content {
+    bottom: 60px !important;
+  }
+  .cutted {
+    height: 55px;
+  }
+  .carousal-outer-btn {
+    left: 22.3%;
+    top: 38%;
+  }
+  .carousel-controls {
+    margin: 0 220px;
+  }
+  .leftImg {
+    left: -29px;
+    margin-top: 0;
+  }
+  .rightImg {
+    right: -30px;
+  }
+  #cylinder {
+    height: 415px;
+  }
+}
+@media (max-width: 1536px) {
+  .carousalMainContainer {
+    margin-top: 16% !important;
+  }
+  #topTextContainer {
+    width: 48vw;
+  }
+  #topText {
+    width: 39vw;
+  }
+  #cylinder {
+    height: 450px;
+    width: 39vw;
+  }
+  .containerNew {
+    margin-top: 7px !important;
+  }
+  .carousel-controls {
+    margin: 0 209px;
+  }
+  .carousal-outer-btn {
+    left: 21.3%;
+    top: 38%;
+  }
+  .leftImg {
+    left: -26px;
+  }
+  .rightImg {
+    right: -26px;
+  }
+}
+@media (max-width: 1500px) {
+  .salented-outer {
+    margin: 24px 0px;
+  }
+  /*#cylinder {*/
+  /*  height: 330px;*/
+  /*!*}*/
+  #cylinder {
+    margin-top: 4px;
+    height: 432px;
+  }
+  .carousal-outer-btn {
+    top: 36%;
+    left: 23.8%;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 73%, 100% 102px, 94% 100%, 26px 100%);*/
+  /*}*/
+  /*.carousel-main-indicators{*/
+  /*  bottom: 2px !important;*/
+  /*}*/
+  #topTextContainer {
+    width: 660px;
+  }
+  .carousalMainContainer {
+    margin-top: 18% !important;
+  }
+  #topText {
+    margin-top: 86px;
+    width: 500px;
+  }
+  #cylinder {
+    /*margin-top: 4px;*/
+    /*height: 295px;*/
+  }
+  .itemNew {
+    height: 31vh !important;
+  }
+  .video div div {
+    height: 185px !important;
+  }
+  .containerNew {
+    margin-top: 12px !important;
+  }
+  /*.carousel-main-indicators{*/
+  /*  margin-bottom: 68px !important;*/
+  /*  !*bottom: 14px !important;*!*/
+  /*}*/
+  .carousel-controls {
+    margin: 0px 183px;
+  }
+  /*#bottomText {*/
+  /*    margin-top: 89px;*/
+  /*}*/
+  /*.slanted {*/
+  /*    clip-path: polygon(0% 69%, 100% 89px, 95% 99%, 38px 100%);*/
+  /*}*/
+  #bottomText {
+    margin-top: 105px;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 102px, 95% 99%, 38px 100%);*/
+  /*}*/
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 67%, 100% 89px, 95% 99%, 30px 100%);*/
+  /*}*/
+  /*.games-btn-content {*/
+  /*  display: flex;*/
+  /*  position: absolute;*/
+  /*  bottom: 65px;*/
+  /*}*/
+  .carousel {
+    margin-top: -295px !important;
+  }
+  /*.carousalMainContainer { */
+  /*    margin-top: 18%!important;*/
+  /*}*/
+  /*.games-btn-content {*/
+  /*    bottom: 80px*/
+  /*}*/
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 72%, 99.5% 95px, 94% 99%, 27px 100%);*/
+  /*}*/
+  .salented-outer {
+    margin: 11px 0px;
+  }
+  /*.carousel-main-indicators{*/
+  /*  bottom: 20px !important;*/
+  /*}*/
+}
+@media (max-width: 1463px){
+  #cylinder {
+    height: 356px;
+  }
+  .games-btn-content {
+    bottom: 22px !important;
+  }
+  .games-img-btn {
+    height: 85px;
+  }
+  .carousal-outer-btn
+  {
+    top: 40%;
+    left: 23.3%;
+  }
+  .leftImg {
+    width: 73px;
+  }
+  .rightImg {
+    width: 68px;
+  }
+}
+@media (max-width: 1440px) {
+  /*.carousal-outer-btn {*/
+  /*  top: 40%;*/
+  /*}*/
+  .itemNew {
+    height: 28vh !important;
+  }
+  .carousel-controls {
+    margin: 0px 176px;
+  }
+  /*#cylinder {*/
+  /*  height: 370px;*/
+  /*}*/
+  /*#bottomText {*/
+  /*  margin-top: 154px;*/
+  /*}*/
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 138px, 95% 99%, 31px 100%);*/
+  /*}*/
+  .carousel-main-indicators{
+    /*bottom: 30px !important;*/
+  }
+  #cylinder {
+    height: 340px;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 102px, 95% 99%, 31px 100%);*/
+  /*}*/
+  #bottomText {
+    margin-top: 100px;
+    width: 664px;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 73%, 100% 102px, 95% 99%, 30px 100%);*/
+  /*}*/
+  .slanted {
+    clip-path: polygon(0% 72%, 99.5% 95px, 94% 99%, 27px 100%);
+  }
+  .carousal-outer-btn {
+    left: 23.9%;
+  }
+}
+@media (max-width: 1366px) {
+  .carousel-controls {
+    margin: 0px 166px;
+  }
+  /*#cylinder {*/
+  /*  height: 330px;*/
+  /*}*/
+  /*.carousel-main-indicators{*/
+  /*  bottom: 35px !important;*/
+  /*}*/
+  /*#bottomText {*/
+  /*  margin-top: 124px;*/
+  /*}*/
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 117px, 95% 99%, 31px 100%);*/
+  /*}*/
+  /*#cylinder {*/
+  /*  height: 280px;*/
+  /*}*/
+  /*#bottomText {*/
+  /*  margin-top: 92px;*/
+  /*}*/
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 95px, 95% 99%, 31px 100%);*/
+  /*}*/
+  .games-img-btn {
+    height: 75px !important;
+  }
+  .carousalMainContainer {
+    margin-top: 19% !important;
+  }
+  .carousal-outer-btn {
+    top: 41%;
+  }
+  /*.carousel-main-indicators{*/
+  /*  bottom: 0 !important;*/
+  /*}*/
+  #bottomText {
+    margin-top: 85px;
+  }
+  .containerNew {
+    margin-top: 7px !important;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 74%, 100% 95px, 95% 99%, 28px 100%);*/
+  /*}*/
+  #cylinder { height: 325px; }
+  /*.salented-outer { margin: 21px 0px; }*/
+  .salented-outer { margin: 49px 0px; }
+  .cutted {
+    padding-bottom: 5px;
+  }
+  .carousel {
+    height: 73vh !important;
+  }
+  .rightImg {
+    width: 73px;
+  }
+  .leftImg {
+    width: 77px;
+  }
+
+    /*.slanted { clip-path: polygon(0% 67%, 100% 80px, 94% 99%, 29px 100%); }*!*/
+}
+@media (max-width: 1280px) {
+  /*#cylinder {*/
+  /*  height: 260px;*/
+  /*}*/
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 99px, 95% 99%, 31px 100%);*/
+  /*}*/
+  .carousel-controls {
+    margin: 0px 155px;
+  }
+  /*.carousal-outer-btn {*/
+  /*  top: 41%;*/
+  /*}*/
+  /*.carousel-main-indicators{*/
+  /*  bottom: 3px !important;*/
+  /*}*/
+  .carousalMainContainer {
+    margin-top: 20% !important;
+  }
+  /*#bottomText {*/
+  /*  margin-top: 100px;*/
+  /*}*/
+  /*.games-img-btn {*/
+  /*  height: 79px !important;*/
+  /*}*/
+  .carousal-outer-btn {
+    top: 41%;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 80px, 95% 99%, 31px 100%);*/
+  /*}*/
+  /*.carousel-main-indicators{*/
+  /*  bottom: -9px !important;*/
+  /*}*/
+  .games-img-btn {
+    height: 80px !important;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 86px, 95% 99%, 20px 100%);*/
+  /*}*/
+  /*#bottomText {*/
+  /*  margin-top: 84px;*/
+  /*}*/
+  /*#cylinder {*/
+  /*  height: 290px;*/
+  /*}*/
+  /*.carousel-main-indicators{*/
+  /*  bottom: 13px !important;*/
+  /*}*/
+  #bottomText {
+    margin-top: 93px;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 76%, 100% 100px, 95% 99%, 22px 100%);*/
+  /*}*/
+  .salented-outer {
+    margin: 44px 0px;
+  }
+  #cylinder {
+    height: 319px;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 69%, 100% 86px, 95% 99%, 24px 100%);*/
+  /*}*/
+  /*.carousel-main-indicators{*/
+  /*  bottom: 0px !important;*/
+  /*}*/
+}
+@media (max-width: 1254px) {
+  .carousel-controls {
+    margin: 0px 151px;
+  }
+  .carousal-outer-btn {
+    top: 39%;
+  }
+}
+@media (max-width: 1024px) {
+  .carousalMainContainer {
+    margin-top: 25% !important;
+  }
+  .carousel-controls {
+    margin: 0px 122px;
+  }
+  .containerNew {
+    margin-top: 5px !important;
+  }
+  #bottomText {
+    margin-top: 103px;
+  }
+  #cylinder {
+    width: 49vw;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 76%, 100% 110px, 95% 99%, 22px 100%);*/
+  /*}*/
+}
+@media (max-width: 768px){
+  .containerNew {
+    width: 31vw !important;
+    perspective: 1500px !important;
+    margin-top: 18px !important;
+  }
+  .carousalMainContainer {
+    margin-top: 28% !important;
+  }
+  #topTextContainer {
+    width: 500px;
+  }
+  #topText {
+    width: 415px;
+  }
+  .itemNew {
+    width: 31vw !important;
+    display: flex !important;
+    align-items: center;
+    border: 3px solid #000000 !important;
+  }
+  .itemNew div {
+    display: flex;
+    align-items: center;
+  }
+  #cylinder {
+    height: 435px;
+    width: 54vw;
+    background-repeat: no-repeat;
+  }
+  .carousal-outer-btn {
+    left: 14.8%;
+    top: 30%;
+  }
+  #bottomText {
+    margin-top: 130px;
+  }
+  .slanted {
+    clip-path: polygon(0% 75%, 100% 131px, 95% 99%, 24px 100%);
+  }
+  /*.carousel-main-indicators{*/
+  /*  bottom: 65px !important;*/
+  /*}*/
+  .a {
+    transform: rotateY(0deg) translateZ(36vw) !important ;
+  }
+  .b {
+    transform: rotateY(45deg) translateZ(36vw) !important ;
+  }
+  .c {
+    transform: rotateY(90deg) translateZ(36vw) !important ;
+  }
+  .d {
+    transform: rotateY(135deg) translateZ(36vw) !important ;
+  }
+  .e {
+    transform: rotateY(180deg) translateZ(36vw) !important ;
+  }
+  .f {
+    transform: rotateY(225deg) translateZ(36vw) !important ;
+  }
+  .g {
+    transform: rotateY(270deg) translateZ(36vw) !important ;
+  }
+  .h {
+    transform: rotateY(315deg) translateZ(36vw) !important ;
+  }
+  .itemNew div div {
+    display: flex;
+    align-items: center;
+  }
+  .carouselImg{
+    height: auto !important;
+  }
+}
+/*@media (max-width: 767px){*/
+/*  html, body{*/
+/*    overflow-x: hidden !important;*/
+/*    !*display: none;*!*/
+/*  }*/
+/*}*/
+/*html, body{*/
+/*  overflow-x: hidden !important;*/
+/*  !*display: none;*!*/
+/*}*/
+@media (max-width: 576px){
+  /*#cylinder { height: 402px; }.salented-outer {padding-left: 1px; padding-right: 0px; }.carousel-main-indicators{ bottom: 60px !important; }.slanted { clip-path: polygon(0% 76%, 100% 136px, 95% 99%, 27px 100%); }*/
+  .carousel {
+    height: 77vh !important;
+  }
+  .carousalMainContainer {
+    margin-top: 40% !important;
+  }
+  .itemNew {
+    height: 17vh !important;
+    width: 50vw !important;
+    border-radius: 0;
+  }
+  .containerNew {
+    width: 50vw !important;
+    perspective: 600px !important;
+    margin-top: 69px !important;
+  }
+  .carousel-controls {
+    margin: 0px 233px;
+  }
+  .carousal-outer-btn {
+    left: -203px;
+    top: 26%;
+  }
+  /*.carousel-main-indicators{*/
+  /*  bottom: 53px !important;*/
+  /*}*/
+  /*#cylinder {*/
+  /*  width: 83vw;*/
+  /*  height: 345px;*/
+  /*}*/
+  #bottomText {
+    margin-top: 142px;
+  }
+  #cylinder {
+    width: 83vw;
+    height: 320px;
+  }
+  /*.carousel-main-indicators{*/
+  /*  bottom: 60px !important;*/
+  /*}*/
+  .games-btn-content {
+    position: relative;
+    bottom: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .salented-outer {
+    margin: -5px 0px;
+    width: 100%;
+    padding-left: 1px;
+    padding-right: 0px;
+  }
+  .slanted {
+    clip-path: polygon(0% 78%, 100% 136px, 95% 99%, 27px 100%);
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 78%, 100% 141px, 96% 99%, 24px 100%);*/
+  /*}*/
+  .a {
+    transform: rotateY(0deg) translateZ(60vw) !important ;
+  }
+  .b {
+    transform: rotateY(45deg) translateZ(60vw) !important ;
+  }
+  .c {
+    transform: rotateY(90deg) translateZ(60vw) !important ;
+  }
+  .d {
+    transform: rotateY(135deg) translateZ(60vw) !important ;
+  }
+  .e {
+    transform: rotateY(180deg) translateZ(60vw) !important ;
+  }
+  .f {
+    transform: rotateY(225deg) translateZ(60vw) !important ;
+  }
+  .g {
+    transform: rotateY(270deg) translateZ(60vw) !important ;
+  }
+  .h {
+    transform: rotateY(315deg) translateZ(60vw) !important ;
+  }
+
+}
+@media (max-width: 480px) {
+  #cylinder {
+    height: 320px;
+    /*height: 450px;*/
+    width: 88vw;
+  }
+  .containerNew {
+    margin-top: 57px !important;
+  }
+  .carousal-outer-btn {
+    left: -119px;
+    top: 25%;
+  }
+
+  /*.carousel-main-indicators{*/
+  /*  bottom: 47px !important;*/
+  /*}*/
+  .carousel {
+    height: 72vh !important;
+  }
+  /*#cylinder {*/
+  /*  height: 360px;*/
+  /*}*/
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 77%, 100% 135px, 95% 99%, 21px 100%);*/
+  /*}*/
+  .slanted {
+    clip-path: polygon(0% 77%, 100% 133px, 95% 100%, 21px 100%);
+  }
+  .salented-outer {
+    margin: -12px 0px;
+  }
+  /*.carousel-main-indicators{*/
+  /*  bottom: 32px !important;*/
+  /*}*/
+
+  .carousel-controls {
+    margin: 0px 167px;
+  }
+  .carousalMainContainer {
+    margin-top: 50% !important;
+  }
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 74%, 100% 120px, 95% 99%, 22px 100%);*/
+  /*}*/
+  body.homepage {
+    /*background: linear-gradient(rgb(67, 249, 122, 0.3), rgb(67, 249, 122, 0.3)),*/
+    /*  url("/homebg.png");*/
+    /* background-color: rgb(67, 249, 122) !important;
+    background: url("/homebg.png"); */
+  }
+  .games-btn {
+    width: 100%;
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  /*.carousel {*/
+  /*  margin-top: -95px;*/
+  /*  perspective: 85px;*/
+  /*}*/
+  .carousel img {
+    /*width: 500px;*/
+
+    /* width: 100% !important; */
+  }
+  /*.carousel figure {*/
+  /*  margin: 0;*/
+  /*  width: 100% !important;*/
+  /*}*/
+  /*.carousal-video-for-mbl {*/
+  /*  margin-top: 20px !important;*/
+  /*}*/
+  /*#topTextContainer {*/
+  /*  background: url("../../Top.png");*/
+  /*  background-size: 100%;*/
+  /*  background-position: center;*/
+  /*  width: 350px;*/
+  /*  height: 120px;*/
+  /*}*/
+
+  /*#topText {*/
+  /*  margin-top: 85px;*/
+  /*  width: 300px !important;*/
+  /*}*/
+  /*#cylinder {*/
+  /*  background: url("../../cylinder1.png");*/
+  /*  height: 350px;*/
+  /*  width: 400px;*/
+  /*  background-size: 280px 300px;*/
+  /*  background-position: center;*/
+  /*  background-repeat: no-repeat;*/
+  /*}*/
+
+  /*#bottomText {*/
+  /*  width: 280px;*/
+  /*  margin-top: 5px;*/
+  /*}*/
+
+  /*.carousel-main-indicatorsli {*/
+  /*  display: none;*/
+  /*  width: 10px !important;*/
+  /*  height: 10px !important;*/
+  /*  border-radius: 100% !important;*/
+  /*}*/
+}
+@media (max-width: 425px) {
+  .carousalMainContainer {
+    margin-top: 57% !important;
+  }
+  #topTextContainer {
+    width: 375px;
+  }
+  #topText {
+    width: 312px;
+  }
+  .containerNew {
+    margin-top: 56px !important;
+  }
+  #cylinder {
+    /*height: 365px;*/
+    height: 355px;
+  }
+  .carousal-outer-btn {
+    left: -127px;
+    top: 26%;
+  }
+  .games-btn-container {
+    margin-top: -65px;
+  }
+  /*.salented-outer {*/
+  /*  margin: -7px 0px;*/
+  /*}*/
+  /*.containerNew {*/
+  /*  margin-top: 54px !important;*/
+  /*}*/
+  /*.slanted {*/
+  /*  clip-path: polygon(0% 76%, 100% 132px, 95% 100%, 19px 100%);*/
+  /*}*/
+  /*.carousalMainContainer {*/
+  /*  margin-top: 58% !important;*/
+  /*}*/
+  /*.carousal-outer-btn {*/
+  /*  left: -93px;*/
+  /*}*/
+  .carousel-controls {
+    margin: 0px 157px;
+  }
+  /*#topText {*/
+  /*  width: 369px;*/
+  /*}*/
+  /*#topTextContainer {*/
+  /*  width: 415px;*/
+  /*}*/
+  /*.carousel-main-indicators{*/
+  /*  bottom: 54px !important;*/
+  /*}*/
+  .leftImg {
+    z-index: 10;
+    width: 79px;
+  }
+  .rightImg {
+    z-index: 10;
+    width: 77px;
+  }
+}
+
+@media screen and (max-width: 414px)  {
+  .carousel {
+    height: 79vh !important;
+  }
+}
+/*/////////////////////*/
+/*///// xs max ///////*/
+/*/////////////////////*/
+@media only screen
+and (device-width : 414px)
+and (device-height : 896px)
+and (-webkit-device-pixel-ratio : 3) {
+  .games-btn-container{
+    margin-top: -10vh;
+  }
+  #cylinder {
+    height: 370px;
+  }
+  .carousal-outer-btn {
+    top: 24%;
+  }
+  .containerNew {
+    margin-top: 45px !important;
+  }
+  .carousel-controls {
+    margin: 0px 155px;
+  }
+}
+
+/*/////////////////////*/
+/*///// 6 7 8 + ///////*/
+/*/////////////////////*/
+@media only screen
+and (device-width : 414px)
+and (device-height : 736px)
+and (-webkit-device-pixel-ratio : 3) {
+  .games-btn-container{
+    margin-top: 0vh;
+  }
+  #cylinder {
+     height: 330px;
+  }
+  .carousal-outer-btn {
+    top: 22.7%;
+  }
+  .containerNew {
+    margin-top: 49px !important;
+  }
+  .carousel-controls {
+    margin: 0px 155px;
+  }
+}
+/*/////////////////////*/
+/*///////// 10 /////////*/
+/*/////////////////////*/
+@media only screen
+and (device-width : 375px)
+and (device-height : 812px)
+and (-webkit-device-pixel-ratio : 3) {
+
+  .games-btn-container{
+    margin-top: -11vh;
+  }
+  .containerNew {
+    margin-top: 45px !important;
+  }
+  #cylinder{
+    height: 340px;
+  }
+}
+
+/*/////////////////////*/
+/*///////// 6 /////////*/
+/*/////////////////////*/
+
+@media only screen
+and (device-width : 375px)
+and (device-height : 667px)
+and (-webkit-device-pixel-ratio : 2) {
+  .games-btn-container{
+    margin-top: 1vh;
+  }
+  #cylinder {
+    height: 305px;
+  }
+  .carousal-outer-btn {
+    top: 21%;
+  }
+  .containerNew {
+    margin-top: 36px !important;
+  }
+}
+
+
+
+@media screen and (max-width: 375px)  {
+  .carousel-controls {
+    margin: 0px 130px;
+  }
+  .leftImg {
+    width: 78px;
+  }
+  .carousel {
+    height: 80vh !important;
+  }
+  .carousal-outer-btn{
+    top: 21%;
+    left: -97px;
+  }
+}
+@media screen and (max-width: 360px)  {
+  .carousel-controls {
+    margin: 0px 118px;
+  }
+  #cylinder {
+    height: 320px;
+  }
+  .carousal-outer-btn{
+    top: 20%;
+  }
+  .games-btn-container {
+    margin-top: 70px;
+  }
+  .leftImg {
+    width: 81px;
+    z-index: 10;
+  }
+  .rightImg {
+    width: 81px;
+    z-index: 10;
+  }
+}
+@media screen and (max-width: 320px)  {
+  #topTextContainer {
+    width: 310px;
+  }
+  .carousalMainContainer {
+    margin-top: 64% !important;
+  }
+  .carousal-outer-btn {
+    top: 18%;
+    left: -57px;
+  }
+  .containerNew {
+    margin-top: 23px !important;
+  }
+  .carousel {
+    height: 80vh !important;
+  }
+  #cylinder {
+    height: 300px;
+    width: 84vw;
+  }
+  .rightImg {
+    width: 80px;
+  }
+  .leftImg {
+    width: 80px;
+  }
+  #topText {
+    width: 271px;
+  }
+  .carousel-controls {
+    margin: 0px 96px;
+  }
+  .games-btn-container {
+    margin-top: 25px;
+  }
+}
+
+body.homepage {
+  /*background: #333;*/
+  padding: 70px 0;
+  font: 15px/20px Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.container.homepage {
+  margin: 0 auto;
+  width: 250px;
+  height: 200px;
+  position: relative;
+  perspective: 1000px;
+}
+
+.carousel {
+  /*height: 100%;*/
+  width: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+}
+
+.item {
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 250px;
+  height: 200px;
+  line-height: 200px;
+  font-size: 5em;
+  text-align: center;
+  color: #fff;
+  opacity: 0.95;
+  border-radius: 10px;
+}
+/*//////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////*/
+/*////////////////////*/
+/*//////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////////////////////*/
+/*#bottomText { height: 40px; width: 400px; margin-top: 70px; }.carousel { margin-top: -370px;}#topText { margin-top: 85px; width: 400px; }*/
+.containerNew {
+  margin-top: 34px;
+}
+.itemNew {
+  display: block;
+  position: absolute;
+  background: #000;
+  width: 280px;
+  height: 180px;
+  line-height: 150px;
+  font-size: 5em;
+  text-align: center;
+  color: #fff;
+  opacity: 1;
+  border-radius: 10px;
+}
+
+/*.slanted {*/
+/*    position: relative;*/
+/*    width: 500px;*/
+/*    padding: 0px 50px 30px 50px;*/
+/*    overflow: hidden;*/
+/*    !**/
+/*      in fact, overflow: hidden is not necessary;*/
+/*      border: 1px solid transparent;  could fix inner margins as well,*/
+/*      but to prevent rounding errors it seems better to enlarge borders,*/
+/*      offset them away and crop with overflow*/
+/*    *!*/
+/*}*/
+
+/*.slanted::before ,*/
+/*.slanted::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    z-index: -1; !* = beneath content *!*/
+/*    background-color: #6f9;*/
+/*    border-color: #6f9;*/
+/*}*/
+/*.slanted::before {*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*    bottom: 100px; !* = border-top-width of ::after *!*/
+/*}*/
+/*.slanted:after {*/
+/*    top: auto;*/
+/*    right: -5px; !* + some px to mask pixel rounding "crack" that could possibly occur while zoomed *!*/
+/*    bottom: 0;*/
+/*    border-style: solid;*/
+/*    border-width: 105px 105px 0 0; !* this is the actual slanted bottom "block" *!*/
+/*    background-color: transparent;*/
+/*    border-right-color: transparent; !* this is the "notch" *!*/
+/*}*/
+/*.slanted {*/
+/*    clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);*/
+/*}*/

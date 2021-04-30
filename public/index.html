@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!--    <meta-->
+    <!--      name="viewport"-->
+    <!--      content="width=device-width, initial-scale=1, minimum-scale=1.0"-->
+    <!--    />-->
+    <meta
+      name="viewport"
+      content="width=device-width,
+   initial-scale=1.00, maximum-scale=1, minimum-scale=1 viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#000000" />
+    <!--    <meta name="apple-mobile-web-app-capable" content="yes">-->
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>HULU HAS LIVE SPORTS</title>
+    <!-- Fonts to support Material Design -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossOrigin="anonymous"
+    />
+    <script data-cfasync="false">
+      var swarmoptions = {
+        swarmcdnkey: "9dcd4bee-da68-402d-bfcd-9b95978fdd1c",
+        iframeReplacement: "iframe",
+        autoreplace: {
+          youtube: false,
+          videotag: true
+        }
+      };
+    </script>
+    <script
+      async
+      data-cfasync="false"
+      src="https://assets.swarmcdn.com/cross/swarmdetect.js"
+    ></script>
+    <style>
+      /*#main-body{*/
+      /*  overflow: hidden;*/
+      /*}*/
+      .carousel-3d-body {
+        overflow-x: hidden;
+      }
+      .carousel-3d {
+        position: relative;
+        width: 60%;
+        height: 400px;
+        margin: 80px auto;
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+      }
+      .carousel-3d .carousel-3d-inner {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-transform: translateZ(-288px);
+        transform: translateZ(-288px);
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transition: -webkit-transform 1s;
+        -o-transition: transform 1s;
+        transition: transform 1s;
+        transition: transform 1s, -webkit-transform 1s;
+      }
+      .carousel-3d .carousel-3d-item {
+        position: absolute;
+        width: 190px;
+        height: 120px;
+        -webkit-transition: opacity 1s, -webkit-transform 1s;
+        -o-transition: transform 1s, opacity 1s;
+        transition: transform 1s, opacity 1s;
+        transition: transform 1s, opacity 1s, -webkit-transform 1s;
+      }
+      .carousel-3d .carousel-3d-item img {
+        width: 100% !important;
+        height: 100% !important;
+        -o-object-fit: cover !important;
+        object-fit: cover !important;
+      }
+      .carousel-3d .carousel-3d-controls {
+        position: absolute;
+        left: 0;
+        top: -80px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+      .carousel-3d .carousel-3d-controls a {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        font-size: 26px;
+      }
+      @media (max-width: 768px) {
+        .carousel-3d {
+          -webkit-perspective: 200px;
+          perspective: 200px;
+        }
+        .carousel-3d .carousel-3d-item {
+          position: absolute;
+          width: 95px;
+          height: 60px;
+          -webkit-transition: opacity 1s, -webkit-transform 1s;
+          -o-transition: transform 1s, opacity 1s;
+          transition: transform 1s, opacity 1s;
+          transition: transform 1s, opacity 1s, -webkit-transform 1s;
+        }
+        .carousel-3d-vertical {
+          -webkit-perspective: 2000px;
+          perspective: 2000px;
+        }
+        .carousel-3d-vertical .carousel-3d-controls {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 50%;
+          height: 50%;
+          text-align: center;
+          -webkit-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          transform: rotate(90deg);
+        }
+      }
+      @media (max-width: 767px) {
+        #main-body {
+          overflow-x: hidden !important;
+          overflow-y: auto !important;
+        }
+        .itemNew {
+          border-radius: 0 !important;
+        }
+      }
+      .carousel-3d-vertical .carousel-3d-controls {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+      }
+      .containerNew {
+        margin: 0 auto;
+        width: 280px;
+        height: 180px;
+        position: relative;
+        perspective: 1300px;
+      }
+
+      .carouselNew {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        transform-style: preserve-3d;
+        transition: transform 1s;
+      }
+
+      .itemNew {
+        display: block;
+        position: absolute;
+        background: #000;
+        width: 280px;
+        height: 180px;
+        line-height: 150px;
+        font-size: 5em;
+        text-align: center;
+        color: #fff;
+        opacity: 1;
+        border-radius: 10px;
+      }
+
+      /*.a {*/
+      /*  transform: rotateY(0deg) translateZ(340px) !important ;*/
+      /*}*/
+      /*.b {*/
+      /*  transform: rotateY(45deg) translateZ(340px) !important ;*/
+      /*}*/
+      /*.c {*/
+      /*  transform: rotateY(90deg) translateZ(340px) !important ;*/
+      /*}*/
+      /*.d {*/
+      /*  transform: rotateY(135deg) translateZ(340px) !important ;*/
+      /*}*/
+      /*.e {*/
+      /*  transform: rotateY(180deg) translateZ(340px) !important ;*/
+      /*}*/
+      /*.f {*/
+      /*  transform: rotateY(225deg) translateZ(340px) !important ;*/
+      /*}*/
+      /*.g {*/
+      /*  transform: rotateY(270deg) translateZ(340px) !important ;*/
+      /*}*/
+      /*.h {*/
+      /*  transform: rotateY(315deg) translateZ(340px) !important ;*/
+      /*}*/
+
+      .carouselImg {
+        height: 100%;
+        width: 100%;
+      }
+
+      .next,
+      .prev {
+        color: #444;
+        position: absolute;
+        top: 100px;
+        padding: 1em 2em;
+        cursor: pointer;
+        background: #ccc;
+        border-radius: 5px;
+        border-top: 1px solid #fff;
+        box-shadow: 0 5px 0 #999;
+        transition: box-shadow 0.1s, top 0.1s;
+      }
+      .next:hover,
+      .prev:hover {
+        color: #000;
+      }
+      .next:active,
+      .prev:active {
+        top: 104px;
+        box-shadow: 0 1px 0 #999;
+      }
+      .next {
+        right: 5em;
+      }
+      .prev {
+        left: 5em;
+      }
+    </style>
+  </head>
+  <body id="main-body" scrolling="no">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- <div class="carousel-3d carousel-3d-basic">
+      <div class="carousel-3d-inner">
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(46).jpg"
+            alt="Slide"
+          />
+        </div>
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(46).jpg"
+            alt="Slide"
+          />
+        </div>
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(47).jpg"
+            alt="Slide"
+          />
+        </div>
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(48).jpg"
+            alt="Slide"
+          />
+        </div>
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(49).jpg"
+            alt="Slide"
+          />
+        </div>
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(50).jpg"
+            alt="Slide"
+          />
+        </div>
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(51).jpg"
+            alt="Slide"
+          />
+        </div>
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(52).jpg"
+            alt="Slide"
+          />
+        </div>
+        <div class="carousel-3d-item">
+          <img
+            src="https://mdbootstrap.com/img/Photos/Slides/img%20(53).jpg"
+            alt="Slide"
+          />
+        </div>
+      </div>
+      <div class="carousel-3d-controls">
+        <a class="prev-btn waves-effect waves-light"
+          ><i class="fas fa-chevron-left"></i
+        ></a>
+        <a class="next-btn waves-effect waves-light"
+          ><i class="fas fa-chevron-right"></i
+        ></a>
+      </div>
+    </div> -->
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    <script
+      type="text/javascript"
+      src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/bundles/4.19.1/compiled.0.min.js?ver=4.19.1"
+      id="mdb-js2-js"
+    ></script>
+    <script src="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/js/plugins/mdb-carousel-3d.min.js"></script>
+    <script>
+      setTimeout(() => {
+        abc();
+      }, 5000);
+      function abc() {
+        $(".carousel-3d-basic").mdbCarousel3d();
+        $(".carousel-3d-controls").mdbCarousel3d();
+        $(".carousel-3d-vertical").mdbCarousel3d({
+          vertical: true
+        });
+        $(".carousel-3d-autoplay-off").mdbCarousel3d({
+          autoplay: false
+        });
+      }
+    </script>
+    <script>
+      var test = document.querySelectorAll("#main-body.asd").length;
+      if (test >= 0) {
+        console.log("hie");
+
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement("script");
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName("script")[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        //
+        // for(i=0; i=pages.length)
+
+        var pages = ["player", "player1"];
+
+        var players = [];
+        // for (var i = 0; i < pages.length; i++) {
+        //
+        // }
+
+        // var player;
+        // for(i=1;i<=2; i++)
+        // {
+        //     var player''i = 'testing '+i;
+        // }
+        function onYouTubeIframeAPIReady() {
+          var totalVideos = pages.length;
+          var i;
+
+          for (i = 0; i < totalVideos; i++) {
+            var func = "onPlayerStateChange" + i;
+            players[i] = new YT.Player(pages[i], {
+              events: {
+                onReady: onPlayerReady,
+                onStateChange: func
+              }
+            });
+          }
+        }
+
+        function onPlayerReady(event) {
+          console.log("video is ready");
+          console.log(event);
+          event.target.playVideo();
+        }
+
+        // var player1;
+        // function onYouTubeIframeAPIReady() {
+        //     player1 = new YT.Player('player1', {
+        //     });
+        // }
+        var done = false;
+
+        var testint = "onPlayerStateChange0";
+        function onPlayerStateChange0(event) {
+          console.log("onPlayerStateChange0");
+          console.log("state change");
+          console.log(event["data"]);
+        }
+        function onPlayerStateChange1(event1) {
+          console.log("onPlayerStateChange1");
+          console.log("state change");
+          console.log(event1);
+        }
+
+        function pauseVideo() {
+          window.players[0].pauseVideo();
+        }
+
+        function playVideo() {
+          window.players[0].playVideo();
+        }
+
+        // for(i=0;i<2; i++)
+        // {
+        //
+        //
+        // }
+      }
+    </script>
+  </body>
+</html>

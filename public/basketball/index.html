@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+    <title>Basketball Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./styles.css">
+	<script type="text/javascript" src="js/phaser.min.js"></script>
+	
+
+<!--	<h2>Basketball Game (inspired by Facebook Messenger!)</h2>-->
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+		#player1 canvas{
+					margin: -800px 120px;
+					border: thin solid black;
+					position: absolute;
+				}
+
+				#player2 canvas{
+					margin: -800px 120px;
+					border: thin solid black;
+					position: absolute;
+				}
+
+				/*span {*/
+				/*	display: block;*/
+				/*	margin: 30px auto;*/
+				/*	width: 500px;*/
+				/*	text-align: center;*/
+				/*}*/
+				h2 {
+					text-align: center;
+				}
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row vh-100">
+        <div class="col-2 text-center bg-light p-0 overflow-hidden">
+            <div class="d-flex align-items-center justify-content-center player-title border-bottom border-dark">
+                <h6>PLAYER 1</h6>
+            </div>
+            <div>
+                <div>
+                    <h1 class="player-name px-3" id='name'></h1>
+                </div>
+                <div>
+                    <i class="fas fa-user border-bottom border-dark w-100 px-3"></i>
+                </div>
+            </div>
+            <div class="score-board border-bottom border-dark">
+                <div>
+                    <p class="score-heading">SCORE</p>
+                </div>
+                <di<h3 class="score" id="score">0</h3>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center jersey-outer">
+                <img src="./images/jersey.png" alt="" class="jersey">
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="row position-relative">
+                <div class="col-6 p-0" id="player1">
+                    <div class="position-absolute time-outer">
+                        <h3 class="time-inner" id="time">05 : 00</h3>
+                    </div>
+                   <img src="./images/bg1.png" alt="" class="vh-100 w-100">
+                </div>
+                <div class="col-6 p-0" id="player2">
+                    <img src="./images/bg2.png" alt="" class="vh-100 w-100">
+                </div>
+            </div>
+        </div>
+        <div class="col-2 text-center bg-light p-0 overflow-hidden">
+            <div class="d-flex align-items-center justify-content-center player-title border-bottom border-dark">
+                <h6>PLAYER 2</h6>
+            </div>
+            <div>
+                <div>
+                    <h1 class="player-name px-3">DAMEIN LILLARD</h1>
+                </div>
+                <div>
+                    <i class="fas fa-user border-bottom border-dark w-100 px-3"></i>
+                </div>
+            </div>
+            <div class="score-board border-bottom border-dark">
+                <div>
+                    <p class="score-heading">SCORE</p>
+                </div>
+                <div>
+                    <h3 class="score">30</h3>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center jersey-outer">
+                <img src="./images/jersey.png" alt="" class="jersey">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+<!-- &lt;!&ndash; TODO: Add SDKs for Firebase products that you want to use -->
+    <!-- https://firebase.google.com/docs/web/setup#available-libraries &ndash;&gt; -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-analytics.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+<script>
+	 // Your web app's Firebase configuration
+	 var firebaseConfig = {
+    apiKey: "AIzaSyBSsSzF7wlSF1ZGAjQ6rtBLkHSb2NIh1TE",
+    authDomain: "basketballgame-ca3f1.firebaseapp.com",
+    databaseURL: "https://basketballgame-ca3f1.firebaseio.com",
+    projectId: "basketballgame-ca3f1",
+    storageBucket: "basketballgame-ca3f1.appspot.com",
+    messagingSenderId: "941712457648",
+    appId: "1:941712457648:web:ea762eda76cf0758b86075",
+    measurementId: "G-6EJJ863RLH"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  
+</script>
+
+
+
+<script>
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
+	
+</script>
+
+
+<script type="text/javascript">
+var db = firebase.firestore();
+var Name = '';
+
+
+
+		
+
+		db.collection("game").get()
+		  .then(function(querySnapshot) {
+			Name = prompt('Enter your name'); 
+			document.getElementById('name').innerHTML= Name;
+			var user = []; 
+			querySnapshot.forEach(function(doc) {
+			  // doc.data() is never undefined for query doc snapshots
+			  console.log(doc.id, " => ", doc.data());
+			  let obj = {username: doc.id, score: doc.data().score}
+			  user.push(obj);
+		  });
+		  user.map(u => {if(u.username === Name)
+			{confirm('User with this name already exist!!\n Try other Name');
+			window.location.reload()}
+			})
+		});
+ 
+		
+		
+		
+
+// NOTE: Originally 640x1000. Other possible sizes: 512x800, 400x625
+var game = new Phaser.Game(400, 625, Phaser.CANVAS, 'player1', { preload: preload, create: create, update: update });
+
+
+function preload() {
+
+    game.load.image('ball', 'assets/images/ball.png');
+    game.load.image('hoop', 'assets/images/hoop.png');
+		game.load.image('side rim', 'assets/images/side_rim.png');
+		game.load.image('front rim', 'assets/images/front_rim.png');
+
+		game.load.image('win0', 'assets/images/win0.png');
+		game.load.image('win1', 'assets/images/win1.png');
+		game.load.image('win2', 'assets/images/win2.png');
+		game.load.image('win3', 'assets/images/win3.png');
+		game.load.image('win4', 'assets/images/win4.png');
+		game.load.image('lose0', 'assets/images/lose0.png');
+		game.load.image('lose1', 'assets/images/lose1.png');
+		game.load.image('lose2', 'assets/images/lose2.png');
+		game.load.image('lose3', 'assets/images/lose3.png');
+		game.load.image('lose4', 'assets/images/lose4.png');
+
+		game.load.audio('score', 'assets/audio/score.wav');
+		game.load.audio('backboard', 'assets/audio/backboard.wav');
+		game.load.audio('whoosh', 'assets/audio/whoosh.wav');
+		game.load.audio('fail', 'assets/audio/fail.wav');
+		game.load.audio('spawn', 'assets/audio/spawn.wav');
+
+}
+
+var hoop,
+ 		left_rim,
+ 		right_rim,
+ 		ball,
+ 		front_rim,
+ 		current_score = 0,
+ 		current_score_text,
+ 		high_score = 0,
+ 		high_score_text,
+ 		current_best_text;
+
+var score_sound,
+		backboard,
+		whoosh,
+		fail,
+		spawn;
+
+var moveInTween,
+		fadeInTween,
+		moveOutTween,
+		fadeOutTween,
+		emoji,
+		emojiName;
+
+var collisionGroup;
+
+
+
+function create() {
+
+	game.physics.startSystem(Phaser.Physics.P2JS);
+
+	game.physics.p2.setImpactEvents(true);
+
+  game.physics.p2.restitution = 0.63;
+  game.physics.p2.gravity.y = 0;
+
+	collisionGroup = game.physics.p2.createCollisionGroup();
+
+	score_sound = game.add.audio('score');
+	backboard = game.add.audio('backboard');
+	backboard.volume = 0.5;
+	whoosh = game.add.audio('whoosh');
+	fail = game.add.audio('fail');
+	fail.volume = 0.1;
+	spawn = game.add.audio('spawn');
+
+	game.stage.backgroundColor = "#ffffff";
+
+	// high_score_text = game.add.text(450, 25, 'High Score\n' + high_score, { font: 'Arial', fontSize: '32px', fill: '#000', align: 'center' });
+	current_score_text = game.add.text(187, 312, '', { font: 'Arial', fontSize: '40px', fill: '#000', align: 'center' }); // 300, 500
+	current_best_text = game.add.text(143, 281, '', { font: 'Arial', fontSize: '20px', fill: '#000', align: 'center' });// 230, 450
+	current_best_score_text = game.add.text(187, 312, '', { font: 'Arial', fontSize: '40px', fill: '#00e6e6', align: 'center' }); // 300, 500
+
+	hoop = game.add.sprite(88, 62, 'hoop'); // 141, 100
+	left_rim = game.add.sprite(150, 184, 'side rim'); // 241, 296
+	right_rim = game.add.sprite(249, 184, 'side rim'); // 398, 296
+
+
+	game.physics.p2.enable([ left_rim, right_rim], false);
+
+	left_rim.body.setCircle(2.5);
+	left_rim.body.static = true;
+	left_rim.body.setCollisionGroup(collisionGroup);
+	left_rim.body.collides([collisionGroup]);
+
+	right_rim.body.setCircle(2.5);
+	right_rim.body.static = true;
+	right_rim.body.setCollisionGroup(collisionGroup);
+	right_rim.body.collides([collisionGroup]);
+
+	createBall();
+
+	cursors = game.input.keyboard.createCursorKeys();
+
+	game.input.onDown.add(click, this);
+	game.input.onUp.add(release, this);
+
+
+	var instructions = document.createElement("span");
+	instructions.innerHTML = "Instructions: Quickly drag the ball to shoot the ball into the hoop!";
+	document.body.appendChild(instructions);
+}
+
+function update() {
+
+	if (ball && ball.body.velocity.y > 0) {
+		front_rim = game.add.sprite(148, 182, 'front rim');
+		
+		ball.body.collides([collisionGroup], hitRim, this);
+	}
+
+	if (ball && ball.body.velocity.y > 0 && ball.body.y > 188 && !ball.isBelowHoop) {
+		ball.isBelowHoop = true;
+		ball.body.collideWorldBounds = false;
+		var rand = Math.floor(Math.random() * 5);
+		if (ball.body.x > 151 && ball.body.x < 249) {
+			emojiName = "win" + rand;
+			current_score += 2;S
+			if(Name === null || Name === '') {Name = 'guest user';} 
+			document.getElementById('score').innerHTML= current_score;
+			// db.collection('game').doc(Name).set({ score: current_score,
+				   // any other data you have
+			//    })
+			// current score can be obtained from here
+			current_score_text.text = current_score;
+			score_sound.play();
+		} else {
+			emojiName = "lose" + rand;
+			fail.play();
+			if (current_score > high_score) {
+				high_score = current_score;
+				// high_score_text.text = 'High Score\n' + high_score;
+			}
+			current_score = 0;
+			current_score_text.text = '';
+			current_best_text.text = 'Current Best';
+			current_best_score_text.text = high_score;
+			if(Name === null || Name === '') {Name = 'guest user';} 
+			document.getElementById('score').innerHTML= high_score;
+			// db.collection('game').doc(Name).set({ score: high_score,
+				   // any other data you have
+			//    })
+		}
+		emoji = game.add.sprite(180, 100, emojiName);
+		emoji.scale.setTo(0.25, 0.25);
+		moveInTween = game.add.tween(emoji).from( { y: 150 }, 500, Phaser.Easing.Elastic.Out, true);
+		fadeInTween = game.add.tween(emoji).from( { alpha: 0 }, 200, Phaser.Easing.Linear.None, true, 0, 0, false);
+		moveInTween.onComplete.add(tweenOut, this);
+	}
+
+	if (ball && ball.body.y > 1200) {
+		game.physics.p2.gravity.y = 0;
+		ball.kill();
+		createBall();
+	}
+
+}
+
+function tweenOut() {
+	moveOutTween = game.add.tween(emoji).to( { y: 50 }, 600, Phaser.Easing.Elastic.In, true);
+	moveOutTween.onComplete.add(function() { emoji.kill(); }, this);
+	setTimeout(function () {
+		fadeOutTween = game.add.tween(emoji).to( { alpha: 0 }, 300, Phaser.Easing.Linear.None, true, 0, 0, false);
+	}, 450);
+}
+
+function hitRim() {
+
+	backboard.play();
+
+}
+
+function createBall() {
+
+	var xpos;
+	if (current_score === 0) {
+		xpos = 200;
+	} else {
+		xpos = 60 + Math.random() * 280;
+	}
+	spawn.play();
+	ball = game.add.sprite(xpos, 547, 'ball');
+	game.add.tween(ball.scale).from({x : 0.7, y : 0.7}, 100, Phaser.Easing.Linear.None, true, 0, 0, false);
+	game.physics.p2.enable(ball, false);
+	ball.body.setCircle(60); // NOTE: Goes from 60 to 36
+	ball.launched = false;
+	ball.isBelowHoop = false;
+
+}
+
+var location_interval;
+var isDown = false;
+var start_location;
+var end_location;
+
+function click(pointer) {
+
+	var bodies = game.physics.p2.hitTest(pointer.position, [ ball.body ]);
+	if (bodies.length) {
+		start_location = [pointer.x, pointer.y];
+		isDown = true;
+		location_interval = setInterval(function () {
+			start_location = [pointer.x, pointer.y];
+		}.bind(this), 200);
+	}
+
+}
+
+function release(pointer) {
+
+	if (isDown) {
+		window.clearInterval(location_interval);
+		isDown = false;
+		end_location = [pointer.x, pointer.y];
+
+		if (end_location[1] < start_location[1]) {
+			var slope = [end_location[0] - start_location[0], end_location[1] - start_location[1]];
+			var x_traj = -2300 * slope[0] / slope[1];
+			launch(x_traj);
+		}
+	}
+
+}
+
+function launch(x_traj) {
+
+	if (ball.launched === false) {
+		ball.body.setCircle(36);
+		ball.body.setCollisionGroup(collisionGroup);
+		current_best_text.text = '';
+		current_best_score_text.text = '';
+		ball.launched = true;
+		game.physics.p2.gravity.y = 3000;
+		game.add.tween(ball.scale).to({x : 0.6, y : 0.6}, 500, Phaser.Easing.Linear.None, true, 0, 0, false);
+		ball.body.velocity.x = x_traj;
+		ball.body.velocity.y = -1750;
+		ball.body.rotateRight(x_traj / 3);
+		whoosh.play();
+	}
+
+}
+
+
+
+</script>
+
+<script>
+	var game2 = new Phaser.Game(400, 625, Phaser.CANVAS, 'player2', { preload: preload2, create: create2, update: update2 });
+
+
+function preload2() {
+
+game2.load.image('ball', 'assets/images/ball.png');
+game2.load.image('hoop', 'assets/images/hoop.png');
+	game2.load.image('side rim', 'assets/images/side_rim.png');
+	game2.load.image('front rim', 'assets/images/front_rim.png');
+
+	game2.load.image('win0', 'assets/images/win0.png');
+	game2.load.image('win1', 'assets/images/win1.png');
+	game2.load.image('win2', 'assets/images/win2.png');
+	game2.load.image('win3', 'assets/images/win3.png');
+	game2.load.image('win4', 'assets/images/win4.png');
+	game2.load.image('lose0', 'assets/images/lose0.png');
+	game2.load.image('lose1', 'assets/images/lose1.png');
+	game2.load.image('lose2', 'assets/images/lose2.png');
+	game2.load.image('lose3', 'assets/images/lose3.png');
+	game2.load.image('lose4', 'assets/images/lose4.png');
+
+	game2.load.audio('score', 'assets/audio/score.wav');
+	game2.load.audio('backboard', 'assets/audio/backboard.wav');
+	game2.load.audio('whoosh', 'assets/audio/whoosh.wav');
+	game2.load.audio('fail', 'assets/audio/fail.wav');
+	game2.load.audio('spawn', 'assets/audio/spawn.wav');
+
+}
+
+var hoop,
+	 left_rim,
+	 right_rim,
+	 ball,
+	 front_rim,
+	 current_score = 0,
+	 current_score_text,
+	 high_score = 0,
+	 high_score_text,
+	 current_best_text;
+
+var score_sound,
+	backboard,
+	whoosh,
+	fail,
+	spawn;
+
+var moveInTween,
+	fadeInTween,
+	moveOutTween,
+	fadeOutTween,
+	emoji,
+	emojiName;
+
+var collisionGroup;
+
+
+
+function create2() {
+
+game2.physics.startSystem(Phaser.Physics.P2JS);
+
+game2.physics.p2.setImpactEvents(true);
+
+game2.physics.p2.restitution = 0.63;
+game2.physics.p2.gravity.y = 0;
+
+collisionGroup = game2.physics.p2.createCollisionGroup();
+
+score_sound = game2.add.audio('score');
+backboard = game2.add.audio('backboard');
+backboard.volume = 0.5;
+whoosh = game2.add.audio('whoosh');
+fail = game2.add.audio('fail');
+fail.volume = 0.1;
+spawn = game2.add.audio('spawn');
+
+game2.stage.backgroundColor = "#ffffff";
+
+// high_score_text = game2.add.text(450, 25, 'High Score\n' + high_score, { font: 'Arial', fontSize: '32px', fill: '#000', align: 'center' });
+current_score_text = game2.add.text(187, 312, '', { font: 'Arial', fontSize: '40px', fill: '#000', align: 'center' }); // 300, 500
+current_best_text = game2.add.text(143, 281, '', { font: 'Arial', fontSize: '20px', fill: '#000', align: 'center' });// 230, 450
+current_best_score_text = game2.add.text(187, 312, '', { font: 'Arial', fontSize: '40px', fill: '#00e6e6', align: 'center' }); // 300, 500
+
+hoop = game2.add.sprite(88, 62, 'hoop'); // 141, 100
+left_rim = game2.add.sprite(150, 184, 'side rim'); // 241, 296
+right_rim = game2.add.sprite(249, 184, 'side rim'); // 398, 296
+
+
+game2.physics.p2.enable([ left_rim, right_rim], false);
+
+left_rim.body.setCircle(2.5);
+left_rim.body.static = true;
+left_rim.body.setCollisionGroup(collisionGroup);
+left_rim.body.collides([collisionGroup]);
+
+right_rim.body.setCircle(2.5);
+right_rim.body.static = true;
+right_rim.body.setCollisionGroup(collisionGroup);
+right_rim.body.collides([collisionGroup]);
+
+createBall2();
+
+cursors = game2.input.keyboard.createCursorKeys();
+
+game2.input.onDown.add(click2, this);
+game2.input.onUp.add(release2, this);
+
+
+var instructions = document.createElement("span");
+instructions.innerHTML = "Instructions: Quickly drag the ball to shoot the ball into the hoop!";
+document.body.appendChild(instructions);
+}
+
+function update2() {
+
+if (ball && ball.body.velocity.y > 0) {
+	front_rim = game2.add.sprite(148, 182, 'front rim');
+	
+	ball.body.collides([collisionGroup], hitRim, this);
+}
+
+if (ball && ball.body.velocity.y > 0 && ball.body.y > 188 && !ball.isBelowHoop) {
+	ball.isBelowHoop = true;
+	ball.body.collideWorldBounds = false;
+	var rand = Math.floor(Math.random() * 5);
+	if (ball.body.x > 151 && ball.body.x < 249) {
+		emojiName = "win" + rand;
+		current_score += 2;
+		if(Name === null || Name === '') {Name = 'guest user';} 
+		document.getElementById('score').innerHTML= current_score;
+		// db.collection('game').doc(Name).set({ score: current_score,
+			   // any other data you have
+		//    })
+		// current score can be obtained from here
+		current_score_text.text = current_score;
+		score_sound.play();
+	} else {
+		emojiName = "lose" + rand;
+		fail.play();
+		if (current_score > high_score) {
+			high_score = current_score;
+			// high_score_text.text = 'High Score\n' + high_score;
+		}
+		current_score = 0;
+		current_score_text.text = '';
+		current_best_text.text = 'Current Best';
+		current_best_score_text.text = high_score;
+		if(Name === null || Name === '') {Name = 'guest user';} 
+		document.getElementById('score').innerHTML= high_score;
+		// db.collection('game2').doc(Name).set({ score: high_score,
+			   // any other data you have
+		//    })
+	}
+	emoji = game2.add.sprite(180, 100, emojiName);
+	emoji.scale.setTo(0.25, 0.25);
+	moveInTween = game2.add.tween(emoji).from( { y: 150 }, 500, Phaser.Easing.Elastic.Out, true);
+	fadeInTween = game2.add.tween(emoji).from( { alpha: 0 }, 200, Phaser.Easing.Linear.None, true, 0, 0, false);
+	moveInTween.onComplete.add(tweenOut, this);
+}
+
+if (ball && ball.body.y > 1200) {
+	game2.physics.p2.gravity.y = 0;
+	ball.kill();
+	createBall2();
+}
+
+}
+
+function tweenOut() {
+moveOutTween = game2.add.tween(emoji).to( { y: 50 }, 600, Phaser.Easing.Elastic.In, true);
+moveOutTween.onComplete.add(function() { emoji.kill(); }, this);
+setTimeout(function () {
+	fadeOutTween = game2.add.tween(emoji).to( { alpha: 0 }, 300, Phaser.Easing.Linear.None, true, 0, 0, false);
+}, 450);
+}
+
+function hitRim() {
+
+backboard.play();
+
+}
+
+function createBal2() {
+
+var xpos;
+if (current_score === 0) {
+	xpos = 200;
+} else {
+	xpos = 60 + Math.random() * 280;
+}
+spawn.play();
+ball = game2.add.sprite(xpos, 547, 'ball');
+game2.add.tween(ball.scale).from({x : 0.7, y : 0.7}, 100, Phaser.Easing.Linear.None, true, 0, 0, false);
+game2.physics.p2.enable(ball, false);
+ball.body.setCircle(60); // NOTE: Goes from 60 to 36
+ball.launched = false;
+ball.isBelowHoop = false;
+
+}
+
+var location_interval;
+var isDown = false;
+var start_location;
+var end_location;
+
+function click2(pointer) {
+
+var bodies = game2.physics.p2.hitTest(pointer.position, [ ball.body ]);
+if (bodies.length) {
+	start_location = [pointer.x, pointer.y];
+	isDown = true;
+	location_interval = setInterval(function () {
+		start_location = [pointer.x, pointer.y];
+	}.bind(this), 200);
+}
+
+}
+
+function release2(pointer) {
+
+if (isDown) {
+	window.clearInterval(location_interval);
+	isDown = false;
+	end_location = [pointer.x, pointer.y];
+
+	if (end_location[1] < start_location[1]) {
+		var slope = [end_location[0] - start_location[0], end_location[1] - start_location[1]];
+		var x_traj = -2300 * slope[0] / slope[1];
+		launch2(x_traj);
+	}
+}
+
+}
+
+function launch2(x_traj) {
+
+if (ball.launched === false) {
+	ball.body.setCircle(36);
+	ball.body.setCollisionGroup(collisionGroup);
+	current_best_text.text = '';
+	current_best_score_text.text = '';
+	ball.launched = true;
+	game2.physics.p2.gravity.y = 3000;
+	game2.add.tween(ball.scale).to({x : 0.6, y : 0.6}, 500, Phaser.Easing.Linear.None, true, 0, 0, false);
+	ball.body.velocity.x = x_traj;
+	ball.body.velocity.y = -1750;
+	ball.body.rotateRight(x_traj / 3);
+	whoosh.play();
+}
+
+}
+</script>
+
+
+</body>
+</html>

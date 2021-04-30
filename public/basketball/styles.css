@@ -1,0 +1,582 @@
+@font-face {
+  font-family: SquareDotMatrix;
+  src: url(square_dot_matrix/Square-Dot-Matrix.ttf);
+  /* src: url(fonts/hulustyle-extrabold-webfont.ttf); */
+}
+@font-face {
+  font-family: HuluStyleregulr;
+  src: url(square_dot_matrix/hulustyle-regular-webfont.ttf);
+  /* src: url(fonts/hulustyle-extrabold-webfont.ttf); */
+}
+@font-face {
+  font-family: HuluStyle;
+  src: url("fonts/hulustyle-extrabold-webfont.ttf");
+}
+@font-face {
+  font-family: HuluStyle-reguler;
+  src: url("fonts/hulustyle-regular-webfont.ttf");
+}
+@font-face {
+  font-family: HuluStyle-ExtraBold;
+  src: url("fonts/hulustyle-extrabold-webfont.ttf");
+}
+/*sumair */
+@font-face {
+  font-family: Graphik;
+  src: url("fonts/Graphik.ttc");
+}
+@font-face {
+  font-family: hulustyle-bold;
+  src: url("fonts/hulustyle-bold-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-extrabold;
+  src: url("fonts/hulustyle-extrabold-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-extralight;
+  src: url("fonts/hulustyle-extralight-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-heavy;
+  src: url("fonts/hulustyle-heavy-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-light;
+  src: url("fonts/hulustyle-light-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-medium;
+  src: url("fonts/hulustyle-medium-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-regular;
+  src: url("fonts/hulustyle-regular-webfont.ttf");
+}
+
+@media only screen and (min-width: 600px) and (max-width: 892px) {
+  .screen-rotator {
+    display: none !important;
+  }
+
+  /* .screen-rotator {
+    display: block !important;
+  } */
+  .display-game-start-for-landscape {
+    /*background-color: green !important;*/
+    /*width: 100% !important;*/
+    /*color: #43f979;*/
+    /*border: 3px solid !important;*/
+    /*padding: 15px !important;*/
+    /*text-align: center;*/
+    display: block !important;
+    background-color: white;
+    color: black;
+    border: 0px solid black;
+    border-radius: 5px;
+    width: 50%;
+    padding: 13px;
+    margin-top: 20px;
+  }
+  .game-Challenge-model {
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+  }
+  .MuiBox-root-35 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .makeStyles-gameIframe-12 {
+    height: 0;
+  }
+  .modal {
+    padding-top: 0% !important;
+  }
+  .rookie-challenge-title {
+    font-size: 17px;
+  }
+  .hide-on-landscape {
+    display: block;
+  }
+}
+.blocker-screen-rotator {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+  background: linear-gradient(green, #43f979), url("#") !important;
+}
+
+@media screen and (max-width: 600px) {
+  /*.scorecard {*/
+  /*  background: linear-gradient(green, #43f979), url("#") !important;*/
+  /*}*/
+  .scorecard-content {
+    padding: 50px 10px !important;
+  }
+  .score-board-outer-container {
+    width: 0px !important;
+  }
+  .score-board-inner-container {
+    display: block;
+  }
+  .score-card-download-btn-for-mbl {
+    display: block !important;
+  }
+  .hide-on-mbl {
+    display: block !important;
+  }
+  .show-on-mbl {
+    display: block !important;
+  }
+  .game-over-for-desktop {
+    display: none;
+  }
+  .game-over-for-mbl {
+    display: block !important;
+    margin-top: -35px;
+    margin: auto;
+    margin-top: -35px;
+    text-align: center;
+  }
+  /*.scorecard-overlay-image {*/
+  /*  !* position: relative; *!*/
+  /*  top: 22.9% !important;*/
+  /*  right: 12% !important;*/
+  /*  left: 230px !important;*/
+  /*}*/
+  /*.scorecard-overlay-jersey-image {*/
+  /*  !* position: relative; *!*/
+  /*  top: 24.5% !important;*/
+  /*  right: 14% !important;*/
+  /*  left: 215px !important;*/
+  /*  z-index: 0 !important;*/
+  /*  transform: rotate(15deg);*/
+  /*}*/
+  .scorecard-download-btn-for-mbl {
+    color: #43f979;
+  }
+  .discount-description-for-mbl {
+    padding-top: 15px;
+  }
+  .quit-for-mbl {
+    border: 3px solid black !important;
+    display: block;
+    width: 80% !important;
+    margin: auto;
+    background: transparent !important;
+    padding: 10px !important;
+  }
+  .reply-for-mbl {
+    border: 3px solid #43f979 !important;
+    background-color: black !important;
+    display: block;
+    width: 80% !important;
+    margin: auto;
+    padding: 10px !important;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: white;
+  }
+  .score-board-image-for-mbl {
+    height: 230px;
+    width: 250px;
+    display: block !important;
+    margin: auto;
+    background: url("./images/scorecardbg.png");
+  }
+  .player-score-for-desktop {
+    display: block;
+  }
+
+  .screen-rotator {
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+    /*background: linear-gradient(green, #43f979), url("#") !important;*/
+    background-color: black;
+  }
+
+  .screen-rotator-start-game-btn {
+    margin-top: 60px;
+  }
+  .start-game-button {
+    display: block !important;
+    margin-top: 60px;
+    padding: 15px;
+    /*background-color: #278348;*/
+    /*border: 3px solid #30a858;*/
+    color: #4A4A4A;
+    -webkit-text-fill-color: #4A4A4A;
+    font-size: 15px;
+    font-family: Graphik;
+    font-weight: bold;
+    border-radius: 5px;
+    width: 90%;
+  }
+  #startButton {
+    display: block;
+  }
+  .gameDescription {
+    color: #fff !important;
+    /* background: linear-gradient(green, #43f979), url("#") !important; */
+    border: 0px !important;
+  }
+  .game-description-for-desktop {
+    display: block !important;
+  }
+  .game-description-for-mbl {
+    display: block !important;
+  }
+  .gameDescription-content {
+    /* background-color: block !important; */
+    /* color: white; */
+    margin: 15px auto !important;
+    padding: 15px !important;
+    /* border: 5px solid #43f979 !important; */
+    width: 90% !important;
+  }
+  .game-description-reward {
+    display: block !important;
+  }
+  .beginner-challenge-reward-para {
+    display: block !important;
+  }
+  .beginner-challenge-mbl {
+    display: block !important;
+  }
+
+  .got-it-btn-block {
+    display: block !important;
+    width: 100% !important;
+    background-color: #fff !important;
+    height: 50px !important;
+  }
+
+  .got-it-btn-desktop {
+    display: block !important;
+  }
+  .got-it-mbl-only-btn {
+    display: none;
+    background-color: #43f979;
+
+    border-radius: 0px;
+    width: 90% !important;
+    margin: auto;
+    padding: 15px !important;
+    color: black !important;
+  }
+  /* select player name */
+  .steps-for-mbl,
+  .select-player-name-for-desktop,
+  .select-your-challenger-for-mbl {
+    color: #fff !important;
+    padding-top: 10px !important;
+  }
+  .select-name-for-mbl {
+    margin-top: -5px !important;
+  }
+
+  /* .selectName {
+    background: linear-gradient(green, #43f979), url("#") !important;*/
+  /* background-image: url("#") !important;
+  } */
+  .selectName-content {
+    width: 90% !important;
+    margin: auto !important;
+  }
+  .randomizedName {
+    margin-bottom: 10px !important;
+    border: 5px solid #43f979 !important;
+  }
+
+  /*.selectJersey {*/
+  /*  background: linear-gradient(green, #43f979), url("#") !important;*/
+  /*}*/
+  .select-your-jersey-for-mbl {
+    color: #fff !important;
+  }
+  .selectJersey-content {
+    width: 100vw !important;
+    margin: auto !important;
+  }
+  .jerseyOptions {
+    /* width: 40% !important;
+    height: 200px !important; */
+    margin: 0px 28px;
+    border: 5px solid #43f979;
+  }
+  .jersey {
+    height: 155px !important;
+    width: 90px !important;
+    margin-top: 0px !important;
+  }
+  /*.selectChallenger {*/
+  /*  background: linear-gradient(green, #43f979), url("#") !important;*/
+  /*}*/
+  .challengerOptions {
+    width: 43% !important;
+    /* height: 200px !important; */
+    margin: 0px 12px;
+
+    border: 5px solid #43f979;
+  }
+  .challenger-2 {
+    /* margin-top: 29px !important; */
+    /* height: 125px;   */
+    padding-top: 30px;
+  }
+  .rotate-screen-to-show-scorecard {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    /* background-color: rgb(0, 255, 150); Fallback color (ayyaz has commented this line) */
+    background: linear-gradient(green, #43f979), url("#") !important;
+  }
+}
+
+@media screen and (max-width: 2560px) {
+  .player-title {
+    padding-top: 12px;
+    padding-bottom: 8px;
+  }
+  .hide-scroll {
+    height: 70vh;
+  }
+  .player-name {
+    padding-top: 10px;
+    padding-bottom: 12px;
+    /* font-size: 55px; */
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 35px;
+  }
+  i.fa-user {
+    font-size: 200px;
+    /* font-size: 80px; */
+  }
+
+  .score-board {
+    padding: 25px 30px;
+  }
+
+  .score-heading {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .jersey-outer {
+    height: 35%;
+  }
+  .jersey {
+    /* width: 200px;
+    height: 320px;
+    padding-top: 50px; */
+    /* my changes */
+    /*width: 130px;*/
+    /*height: 200px;*/
+    padding-top: 25px;
+  }
+  .jersey-2 {
+    padding-top: 60px !important;
+  }
+
+  .score {
+    font-size: 60px;
+    font-weight: 600;
+    font-family: SquareDotMatrix !important;
+    padding: 10px;
+    background-color: black;
+    color: #43f979;
+    border: 2px solid #43f979;
+    border-radius: 0;
+  }
+  .score-board-outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    background: url("./images/scorecardbg.png") no-repeat;
+    position: relative;
+  }
+  .score-board-inner-container {
+    position: relative;
+    left: 0px;
+    width: 380px;
+    height: 380px;
+    background-color: black;
+    border: 4px solid #fff;
+  }
+
+  .player1-score,
+  .player2-score {
+    font-family: SquareDotMatrix;
+    color: #43f979;
+  }
+  .time-inner {
+    font-size: 60px;
+    font-weight: 600;
+    font-family: SquareDotMatrix;
+    padding: 5px 15px;
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
+    color: #43f979;
+    /* border: 2px solid greenyellow; */
+    border-radius: 0;
+    width: 50%;
+  }
+  .time-outer {
+    top: 0;
+    left: 82%;
+    z-index: 0;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 1920px) {
+  .score-board-outer-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    background: url("./images/scorecardbg.png") no-repeat;
+    position: relative;
+  }
+  .score-board-inner-container {
+    position: relative;
+    left: 0px;
+    width: 400px;
+    height: 400px;
+    background-color: black;
+    border: 4px solid #fff;
+  }
+}
+@media only screen and (max-width: 1440px) {
+  .player-name {
+    padding-top: 10px;
+    font-size: 20px;
+    line-height: 26px;
+  }
+  i.fa-user {
+    font-size: 120px;
+  }
+  .player1-name-and-icon {
+    height: 50px;
+  }
+  .jersey-outer {
+    height: 38%;
+  }
+  .jersey {
+    height: 195px;
+    width: 145px;
+  }
+  .jersey-2 {
+    padding-top: 60px !important;
+  }
+  .time-outer {
+    left: 74%;
+  }
+  .time-inner {
+    width: 53%;
+  }
+}
+
+/* @media only screen and (max-width: 600px) {
+  .player-name {
+    padding-top: 10px;
+    font-size: 10px;
+    line-height: 10px;
+  }
+  i.fa-user {
+    font-size: 50px;
+  }
+  .jersey-outer {
+    height: 10%;
+  }
+  .jersey {
+    height: 80px;
+    width: 70px;
+  }
+  .time-outer {
+    left: 30%;
+  }
+  .time-inner {
+    width: 49%;
+    font-size: 30px;
+  }
+  .modal-content {
+    padding: 12px;
+    margin: auto;
+    width: 84%;
+  }
+  .score-board {
+    padding: 5px 10px;
+  }
+  .score-heading {
+    font-size: 9px;
+    font-weight: 100;
+  }
+} */
+
+@media (max-width: 600px) {
+  .player-name {
+    padding-top: 5px;
+    font-size: 10px;
+    line-height: 10px;
+  }
+  i.fa-user {
+    font-size: 20px;
+  }
+  .player1-name-and-icon {
+    height: 50px;
+  }
+  .jersey-outer {
+    height: 5%;
+  }
+  .jersey {
+    height: 80px;
+    width: 50px;
+    margin-top: 70px;
+  }
+  .jersey-2 {
+    padding-top: 60px !important;
+  }
+  .time-outer {
+    left: 30%;
+  }
+  .time-inner {
+    width: 49%;
+    font-size: 30px;
+  }
+  .modal-content {
+    padding: 6px;
+    margin: auto;
+    width: 84%;
+  }
+  .score {
+    font-size: 30px;
+    padding: 5px;
+  }
+
+  .score-board {
+    padding: 2px 5px;
+  }
+  .score-heading {
+    font-size: 7px;
+    font-weight: 100;
+  }
+}

@@ -1,0 +1,1146 @@
+@font-face {
+  font-family: Graphik;
+  src: url(/basketball/fonts/Graphik.ttc);
+  /* src: url(fonts/hulustyle-extrabold-webfont.ttf); */
+}
+@font-face {
+  font-family: HuluExtraBold;
+  src: url(/basketball/fonts/hulustyle-extrabold-webfont.ttf);
+  /* src: url(fonts/hulustyle-extrabold-webfont.ttf); */
+}
+@font-face {
+  font-family: HuluMedium;
+  src: url(/basketball/fonts/hulustyle-medium-webfont.ttf);
+  /* src: url(fonts/hulustyle-extrabold-webfont.ttf); */
+}
+@font-face {
+  font-family: HuluExtraRegular;
+  src: url(/basketball/fonts/hulustyle-regular-webfont.ttf);
+  /* src: url(fonts/hulustyle-extrabold-webfont.ttf); */
+}
+@font-face {
+  font-family: HuluHeavy;
+  src: url(/basketball/fonts/hulustyle-heavy-webfont.ttf);
+}
+
+/*sumair */
+@font-face {
+  font-family: Graphik;
+  src: url("/basketball/fonts/Graphik.ttc");
+}
+@font-face {
+  font-family: hulustyle-bold;
+  src: url("/basketball/fonts/hulustyle-bold-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-extrabold;
+  src: url("/basketball/fonts/hulustyle-extrabold-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-extralight;
+  src: url("/basketball/fonts/hulustyle-extralight-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-heavy;
+  src: url("/basketball/fonts/hulustyle-heavy-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-light;
+  src: url("/basketball/fonts/hulustyle-light-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-medium;
+  src: url("/basketball/fonts/hulustyle-medium-webfont.ttf");
+}
+@font-face {
+  font-family: hulustyle-regular;
+  src: url("/basketball/fonts/hulustyle-regular-webfont.ttf");
+}
+
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.navList li div span {
+  font-family: hulustyle-extrabold;
+}
+.games-btn-content {
+  display: flex;
+  position: absolute;
+  bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 30px;
+}
+/* @media screen and (min-width: 320px) and (max-width: 980px) and (orientation: portrait) {
+} */
+/*.live-tv-btn{*/
+/*  height: 44px;*/
+/*  margin: 5px;*/
+/*  padding: 0 15px;*/
+/*}*/
+.live-tv-btn {
+  height: 44px !important;
+  margin: 5px !important;
+  padding: 0 22px !important;
+  color: #151515 !important;
+  background-color: white !important;
+  border: solid 1px white !important;
+  font-size: 10px !important;
+}
+.purchase-btn {
+  height: 44px !important;
+  margin: 5px !important;
+  padding: 0 18px !important;
+  color: white !important;
+  border: solid 1px white !important;
+  font-size: 10px !important;
+}
+.header-image-right {
+  right: 415px;
+}
+body#main-body.gameCanvasBody {
+  background-color: #000000 !important;
+}
+body#main-body.gameCanvasBodyBlocker {
+  background-color: #000000 !important;
+}
+body#main-body.discountDescriptionBody {
+  background-color: #000000 !important;
+}
+body#main-body.discountDescriptionBodyBlocker {
+  background-color: #000000 !important;
+}
+.floating-got-it-btn {
+  display: none;
+}
+@media screen and (min-width: 320px) and (max-width: 980px) and (orientation: landscape) {
+  #main-body .nabar-top,
+  #main-body #musicPlayerFooter {
+    display: none !important;
+  }
+
+  #main-body #iframe-outer {
+    margin-top: 0 !important;
+  }
+
+  .gameCanvasBodyBlocker .nabar-top,
+  #main-body.gameCanvasBodyBlocker #musicPlayerFooter {
+    display: none !important;
+  }
+  #main-body.gameCanvasBodyBlocker #iframe-outer {
+    margin-top: 0 !important;
+  }
+
+  .discountDescriptionBodyBlocker .nabar-top,
+  #main-body.discountDescriptionBodyBlocker #musicPlayerFooter {
+    display: none !important;
+  }
+  #main-body.discountDescriptionBodyBlocker #iframe-outer {
+    margin-top: 0 !important;
+  }
+
+  .scorecardBodyBlocker .nabar-top,
+  #main-body.scorecardBodyBlocker #musicPlayerFooter {
+    display: none !important;
+  }
+  #main-body.scorecardBodyBlocker #iframe-outer {
+    margin-top: 0 !important;
+  }
+
+  .gameCanvasBody .nabar-top,
+  #main-body.gameCanvasBody #musicPlayerFooter {
+    display: none !important;
+  }
+  #main-body.gameCanvasBody #iframe-outer {
+    margin-top: 0 !important;
+  }
+
+  .discountDescriptionBody .nabar-top,
+  #main-body.discountDescriptionBody #musicPlayerFooter {
+    display: none !important;
+  }
+  #main-body.discountDescriptionBody #iframe-outer {
+    margin-top: 0 !important;
+  }
+
+  .scorecardBody .nabar-top,
+  #main-body.scorecardBody #musicPlayerFooter {
+    display: none !important;
+  }
+  #main-body.scorecardBody #iframe-outer {
+    margin-top: 0 !important;
+  }
+}
+/* .gameCanvasBodyBlocker .nabar-top {
+  display: none !important;
+} */
+
+/*Score card*/
+
+#wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+text {
+  text-transform: uppercase;
+  font-weight: lighter;
+}
+/*fonts*/
+.carousel-marquee-text-font-family {
+  font-family: HuluHeavy !important;
+  font-size: 30px;
+}
+.button-text-font-family {
+  font-family: Graphik !important;
+  font-weight: 600 !important;
+}
+
+.player-appbar-song-title {
+  font-family: HuluExtraBold !important;
+  padding-left: 15px !important;
+}
+.player-appbar-song-description {
+  font-family: HuluExtraRegular !important;
+  padding-left: 15px !important;
+}
+.menu-right-text {
+  width: 20%;
+  text-align: center;
+  margin-left: auto !important;
+  font-size: 5px !important;
+  font-family: Graphik !important;
+}
+.hide-volume-slider {
+  display: none;
+}
+.show-volume-slider {
+  display: flex;
+}
+p.arcade {
+  font-size: 25px;
+  font-weight: 700;
+  font-family: hulustyle-bold !important;
+  margin-top: 5px;
+}
+/* input[type="range"]::-webkit-slider-thumb {
+  height: 28px;
+  width: 28px;
+  border: 0;
+  background: #fff;
+  border: 1px solid #777;
+  border-radius: 10px;
+  box-shadow: 0 0 1px 0px rgba(0, 0, 0, 0.1);
+  -webkit-appearance: none;
+} */
+
+input[type="range"] {
+  margin: auto;
+  outline: none;
+  padding: 0;
+  width: 640px;
+  height: 4px;
+  background-color: #dedede;
+  background-image: -webkit-gradient(
+    linear,
+    50% 0%,
+    50% 100%,
+    color-stop(0%, #1ce783),
+    color-stop(100%, #1ce783)
+  );
+  /* background-size: 50% 100%; */
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+.MuiTypography-body2 {
+  font-family: hulustyle-extrabold !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+}
+/* #main-body {
+  background-image: url(../media/background.png);
+} */
+/* .iframeGame {
+} */
+
+input[type="range"]::-slider-thumb {
+  background: #1ce783;
+  height: 2%;
+  width: 2%;
+  border-radius: 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background: #1ce783;
+  height: 2%;
+  width: 2%;
+  border-radius: 10px;
+}
+#main-header {
+  transition: height 1s, width 1s, padding 1s, visibility 1s,
+    opacity 0.5s ease-in-out;
+  -webkit-animation: fadeOut 1s;
+  animation: fadeOut 1s;
+}
+/* for all */
+/* games buttons */
+.games-btn-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  /* padding-bottom: 100px; */
+}
+.games-btn-content {
+  display: flex;
+}
+.games-img-btn {
+  height: 100px;
+  width: 100% !important;
+}
+/*SMALL HEADER*/
+.MuiIconButton-root {
+  padding: 4px;
+}
+/*end  games buttons */
+
+.logo-image {
+  height: auto;
+  width: 45%;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 50px;
+  background-color: #1ce783;
+  border-top: 1px solid grey;
+  height: 30px;
+  margin: auto;
+  width: 100%;
+  color: #4a4a4a;
+  font-family: HuluStyle-ExtraBold !important;
+  z-index: 999;
+}
+.footer h4 {
+  margin-right: 30px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 0px !important;
+}
+.makeStyles-subtitle-9 {
+  max-width: 184px;
+  text-align: center;
+  position: fixed;
+  right: 0;
+  font-size: 5px !important;
+  margin-right: 28px !important;
+}
+
+.player-appbar-song-title {
+  margin-left: 15px;
+}
+/* end of all */
+/* @media screen and (min-width: 2560px) and (max-width: 4096px) */
+
+/*@media only screen and (max-width: 4096px) and (min-width: 2560px) {*/
+/*  .games-btn-container {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    width: 100%;*/
+/*  }*/
+/*  .games-btn-content {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*  }*/
+/*  .games-img-btn {*/
+/*    height: 250px;*/
+/*    width: 850px !important;*/
+/*  }*/
+/*  .nabar-top {*/
+/*    display: flex;*/
+/*    height: 10%;*/
+/*  }*/
+/*  .logo-image {*/
+/*    width: 50%;*/
+/*    height: 25%;*/
+/*  }*/
+/*  .header-image-right {*/
+/*    !* position: absolute !important;*/
+/*    top: -10% !important;*/
+/*    right: 35% !important;*/
+/*    height: 85% !important;*/
+/*    margin-top: 2% !important; *!*/
+/*    position: absolute !important;*/
+/*    top: -41% !important;*/
+/*    right: 26% !important;*/
+/*    height: 85% !important;*/
+/*    margin-top: 2% !important;*/
+/*  }*/
+/*  .purchase-btn {*/
+/*    !* height: 50% !important;*/
+/*    width: 30%;*/
+/*    font-size: 45px !important;*/
+/*    margin-top: 5% !important;*/
+/*    margin-right: 2% !important;*/
+/*    padding: 55px !important;*/
+/*    border: 5px solid white !important; *!*/
+/*    height: 35% !important;*/
+/*    width: 25%;*/
+/*    font-size: 35px !important;*/
+/*    margin-top: 0% !important;*/
+/*    margin-right: 2% !important;*/
+/*    padding: 52px !important;*/
+/*    border: 5px solid white !important;*/
+/*  }*/
+/*  .live-tv-btn {*/
+/*    !* width: 35% !important;*/
+/*    height: 50% !important;*/
+/*    font-size: 45px !important;*/
+/*    margin-top: 5% !important;*/
+/*    padding: 35px !important; *!*/
+/*    width: 25% !important;*/
+/*    height: 24% !important;*/
+/*    font-size: 32px !important;*/
+/*    margin-top: 0% !important;*/
+/*    padding: 60px 25px !important;*/
+/*  }*/
+/*  .menu-right-text {*/
+/*    font-size: 40px !important;*/
+/*  }*/
+/*  .live-tv-btn:hover {*/
+/*    background-color: #1CE783 !important;*/
+/*  }*/
+/*  .purchase-btn:hover {*/
+/*    border: 1px solid #1CE783;*/
+/*    color: #1CE783;*/
+/*  }*/
+/*  .music-player-div {*/
+/*    height: 10%;*/
+/*  }*/
+/*  .player-appbar-song-title {*/
+/*    font-size: 75px !important;*/
+/*  }*/
+/*  .player-appbar-song-description {*/
+/*    font-size: 60px !important;*/
+/*  }*/
+/*  .player-icon-size {*/
+/*    font-size: 115px !important;*/
+/*  }*/
+/*  .player-prev-next-icon-size {*/
+/*    width: 1em !important;*/
+/*    height: 1em !important;*/
+/*    font-size: 115px !important;*/
+/*  }*/
+/*  .footer {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    position: fixed;*/
+/*    bottom: 210px;*/
+/*    background-color: #1CE783;*/
+/*    border-top: 1px solid grey;*/
+/*    height: 100px;*/
+/*    margin: auto;*/
+/*    width: 100%;*/
+/*    color: black;*/
+/*  }*/
+/*  .footer h4 {*/
+/*    margin-right: 100px;*/
+/*    font-size: 40px;*/
+/*    font-weight: bold;*/
+/*  }*/
+/*}*/
+
+.minimize-maximize-btn {
+  display: none;
+}
+.hide-it {
+  display: none !important;
+}
+
+/*.button-text-font-family {*/
+/*  font-family: Graphik !important;*/
+/*}*/
+.live-tv-btn:hover {
+  background-color: #1ce783 !important;
+  border: 1px solid #1ce783 !important;
+}
+.purchase-btn:hover {
+  border: 1px solid #1ce783 !important;
+  color: #1ce783 !important;
+}
+/* .purchase-btn:hover a {
+  color: #1ce783 !important;
+} */
+
+.headerTop {
+  display: flex;
+  padding: 15px;
+}
+.menu-btn {
+  display: none;
+  flex: 2;
+}
+.closeBtn {
+  color: white;
+  position: absolute;
+  right: 14px;
+}
+
+.navList {
+  color: white;
+  padding: 20px !important;
+  font-size: 20px;
+}
+.menu-drawer {
+  background-color: black;
+  height: 100vh;
+}
+.drawerImage {
+  width: 80%;
+  height: 200px;
+  background-color: grey;
+  margin: 20px auto;
+}
+.iframeGame {
+  height: 80vh;
+  width: 100vw;
+  border-radius: 0;
+  border: none;
+}
+.start-free-trial-btn {
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.shop-collaboration a {
+  font-size: 13px;
+  text-align: center;
+}
+@media screen and (max-width: 400px) {
+  .shop-collaboration a {
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 4096px) {
+  .iframeGame {
+    height: 100vh;
+  }
+  .games-btn-content {
+    display: flex;
+    position: absolute;
+    bottom: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 30px;
+  }
+}
+@media (min-width: 1920px) {
+  .MuiContainer-maxWidthXl {
+    max-width: 100% !important;
+  }
+  p.game-description-paragraph {
+    font-size: 90px !important;
+  }
+}
+@media screen and (max-width: 3840px) {
+  .main-body #iframe-outer {
+    margin-top: 179px !important;
+  }
+  .menu-right-text {
+    width: 10%;
+  }
+  .btn-img {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+  }
+  .btn-img-2 {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    background: transparent;
+  }
+  /*.MuiBox-root-49 {*/
+  /*  margin-top: 108px !important;*/
+  /*}*/
+  .makeStyles-gameIframe-14 {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 2560px) {
+  .main-body #iframe-outer {
+    margin-top: 135px !important;
+  }
+  .games-btn-content {
+    display: flex;
+    position: absolute;
+    bottom: 80px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 30px;
+  }
+  .btn-img {
+    padding: 0px;
+    margin-right: 20px;
+  }
+  .menu-right-text {
+    width: 15%;
+    text-align: center;
+    margin-left: auto !important;
+    font-size: 5px !important;
+    font-family: Graphik !important;
+  }
+}
+@media screen and (max-width: 1920px) {
+  .main-body #iframe-outer {
+    margin-top: 122px !important;
+  }
+  .menu-right-text {
+    width: 20%;
+  }
+  .games-btn-content {
+    bottom: 60px;
+  }
+}
+@media (max-width: 1680px) {
+  .menu-right-text {
+    width: 22%;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .menu-right-text {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 1463px) {
+  .menu-right-text {
+    width: 27%;
+  }
+}
+
+@media screen and (max-width: 1680px) {
+  .MuiBox-root-49 {
+    margin-top: 170px;
+  }
+  /*.iframeGame {*/
+  /*    height: 78vh;*/
+  /*}*/
+}
+
+@media screen and (max-width: 768px) {
+  .start-free-trial-btn {
+    padding: 15px;
+  }
+
+  .header-notify-text {
+    padding: 0px 16px;
+    padding-top: 6px;
+    font-size: 8px;
+    font-weight: normal;
+    line-height: 11px;
+    text-align: center;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+  }
+  .drawerMobImage {
+    width: 90%;
+    margin: 0px auto;
+  }
+  .drawerMobImage img {
+    width: 100%;
+  }
+}
+
+.btn-img {
+  padding: 0px;
+  margin-right: 20px;
+}
+/*@media screen and (max-width: 1463px){*/
+/*  .makeStyles-gameIframe-14 {*/
+/*    width: 100%;*/
+/*    margin-top: 130px !important;*/
+/*  }*/
+/*}*/
+@media screen and (max-width: 1500px) {
+  .MuiBox-root-49 {
+    margin-top: 160px;
+  }
+  .games-btn-content {
+    display: flex;
+    position: absolute;
+    bottom: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 30px;
+  }
+  .btn-img {
+    margin-right: 20px;
+    padding: 0px;
+  }
+}
+@media screen and (max-width: 1463px) {
+  .main-body #iframe-outer {
+    margin-top: 121px !important;
+  }
+  /*.games-btn-content {*/
+  /*  bottom: 60px;*/
+  /*}*/
+  .games-btn-content {
+    bottom: 30px;
+  }
+}
+@media screen and (max-width: 1366px) {
+  .menu-right-text {
+    width: 28%;
+  }
+}
+@media screen and (max-width: 1280px) {
+  .MuiTypography-body2 {
+    font-size: 12px !important;
+  }
+  .main-body #iframe-outer {
+    margin-top: 120px !important;
+  }
+  .menu-right-text {
+    width: 29%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .MuiBox-root-49 {
+    margin-top: 158px;
+  }
+  .makeStyles-gameIframe-13 {
+    width: 100%;
+  }
+  .menu-right-text {
+    width: 37%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .main-body #iframe-outer {
+    margin-top: 122px !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main-body #iframe-outer {
+    margin-top: 73px !important;
+  }
+  .iframeGame {
+    min-height: 100%;
+    height: 100%;
+  }
+  body#main-body.gameDescriptionBody{
+    background-color: #000000 !important;
+  }
+  body#main-body.selectJerseyBody{
+    background-color: #000000 !important;
+  }
+  body#main-body.selectNameBody{
+    background-color: #000000 !important;
+  }
+  body#main-body.selectChallengerBody{
+    background-color: #000000 !important;
+  }
+
+  body#main-body.scorecardBody{
+    background-color: #000000 !important;
+  }
+  body#main-body.gameDescriptionBodyBlocker{
+    background-color: #000000 !important;
+  }
+  body#main-body.selectJerseyBodyBlocker{
+    background-color: #000000 !important;
+  }
+  body#main-body.selectNameBodyBlocker{
+    background-color: #000000 !important;
+  }
+  body#main-body.discountDescriptionBodyBlocker{
+    background-color: #000000 !important;
+  }
+  body#main-body.scorecardBodyBlocker{
+    background-color: #000000 !important;
+  }
+  body#main-body.instructionBodyFanCam{
+    background-color: #000000 !important;
+  }
+  body#main-body.cameraViewBodyFanCam{
+    background-color: #000000 !important;
+  }
+  body#main-body.startOverBodyFanCam{
+    background-color: #000000 !important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .hide-on-desktop {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .games-btn-content {
+    position: relative;
+    padding-right: 0px;
+    margin-bottom: 0;
+    bottom: 0;
+  }
+  html,
+  body {
+    overflow-x: hidden !important;
+    -webkit-overflow-x: hidden !important;
+    position: relative;
+    /*display: none;*/
+  }
+}
+/*html, body{*/
+/*  overflow-x: hidden !important;*/
+/*  -webkit-overflow-x: hidden !important;*/
+/*  position: relative;*/
+/*  !*display: none;*!*/
+/*}*/
+
+@media screen and (max-width: 599px) {
+  .main-body #iframe-outer {
+    margin-top: 82px !important;
+  }
+}
+@media screen and (max-width: 425px) {
+  .floating-got-it-btn {
+    width: 85%;
+    left: 30px;
+    background-color: white !important;
+    padding: 13px !important;
+    display: block;
+  }
+  .floating-got-it-btn span {
+    /*font-family: Graphik !important;*/
+    font-size: 11px;
+    font-weight: 900;
+  }
+
+  #musicPlayerFooter {
+    z-index: 9;
+  }
+  .main-body #iframe-outer {
+    margin-top: 57px !important;
+  }
+}
+@media screen and (max-width: 375px) {
+  .main-body #iframe-outer {
+    margin-top: 52px !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .player-appbar {
+    height: 55px;
+    width: 100%;
+    background-color: black !important;
+    /* z-index: 1; */
+  }
+  .player-appbar-expand {
+    height: 150px;
+    width: 100%;
+  }
+}
+
+/* @media screen and (max-width: 650px) {
+
+} */
+
+.show-right-play-on-mbl {
+  display: none;
+}
+
+.hide-on-desktop {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .show-on-mbl {
+    display: block;
+  }
+  .scruber-line-width {
+    width: 100vw !important;
+  }
+  .hide-right-play-on-mbl {
+    display: none !important;
+  }
+  .show-right-play-on-mbl {
+    display: block !important;
+  }
+  /* games buttons */
+  /* .games-btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 100px;
+  } */
+  .MuiGrid-grid-sm-4 {
+    flex-grow: 0;
+    max-width: 100.333333% !important;
+    flex-basis: 33.333333%;
+  }
+  .hide-right-menu-on-mbl {
+    display: none !important;
+  }
+
+  .menu-btn {
+    display: block;
+    position: absolute;
+    top: 3px;
+    right: 15px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .secondary-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  #liveTVButton {
+    padding-top: 5px;
+    padding-bottom: 34px;
+    text-align: center;
+    line-height: 14px;
+    font-size: 9px;
+    width: 50% !important;
+    display: flex;
+    align-items: center;
+  }
+  .secondary-info {
+    width: 41% !important;
+  }
+  .scruber-mbl {
+    position: relative;
+    bottom: 142px;
+  }
+  .on-expand-scruber {
+    bottom: 65px;
+    width: 90%;
+    margin-left: 5% !important;
+  }
+  .games-btn-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-right: 0px;
+  }
+  .games-img-btn {
+    height: 100px;
+    width: 100% !important;
+  }
+  .btn-img {
+    padding: 0px;
+    margin-bottom: 20px;
+  }
+  /*end  games buttons */
+  /* footer */
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 55px;
+    background-color: #1ce783;
+    border-top: 1px solid grey;
+    height: 50px;
+    margin: auto;
+    width: 100%;
+    color: black;
+  }
+  .footer h4 {
+    margin-right: 10px;
+    font-size: 8px;
+    font-weight: bold;
+  }
+  .footer h4:first-child {
+    margin-left: 15px;
+    width: 140px;
+  }
+  .footer h4:nth-child(2) {
+    margin-left: 15px;
+    width: 155px;
+  }
+  .footer h4:nth-child(3) {
+    margin-left: 15px;
+    width: 173px;
+  }
+  .footer h4:nth-child(4) {
+    margin-left: 15px;
+    width: 115px;
+  }
+  .set-bottom {
+    position: fixed;
+    /* //////////////////// */
+    display: none;
+    bottom: 0px;
+    background-color: #1ce783;
+    color: black;
+    height: 0px;
+    width: 100%;
+    /* display: flex; */
+    justify-content: space-between;
+    align-items: center;
+  }
+  .set-bottom h4 {
+    font-size: 10px;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  /* end of footer */
+  .MuiContainer-root {
+    margin: 0px !important;
+    padding: 0px !important;
+    border: 0px solid #000000 !important;
+  }
+  .shop-collaboration-only-forMbl-div {
+    display: block !important;
+    width: 96%;
+    margin-bottom: 20px;
+    background: black;
+    height: 80px;
+    border: 0px;
+    position: relative;
+  }
+  .player-appbar {
+    height: 55px;
+    width: 100%;
+    background-color: black !important;
+  }
+  .player-appbar-expand {
+    height: 100px !important;
+    width: 100%;
+    background-color: black !important;
+  }
+
+  .player-appbar-expand-song-description {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    order: 2;
+    justify-content: right;
+    align-items: center;
+  }
+  .player-appbar-song-description {
+    width: 70%;
+    height: 100px;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    order: 2;
+    justify-content: right;
+    align-items: flex-start;
+  }
+  .player-appbar-song-description {
+    width: 70%;
+    height: 100px;
+    /* margin: 0px; */
+    padding: 0px;
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
+  }
+  .player-appbar-song-title {
+    font-size: 15px !important;
+    padding: 5px;
+  }
+  .prev-btn-hide-on-mbl,
+  .next-btn-hide-on-mbl,
+  .speaker-hide-on-mbl {
+    display: none !important;
+  }
+  .prev-btn-hide {
+    display: none !important;
+  }
+  .hide-on-expand {
+    display: none !important;
+  }
+
+  .prev-btn-show {
+    display: block;
+  }
+  .minimize-maximize-btn {
+    display: block;
+    color: white;
+    position: absolute;
+    height: 150px;
+    top: 15%;
+    right: 50px;
+    align-items: center;
+  }
+}
+@media (min-width: 600px) {
+  .MuiContainer-root {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+/*.makeStyles-carouselContainer-12 {*/
+/*    margin-top: 8.7%;*/
+/*}*/
+/*.itemNew {*/
+/*    width: 282px;*/
+/*    height: 147px;*/
+/*    line-height: 175px;*/
+/*    opacity 1;*/
+/*}*/
+/*.gameCanvasBodyBlocker .nabar-top {*/
+/*  display: none;*/
+/*}*/
+/*body.gameCanvasBodyBlocker {*/
+/*  padding: 0;*/
+/*}*/
+/*.gameCanvasBodyBlocker #iframe-outer {*/
+/*  margin-top: 0 !important;*/
+/*}*/
+/*.gameCanvasBody .nabar-top {*/
+/*  display: none;*/
+/*}*/
+/*body.gameCanvasBody {*/
+/*  padding: 0;*/
+/*}*/
+/*.gameCanvasBody #iframe-outer {*/
+/*  margin-top: 0 !important;*/
+/*}*/
+/*.gameCanvasBodyBlocker {*/
+/*  overflow: scroll !important;*/
+/*}*/
+/*.gameCanvasBody {*/
+/*  overflow: scroll !important;*/
+/*  */
+/*}*/
+html,
+body {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-x: hidden !important;
+}
